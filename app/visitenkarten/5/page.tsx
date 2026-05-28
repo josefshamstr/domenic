@@ -188,7 +188,7 @@ export default function Visitenkarte5() {
             </p>
           </div>
           <p style={{ margin: 0, fontStyle: "italic", color: "rgba(255,255,255,0.6)", fontSize: "5.5pt" }}>
-            Nach Vereinbarung
+            Termin nach Vereinbarung
           </p>
         </div>
       </div>
