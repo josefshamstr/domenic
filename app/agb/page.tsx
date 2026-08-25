@@ -68,7 +68,7 @@ export default async function Agb() {
             <p className="mt-3">
               Telefon:{" "}
               <a
-                href="tel:+4367018952556"
+                href="tel:+436701895256"
                 className="text-[#0d4f4f] hover:underline"
               >
                 +43 670 189 52 56
