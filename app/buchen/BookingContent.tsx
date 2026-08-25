@@ -54,6 +54,7 @@ export function BookingContent({ sanityBuchen, sanitySettings }: BookingContentP
   const steps = sanityBuchen?.steps?.length
     ? sanityBuchen.steps.map((s) => ({ step: s.number, text: s.text }))
     : defaultSteps;
+  const medicalNote = sanityBuchen?.medicalNote?.trim();
   const successHeading = sanityBuchen?.successHeading ?? "Termin erfolgreich gebucht!";
   const successText =
     sanityBuchen?.successText ??
@@ -127,6 +128,14 @@ export function BookingContent({ sanityBuchen, sanitySettings }: BookingContentP
 
       {/* Calendly — directly on the page, no container */}
       <section className="bg-white">
+        {medicalNote ? (
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 py-6">
+            <p className="text-sm text-[#555] text-center">
+              {medicalNote}
+            </p>
+          </div>
+        ) : null}
+
         {booked ? (
           <div className="mx-auto max-w-2xl px-5 sm:px-8 py-20 text-center">
             <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-[#0d4f4f]/10 mb-6">
