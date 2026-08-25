@@ -12,12 +12,10 @@ export function Hero({
   sanitySettings,
   reviewSummary,
   heroBackgroundImageUrl,
-  heroPortraitImageUrl,
 }: {
   sanitySettings?: SanitySettings | null;
   reviewSummary?: ReviewSummary;
   heroBackgroundImageUrl?: string;
-  heroPortraitImageUrl?: string;
 }) {
   const headline = sanitySettings?.heroHeadline ?? "Weniger Schmerzen.";
   const headlineAccent = sanitySettings?.heroHeadlineAccent ?? "Tiefe Entspannung.";
@@ -51,122 +49,84 @@ export function Hero({
       </div>
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 w-full py-32 sm:py-40" style={{ zIndex: 3 }}>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="max-w-2xl">
           <div>
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 px-4 py-2 text-sm font-semibold text-white/90">
-                <span className="h-2 w-2 rounded-full bg-[#f2a93b] animate-pulse" />
-                Diplomierter Heilmasseur in Wien
-              </span>
-            </div>
-
-            <h1 className="mt-6 sm:mt-8 text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-tight text-white">
-              {headline}
-              <br />
-              <span className="text-[#f2a93b]">{headlineAccent}</span>
-            </h1>
-
-            {reviewSummary && (
-              <a
-                href={GOOGLE_MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 sm:mt-6 flex w-fit flex-wrap items-center gap-x-3 gap-y-1 transition-opacity duration-300 hover:opacity-80"
-              >
-                <div className="flex -space-x-2">
-                  {reviewSummary.avatars.map((a, i) => (
-                    <div
-                      key={i}
-                      className="relative h-9 w-9 rounded-full border-2 border-[#0d4f4f] bg-white/20 flex items-center justify-center text-xs font-bold text-white overflow-hidden"
-                    >
-                      {a.name.charAt(0).toUpperCase()}
-                      {a.photoUri && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={a.photoUri}
-                          alt=""
-                          className="absolute inset-0 h-full w-full object-cover"
-                          referrerPolicy="no-referrer"
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-0.5">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        size={16}
-                        className="fill-[#f2a93b] text-[#f2a93b]"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-base font-bold text-white/90 leading-none">
-                    {reviewSummary.rating.toFixed(1)}
-                  </span>
-                </div>
-                <span className="text-sm text-white/75">
-                  {reviewSummary.count} Google Bewertungen
-                </span>
-              </a>
-            )}
-
-            <p className="mt-5 max-w-lg text-lg sm:text-xl text-white/75 leading-relaxed">
-              {subheading}
-            </p>
-
-            <div className="mt-8 sm:mt-10 flex flex-wrap gap-4">
-              <a
-                href="/buchen"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-7 py-3.5 text-base font-bold text-white shadow-xl shadow-[#e8654a]/30 transition-all duration-300 hover:shadow-2xl hover:shadow-[#e8654a]/40 hover:scale-105"
-              >
-                Jetzt Termin sichern
-              </a>
-              <a
-                href="#leistungen"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-7 py-3.5 text-base font-bold text-white transition-all duration-200 hover:bg-white/10 hover:border-white/40"
-              >
-                Zum Angebot
-                <ArrowDown size={18} />
-              </a>
-            </div>
-
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 px-4 py-2 text-sm font-semibold text-white/90">
+              <span className="h-2 w-2 rounded-full bg-[#f2a93b] animate-pulse" />
+              Diplomierter Heilmasseur in Wien
+            </span>
           </div>
 
-          <div className="hidden lg:flex relative items-center justify-center">
-            <div className="relative w-full max-w-md">
-              <div className="absolute -top-4 -left-4 w-full h-[420px] rounded-3xl bg-[#e8654a]/20 rotate-3" />
-              <div className="absolute -top-2 -left-2 w-full h-[420px] rounded-3xl bg-[#f2a93b]/20 rotate-1" />
-              <div className="relative w-full h-[420px] rounded-3xl bg-white/10 backdrop-blur-sm border border-white/15 overflow-hidden">
-                <Image
-                  src={heroPortraitImageUrl ?? "/images/hero-portrait.png"}
-                  alt="Heilmasseur Domenic Hacker"
-                  fill
-                  className="object-cover object-top"
-                  priority
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-                  <p className="text-lg font-bold text-white">
-                    Domenic Hacker
-                  </p>
-                  <p className="text-sm text-white/70">
-                    Diplomierter Heilmasseur
-                  </p>
-                  <div className="mt-3 flex gap-2 flex-wrap">
-                    <span className="rounded-full bg-[#e8654a]/30 text-white px-3 py-1 text-xs font-bold">
-                      Heilmassage
-                    </span>
-                    <span className="rounded-full bg-[#f2a93b]/30 text-white px-3 py-1 text-xs font-bold">
-                      Lymphdrainage
-                    </span>
-                    <span className="rounded-full bg-white/20 text-white px-3 py-1 text-xs font-bold">
-                      Klassische Massage
-                    </span>
+          <h1 className="mt-6 sm:mt-8 text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-tight text-white">
+            {headline}
+            <br />
+            <span className="text-[#f2a93b]">{headlineAccent}</span>
+          </h1>
+
+          {reviewSummary && (
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 sm:mt-6 flex w-fit flex-wrap items-center gap-x-3 gap-y-1 transition-opacity duration-300 hover:opacity-80"
+            >
+              <div className="flex -space-x-2">
+                {reviewSummary.avatars.map((a, i) => (
+                  <div
+                    key={i}
+                    className="relative h-9 w-9 rounded-full border-2 border-[#0d4f4f] bg-white/20 flex items-center justify-center text-xs font-bold text-white overflow-hidden"
+                  >
+                    {a.name.charAt(0).toUpperCase()}
+                    {a.photoUri && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={a.photoUri}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    )}
                   </div>
-                </div>
+                ))}
               </div>
-            </div>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className="fill-[#f2a93b] text-[#f2a93b]"
+                    />
+                  ))}
+                </div>
+                <span className="text-base font-bold text-white/90 leading-none">
+                  {reviewSummary.rating.toFixed(1)}
+                </span>
+              </div>
+              <span className="text-sm text-white/75">
+                {reviewSummary.count} Google Bewertungen
+              </span>
+            </a>
+          )}
+
+          <p className="mt-5 max-w-lg text-lg sm:text-xl text-white/75 leading-relaxed">
+            {subheading}
+          </p>
+
+          <div className="mt-8 sm:mt-10 flex flex-wrap gap-4">
+            <a
+              href="/buchen"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-7 py-3.5 text-base font-bold text-white shadow-xl shadow-[#e8654a]/30 transition-all duration-300 hover:shadow-2xl hover:shadow-[#e8654a]/40 hover:scale-105"
+            >
+              Jetzt Termin sichern
+            </a>
+            <a
+              href="#leistungen"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-7 py-3.5 text-base font-bold text-white transition-all duration-200 hover:bg-white/10 hover:border-white/40"
+            >
+              Zum Angebot
+              <ArrowDown size={18} />
+            </a>
           </div>
         </div>
       </div>
