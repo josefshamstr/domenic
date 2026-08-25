@@ -5,7 +5,7 @@ const BASE_URL = "https://heilmasseur-domenic.at";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: BASE_URL,
+      url: `${BASE_URL}/`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
