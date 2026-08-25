@@ -5,6 +5,8 @@ const BASE_URL = "https://heilmasseur-domenic.at";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
+      // Trailing slash: GSC inspects `/` as https://heilmasseur-domenic.at/
+      // and won't attach a referring sitemap if loc is origin-only.
       url: `${BASE_URL}/`,
       lastModified: new Date(),
       changeFrequency: "weekly",
