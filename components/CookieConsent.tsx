@@ -96,6 +96,8 @@ export default function CookieConsentComponent() {
               showPreferencesBtn: "Einstellungen",
               footer: `
                 <a href="/impressum" target="_blank">Impressum</a>
+                <a href="/datenschutz" target="_blank">Datenschutz</a>
+                <a href="/agb" target="_blank">AGB</a>
               `,
             },
             preferencesModal: {
@@ -150,7 +152,7 @@ export default function CookieConsentComponent() {
                 {
                   title: "Weitere Infos",
                   description:
-                    'Bei Fragen zu unseren Cookies können Sie uns über das <a href="/#kontakt">Kontaktformular</a> erreichen.',
+                    'Bei Fragen zu unseren Cookies können Sie uns über das <a href="/#kontakt">Kontaktformular</a> erreichen. Weitere Angaben: <a href="/impressum">Impressum</a>, <a href="/datenschutz">Datenschutz</a>, <a href="/agb">AGB</a>.',
                 },
               ],
             },
