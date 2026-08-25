@@ -155,28 +155,22 @@ export default async function Agb() {
               4. Stornierung und Nichtantritt
             </h2>
             <p>
-              Absagen sind telefonisch, per E-Mail oder über den Link in der
+              Ein gebuchter Termin muss mindestens 24 Stunden vor dem
+              vereinbarten Terminbeginn storniert werden. Absagen sind
+              telefonisch, per E-Mail oder über den Link in der
               Calendly-Bestätigung möglich. Maßgeblich ist der Eingang bei der
               Praxis.
             </p>
             <p className="mt-3">
-              <strong>Kostenfreie Stornierung:</strong> Bis 24 Stunden vor dem
-              vereinbarten Terminbeginn kann der Termin kostenfrei storniert
-              oder — soweit frei — verschoben werden.
+              Erfolgt die Stornierung später als 24 Stunden vor dem Termin oder
+              erscheint die Klientin bzw. der Klient nicht (Nichtantritt), ist
+              Domenic Hacker berechtigt, den vollen Behandlungspreis der
+              gebuchten Massage zu verlangen. In diesen Fällen wird der volle
+              Behandlungspreis fällig.
             </p>
             <p className="mt-3">
-              <strong>Verspätete Absage und Nichtantritt:</strong> Bei Absage
-              weniger als 24 Stunden vor Terminbeginn sowie bei Nichterscheinen
-              ohne Absage (No-Show) wird das volle Honorar der gebuchten
-              Behandlung fällig. Der Platz ist für diesen Zeitraum reserviert
-              und kann in der Regel nicht kurzfristig nachbesetzt werden.
-            </p>
-            <p className="mt-3">
-              Die Praxis kann in begründeten Einzelfällen (etwa plötzliche
-              Erkrankung) auf das Honorar ganz oder teilweise verzichten; ein
-              Anspruch darauf besteht nicht. Muss die Praxis selbst absagen,
-              entstehen der Klientin bzw. dem Klienten keine Kosten; ein
-              Ersatztermin wird angeboten.
+              Sagt die Praxis selbst ab, entstehen der Klientin bzw. dem
+              Klienten keine Kosten; ein Ersatztermin wird angeboten.
             </p>
           </section>
 
@@ -231,8 +225,8 @@ export default async function Agb() {
             <p className="mt-3">
               Für einen mit Gutschein oder Block-Karte gebuchten Termin gelten
               die Stornoregeln in Punkt 4. Bei verspäteter Absage oder
-              Nichtantritt wird das Honorar fällig bzw. vom Guthaben
-              abgebucht.
+              Nichtantritt wird der volle Behandlungspreis fällig bzw. vom
+              Guthaben abgebucht.
             </p>
           </section>
 
