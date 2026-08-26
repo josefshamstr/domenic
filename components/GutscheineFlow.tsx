@@ -222,8 +222,17 @@ function GutscheineContent({
             </p>
             <VoucherCheckout input={checkoutInput} />
             <p className="mt-6 text-xs text-[#666]">
-              {cms?.agbNotice ??
-                "Mit dem Klick auf Bezahlen bestätigen Sie unsere AGB und das Widerrufsrecht. Hinweis: Bei digitalen Inhalten (PDF-Gutschein) erlischt das Widerrufsrecht nach Lieferung des PDFs an die angegebene E-Mail-Adresse (§ 18 FAGG)."}
+              {cms?.agbNotice ?? (
+                <>
+                  Mit dem Klick auf Bezahlen bestätigen Sie unsere{" "}
+                  <a href="/agb" className="font-semibold text-[#0d4f4f] hover:underline">
+                    AGB
+                  </a>{" "}
+                  und das Widerrufsrecht. Hinweis: Bei digitalen Inhalten
+                  (PDF-Gutschein) erlischt das Widerrufsrecht nach Lieferung des
+                  PDFs an die angegebene E-Mail-Adresse (§ 18 FAGG).
+                </>
+              )}
             </p>
           </div>
         </section>

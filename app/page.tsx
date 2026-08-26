@@ -52,7 +52,6 @@ export default async function Home() {
           sanitySettings={settings}
           reviewSummary={reviewSummary}
           heroBackgroundImageUrl={homePage?.heroBackgroundImage ? urlFor(homePage.heroBackgroundImage).width(2000).quality(80).url() : undefined}
-          heroPortraitImageUrl={homePage?.heroPortraitImage ? urlFor(homePage.heroPortraitImage).width(800).height(840).url() : undefined}
         />
         <Services sanityServices={services} homePage={homePage} />
 
