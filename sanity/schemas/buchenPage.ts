@@ -44,8 +44,8 @@ export const buchenPageSchema = defineType({
       name: "medicalNote",
       title: "Medizinischer Hinweis",
       type: "string",
-      initialValue:
-        "Medizinische Massagen erfolgen auf Grundlage einer ärztlichen Verordnung.",
+      description:
+        "Optional. Leer lassen, wenn kein Hinweis über dem Buchungs-Embed stehen soll.",
     }),
     defineField({
       name: "successHeading",

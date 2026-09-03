@@ -18,6 +18,7 @@ const praxisLinks = [
   { label: "Termin buchen", href: "/buchen" },
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
+  { label: "AGB", href: "/agb" },
 ];
 
 export function Footer({ sanitySettings }: { sanitySettings?: SanitySettings | null }) {

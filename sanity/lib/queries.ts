@@ -229,7 +229,7 @@ export type SanityBuchenPage = {
   headingAccent: string;
   subtitle: string;
   steps: { number: string; text: string }[];
-  medicalNote: string;
+  medicalNote?: string;
   successHeading: string;
   successText: string;
   infoHeading: string;

@@ -195,7 +195,6 @@ await createOrReplace({
     { _key: "s2", number: "2", text: "Wunschtermin wählen" },
     { _key: "s3", number: "3", text: "Kontaktdaten eingeben" },
   ],
-  medicalNote: "Medizinische Massagen erfolgen auf Grundlage einer ärztlichen Verordnung.",
   successHeading: "Termin erfolgreich gebucht!",
   successText: "Sie erhalten in Kürze eine Bestätigung per E-Mail.",
   infoHeading: "So finden Sie",
