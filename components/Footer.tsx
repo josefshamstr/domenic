@@ -8,6 +8,7 @@ import type { SanitySettings } from "@/sanity/lib/queries";
 const angebotLinks = [
   { label: "Heilmassage Wien", href: "/heilmassage-wien-1080" },
   { label: "Sportmassage Wien", href: "/sportmassage-wien" },
+  { label: "Mobile Massage Wien", href: "/mobile-massage-wien" },
   { label: "Preise", href: "/preise" },
   { label: "Gutscheine", href: "/gutscheine" },
 ];
