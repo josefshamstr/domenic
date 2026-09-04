@@ -26,7 +26,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Ich komme zu Ihnen — mit Massageliege, Ölen und Handtüchern. Sie brauchen nichts vorzubereiten außer einem ruhigen Platz. Diplomierte Heilmassage in Ihren eigenen vier Wänden.",
+        "Ich komme zu Ihnen – mit Liege, Ölen und Handtüchern. Sie kümmern sich um nichts außer Ihrer Entspannung. Therapeutische Massage auf Praxisniveau, in Ihren eigenen vier Wänden oder im Hotel.",
       group: "hero",
     }),
     defineField({
@@ -49,7 +49,7 @@ export const mobileMassagePageSchema = defineType({
       name: "priceHeading",
       title: "Preis — Überschrift",
       type: "string",
-      initialValue: "Ein Fixpreis, zwei Längen",
+      initialValue: "Ein Fixpreis. Sie wählen die Zeit.",
       group: "price",
     }),
     defineField({
@@ -58,7 +58,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Keine Staffelung, keine Überraschungen: Ein Hausbesuch kostet 120 € — egal ob Sie 60 oder 90 Minuten buchen. Anfahrt innerhalb Wiens ist im Preis enthalten.",
+        "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie. Die Anfahrt innerhalb Wiens ist enthalten.",
       group: "price",
     }),
     defineField({
@@ -82,7 +82,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Für Adressen außerhalb Wiens oder am Stadtrand kann ein Anfahrtsaufschlag dazukommen — den nenne ich Ihnen immer vorab, bevor der Termin fix ist.",
+        "Für Adressen außerhalb Wiens oder am Stadtrand kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.",
       group: "price",
     }),
 
@@ -100,7 +100,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Sie müssen nichts besorgen, nichts umräumen und nichts vorbereiten. Ein Platz von etwa zwei mal zwei Metern reicht — den Rest bringe ich mit.",
+        "Nichts besorgen, nichts umräumen, nichts vorbereiten. Ein freier Platz von etwa zwei mal zwei Metern genügt – der Rest kommt mit mir.",
       group: "included",
     }),
     defineField({
@@ -125,27 +125,27 @@ export const mobileMassagePageSchema = defineType({
       initialValue: [
         {
           _key: "included-1",
-          title: "Profi-Massageliege",
+          title: "Professionelle Massageliege",
           description:
-            "Stabile, gepolsterte Liege mit Nackenstütze — dieselbe Qualität wie in der Praxis, in wenigen Minuten aufgebaut.",
+            "Stabil, gepolstert, mit Nackenstütze – dieselbe Liege wie in der Praxis, in wenigen Minuten aufgebaut.",
         },
         {
           _key: "included-2",
-          title: "Öle & Emulsionen",
+          title: "Hochwertige Öle",
           description:
-            "Hochwertige, hautverträgliche Öle. Auf Wunsch neutral und unparfümiert, wenn Sie empfindlich reagieren.",
+            "Hautverträglich und dezent im Duft. Auf Wunsch neutral und unparfümiert, wenn Sie empfindlich reagieren.",
         },
         {
           _key: "included-3",
-          title: "Frische Handtücher",
+          title: "Frische Handtücher & Auflagen",
           description:
-            "Frisch gewaschene Handtücher und Auflagen für jeden Termin — Ihre eigenen Textilien bleiben unberührt.",
+            "Für jeden Termin frisch gewaschen. Ihre eigenen Textilien bleiben im Schrank.",
         },
         {
           _key: "included-4",
-          title: "Ruhige Atmosphäre",
+          title: "Ruhe nach Ihrem Maß",
           description:
-            "Auf Wunsch mit leiser Musik, sonst in Stille. Sie bestimmen, wie viel gesprochen wird.",
+            "Leise Musik oder Stille, viel Gespräch oder gar keines – Sie geben den Ton vor.",
         },
       ],
       group: "included",
@@ -156,7 +156,7 @@ export const mobileMassagePageSchema = defineType({
       name: "forWhomHeading",
       title: "Für wen — Überschrift",
       type: "string",
-      initialValue: "Wann eine Massage zu Hause die bessere Wahl ist",
+      initialValue: "Wann eine Massage zuhause die bessere Wahl ist",
       group: "forWhom",
     }),
     defineField({
@@ -165,7 +165,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Manchmal ist der Weg zur Praxis genau das, was fehlt. Wer nach der Behandlung nicht mehr in die U-Bahn steigen muss, kommt tiefer runter — und bleibt länger entspannt.",
+        "Oft ist der Weg zur Praxis der Grund, warum ein Termin nicht zustande kommt. Wer danach nicht mehr in die U-Bahn steigen muss, entspannt tiefer – und bleibt länger entspannt.",
       group: "forWhom",
     }),
     defineField({
@@ -174,13 +174,13 @@ export const mobileMassagePageSchema = defineType({
       type: "array",
       of: [{ type: "string" }],
       initialValue: [
-        "Massage zu Hause",
         "Nach langen Arbeitstagen",
         "Hotelaufenthalt in Wien",
         "Nach Fernflügen",
         "Eingeschränkte Mobilität",
         "Junge Eltern",
         "Vor wichtigen Terminen",
+        "Als fixer Termin im Kalender",
         "Als Geschenk",
       ],
       group: "forWhom",
@@ -200,7 +200,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Diskret, pünktlich und ohne Aufwand für Sie. Vom Klingeln bis zum Abbau vergeht keine Minute, die Sie organisieren müssten.",
+        "Diskret, pünktlich und ohne Aufwand für Sie – vom Klingeln bis zum Abbau.",
       group: "process",
     }),
     defineField({
@@ -227,25 +227,25 @@ export const mobileMassagePageSchema = defineType({
           _key: "step-1",
           title: "Anfrage & Termin",
           description:
-            "Sie nennen mir Adresse, Wunschtermin und ob 60 oder 90 Minuten. Ich bestätige den Termin und den Preis verbindlich.",
+            "Sie nennen mir Adresse, Wunschtermin und ob 60 oder 90 Minuten. Ich bestätige Termin und Preis verbindlich.",
         },
         {
           _key: "step-2",
-          title: "Aufbau in fünf Minuten",
+          title: "Ankunft & Aufbau",
           description:
-            "Ich komme pünktlich, baue die Liege leise auf und Sie zeigen mir kurz, wo Sie es am liebsten hätten.",
+            "Ich komme pünktlich, Sie zeigen mir den Platz. Die Liege steht in wenigen Minuten – leise und ohne Umräumen.",
         },
         {
           _key: "step-3",
           title: "Die Behandlung",
           description:
-            "Kurzes Gespräch über Beschwerden und Intensität — danach 60 oder 90 Minuten gezielte Arbeit an Ihrem Körper.",
+            "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit an Ihrem Körper.",
         },
         {
           _key: "step-4",
           title: "Nachklingen lassen",
           description:
-            "Ich packe zusammen und gehe. Sie bleiben liegen, sitzen oder schlafen einfach weiter — kein Heimweg, kein Bruch.",
+            "Ich packe zusammen und verabschiede mich leise. Sie bleiben liegen, trinken einen Tee oder schlafen einfach weiter.",
         },
       ],
       group: "process",
@@ -265,7 +265,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 4,
       initialValue:
-        "Für Gäste in Wiener Hotels, Künstlerinnen und Künstler auf Tour und alle, die einen diskreten Termin brauchen: Ich behandle auf Anfrage auch im Hotelzimmer, in der Suite oder Backstage. Terminfenster außerhalb der üblichen Zeiten sind möglich — fragen Sie einfach an.",
+        "Für Gäste in Wiener Hotels, für Künstlerinnen und Künstler auf Tour und für alle, die einen diskreten Termin brauchen: Auf Anfrage behandle ich auch im Hotelzimmer, in der Suite oder backstage. Terminfenster außerhalb der üblichen Zeiten sind möglich.",
       group: "vip",
     }),
     defineField({
@@ -275,9 +275,9 @@ export const mobileMassagePageSchema = defineType({
       of: [{ type: "string" }],
       initialValue: [
         "Behandlung im Hotelzimmer oder in der Suite",
-        "Diskretion und absolute Verschwiegenheit",
-        "Termine auch am Abend und am Wochenende",
-        "Auf Wunsch Abrechnung über die Rezeption oder das Management",
+        "Absolute Diskretion",
+        "Termine auch abends und am Wochenende",
+        "Auf Wunsch Abrechnung über Rezeption oder Management",
       ],
       group: "vip",
     }),
@@ -294,7 +294,7 @@ export const mobileMassagePageSchema = defineType({
       name: "socialProofHeading",
       title: "Social Proof — Überschrift",
       type: "string",
-      initialValue: "Vertrauen von Menschen, die auf ihren Körper angewiesen sind",
+      initialValue: "Therapeutisch fundiert, geprägt von der Bühne",
       group: "socialProof",
     }),
     defineField({
@@ -303,7 +303,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 4,
       initialValue:
-        "Bühne, Studio, Wettkampf: Wer beruflich mit dem Körper arbeitet, kann sich keine verschleppte Verspannung leisten. Aus dem Breakdance kenne ich diese Welt von innen — und weiß, wie viel ein guter Termin am richtigen Tag wert ist.",
+        "Seit meiner Jugend stehe ich als B-Boy auf der Bühne. Wer so trainiert, lernt früh, wie ein Körper unter Belastung funktioniert – und was er braucht, um sich wieder zu lösen. Diese Erfahrung fließt in jeden Handgriff: präzise, rhythmisch und mit Gefühl für den richtigen Druck zur richtigen Zeit. Das schätzen Menschen, die beruflich auf ihren Körper angewiesen sind – auf Tour, im Studio und im Hotel.",
       group: "socialProof",
     }),
     defineField({
@@ -336,7 +336,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Ausgangspunkt ist meine Praxis in der Josefstadt. Innerhalb Wiens komme ich in jeden Bezirk — in den Innenbezirken bin ich meist besonders kurzfristig verfügbar.",
+        "Ausgangspunkt ist meine Praxis in der Josefstadt. Innerhalb Wiens komme ich in jeden Bezirk – in den Innenbezirken meist besonders kurzfristig.",
       group: "area",
     }),
     defineField({
@@ -382,19 +382,19 @@ export const mobileMassagePageSchema = defineType({
           _key: "faq-1",
           question: "Was kostet eine mobile Massage in Wien?",
           answer:
-            "Ein Hausbesuch kostet 120 € als Fixpreis — für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen weiter außerhalb kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
+            "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen weiter außerhalb kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
         },
         {
           _key: "faq-2",
-          question: "Was muss ich für den Termin zu Hause vorbereiten?",
+          question: "Was muss ich für den Termin zuhause vorbereiten?",
           answer:
-            "Nichts. Ich bringe Massageliege, Öle und frische Handtücher mit. Sie brauchen nur einen freien Platz von etwa zwei mal zwei Metern — Wohnzimmer, Schlafzimmer oder Büro funktionieren alle gleich gut.",
+            "Nichts. Ich bringe Massageliege, Öle und frische Handtücher mit. Sie brauchen nur einen freien Platz von etwa zwei mal zwei Metern – Wohnzimmer, Schlafzimmer oder Büro funktionieren alle gleich gut.",
         },
         {
           _key: "faq-3",
           question: "Wie viel Platz braucht die Massageliege?",
           answer:
-            "Die Liege ist rund 190 cm lang und 70 cm breit. Damit ich rundherum arbeiten kann, sind etwa zwei mal zwei Meter ideal. Wenn Sie unsicher sind, schicken Sie mir vorab ein Foto des Raums — dann klären wir das in einer Minute.",
+            "Die Liege ist rund 190 cm lang und 70 cm breit. Damit ich rundherum arbeiten kann, sind etwa zwei mal zwei Meter ideal. Wenn Sie unsicher sind, schicken Sie mir vorab ein Foto des Raums – dann klären wir das in einer Minute.",
         },
         {
           _key: "faq-4",
@@ -406,7 +406,7 @@ export const mobileMassagePageSchema = defineType({
           _key: "faq-5",
           question: "Welche Massage bekomme ich beim Hausbesuch?",
           answer:
-            "Dieselbe Arbeit wie in der Praxis: klassische Massage, Heilmassage-Techniken und gezielte Behandlung von Verspannungen — abgestimmt auf das, was Ihr Körper an diesem Tag braucht. Nur Anwendungen mit Geräten sind zu Hause nicht möglich.",
+            "Dieselbe Arbeit wie in der Praxis: klassische Massage, Heilmassage-Techniken und gezielte Behandlung von Verspannungen – abgestimmt auf das, was Ihr Körper an diesem Tag braucht. Nur Anwendungen mit Geräten sind zuhause nicht möglich.",
         },
         {
           _key: "faq-6",
@@ -418,7 +418,7 @@ export const mobileMassagePageSchema = defineType({
           _key: "faq-7",
           question: "Zahlt die Krankenkasse eine mobile Massage?",
           answer:
-            "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg — Details dazu auf der Preise-Seite.",
+            "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.",
         },
       ],
       group: "faqs",
@@ -438,7 +438,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 2,
       initialValue:
-        "Termin online anfragen oder direkt anrufen — sagen Sie mir Adresse und Wunschzeit, den Rest übernehme ich.",
+        "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Online anfragen oder direkt anrufen.",
       group: "cta",
     }),
   ],

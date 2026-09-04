@@ -7,12 +7,9 @@ import {
   Calendar,
   Check,
   ChevronDown,
-  Clock,
   Droplets,
   MapPin,
-  Package,
   Phone,
-  ShieldCheck,
   Sparkles,
   Waves,
 } from "lucide-react";
@@ -33,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mobile Massage Wien · Massage zu Hause bei Ihnen",
     description:
-      "Hausbesuch in ganz Wien — Massageliege, Öle und Handtücher bringe ich mit. 120 € Fixpreis für 60 oder 90 Minuten.",
+      "Hausbesuch in ganz Wien – Massageliege, Öle und Handtücher bringe ich mit. 120 € Fixpreis für 60 oder 90 Minuten.",
     url: CANONICAL,
     locale: "de_AT",
     type: "website",
@@ -42,37 +39,47 @@ export const metadata: Metadata = {
 
 const INCLUDED_ICONS = [BedDouble, Droplets, Waves, Sparkles];
 
+const FOCUS_RING =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2a93b] focus-visible:ring-offset-2";
+
 const defaultIncluded = [
   {
-    title: "Profi-Massageliege",
+    title: "Professionelle Massageliege",
     description:
-      "Stabile, gepolsterte Liege mit Nackenstütze — dieselbe Qualität wie in der Praxis, in wenigen Minuten aufgebaut.",
+      "Stabil, gepolstert, mit Nackenstütze – dieselbe Liege wie in der Praxis, in wenigen Minuten aufgebaut.",
   },
   {
-    title: "Öle & Emulsionen",
+    title: "Hochwertige Öle",
     description:
-      "Hochwertige, hautverträgliche Öle. Auf Wunsch neutral und unparfümiert, wenn Sie empfindlich reagieren.",
+      "Hautverträglich und dezent im Duft. Auf Wunsch neutral und unparfümiert, wenn Sie empfindlich reagieren.",
   },
   {
-    title: "Frische Handtücher",
+    title: "Frische Handtücher & Auflagen",
     description:
-      "Frisch gewaschene Handtücher und Auflagen für jeden Termin — Ihre eigenen Textilien bleiben unberührt.",
+      "Für jeden Termin frisch gewaschen. Ihre eigenen Textilien bleiben im Schrank.",
   },
   {
-    title: "Ruhige Atmosphäre",
+    title: "Ruhe nach Ihrem Maß",
     description:
-      "Auf Wunsch mit leiser Musik, sonst in Stille. Sie bestimmen, wie viel gesprochen wird.",
+      "Leise Musik oder Stille, viel Gespräch oder gar keines – Sie geben den Ton vor.",
   },
 ];
 
+const defaultPriceIncludes = [
+  "Anfahrt innerhalb Wiens",
+  "Massageliege, Öle und Handtücher",
+  "Kurzes Vorgespräch zu Beschwerden und Intensität",
+  "Auf- und Abbau in Ihren Räumen",
+];
+
 const defaultOccasions = [
-  "Massage zu Hause",
   "Nach langen Arbeitstagen",
   "Hotelaufenthalt in Wien",
   "Nach Fernflügen",
   "Eingeschränkte Mobilität",
   "Junge Eltern",
   "Vor wichtigen Terminen",
+  "Als fixer Termin im Kalender",
   "Als Geschenk",
 ];
 
@@ -80,30 +87,30 @@ const defaultProcessSteps = [
   {
     title: "Anfrage & Termin",
     description:
-      "Sie nennen mir Adresse, Wunschtermin und ob 60 oder 90 Minuten. Ich bestätige den Termin und den Preis verbindlich.",
+      "Sie nennen mir Adresse, Wunschtermin und ob 60 oder 90 Minuten. Ich bestätige Termin und Preis verbindlich.",
   },
   {
-    title: "Aufbau in fünf Minuten",
+    title: "Ankunft & Aufbau",
     description:
-      "Ich komme pünktlich, baue die Liege leise auf und Sie zeigen mir kurz, wo Sie es am liebsten hätten.",
+      "Ich komme pünktlich, Sie zeigen mir den Platz. Die Liege steht in wenigen Minuten – leise und ohne Umräumen.",
   },
   {
     title: "Die Behandlung",
     description:
-      "Kurzes Gespräch über Beschwerden und Intensität — danach 60 oder 90 Minuten gezielte Arbeit an Ihrem Körper.",
+      "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit an Ihrem Körper.",
   },
   {
     title: "Nachklingen lassen",
     description:
-      "Ich packe zusammen und gehe. Sie bleiben liegen, sitzen oder schlafen einfach weiter — kein Heimweg, kein Bruch.",
+      "Ich packe zusammen und verabschiede mich leise. Sie bleiben liegen, trinken einen Tee oder schlafen einfach weiter.",
   },
 ];
 
 const defaultVipPoints = [
   "Behandlung im Hotelzimmer oder in der Suite",
-  "Diskretion und absolute Verschwiegenheit",
-  "Termine auch am Abend und am Wochenende",
-  "Auf Wunsch Abrechnung über die Rezeption oder das Management",
+  "Absolute Diskretion",
+  "Termine auch abends und am Wochenende",
+  "Auf Wunsch Abrechnung über Rezeption oder Management",
 ];
 
 const defaultAreaDistricts = [
@@ -122,19 +129,19 @@ const defaultFaqs = [
     _key: "default-mobile-faq-1",
     question: "Was kostet eine mobile Massage in Wien?",
     answer:
-      "Ein Hausbesuch kostet 120 € als Fixpreis — für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen weiter außerhalb kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
+      "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen weiter außerhalb kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
   },
   {
     _key: "default-mobile-faq-2",
-    question: "Was muss ich für den Termin zu Hause vorbereiten?",
+    question: "Was muss ich für den Termin zuhause vorbereiten?",
     answer:
-      "Nichts. Ich bringe Massageliege, Öle und frische Handtücher mit. Sie brauchen nur einen freien Platz von etwa zwei mal zwei Metern — Wohnzimmer, Schlafzimmer oder Büro funktionieren alle gleich gut.",
+      "Nichts. Ich bringe Massageliege, Öle und frische Handtücher mit. Sie brauchen nur einen freien Platz von etwa zwei mal zwei Metern – Wohnzimmer, Schlafzimmer oder Büro funktionieren alle gleich gut.",
   },
   {
     _key: "default-mobile-faq-3",
     question: "Wie viel Platz braucht die Massageliege?",
     answer:
-      "Die Liege ist rund 190 cm lang und 70 cm breit. Damit ich rundherum arbeiten kann, sind etwa zwei mal zwei Meter ideal. Wenn Sie unsicher sind, schicken Sie mir vorab ein Foto des Raums — dann klären wir das in einer Minute.",
+      "Die Liege ist rund 190 cm lang und 70 cm breit. Damit ich rundherum arbeiten kann, sind etwa zwei mal zwei Meter ideal. Wenn Sie unsicher sind, schicken Sie mir vorab ein Foto des Raums – dann klären wir das in einer Minute.",
   },
   {
     _key: "default-mobile-faq-4",
@@ -146,7 +153,7 @@ const defaultFaqs = [
     _key: "default-mobile-faq-5",
     question: "Welche Massage bekomme ich beim Hausbesuch?",
     answer:
-      "Dieselbe Arbeit wie in der Praxis: klassische Massage, Heilmassage-Techniken und gezielte Behandlung von Verspannungen — abgestimmt auf das, was Ihr Körper an diesem Tag braucht. Nur Anwendungen mit Geräten sind zu Hause nicht möglich.",
+      "Dieselbe Arbeit wie in der Praxis: klassische Massage, Heilmassage-Techniken und gezielte Behandlung von Verspannungen – abgestimmt auf das, was Ihr Körper an diesem Tag braucht. Nur Anwendungen mit Geräten sind zuhause nicht möglich.",
   },
   {
     _key: "default-mobile-faq-6",
@@ -158,7 +165,7 @@ const defaultFaqs = [
     _key: "default-mobile-faq-7",
     question: "Zahlt die Krankenkasse eine mobile Massage?",
     answer:
-      "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg — Details dazu auf der Preise-Seite.",
+      "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.",
   },
 ];
 
@@ -168,33 +175,36 @@ export default async function MobileMassageWien() {
     getSettings(),
   ]);
 
-  // Platzhalter aus dem bestehenden Praxis-Bildpool. TODO(assets): sobald das
-  // KC-Rebell-/Hyatt-Shooting da ist, kommt das Hero-Motiv hier rein.
+  // Platzhalter aus dem bestehenden Bildpool. TODO(assets): sobald das
+  // KC-Rebell-/Hyatt-Shooting da ist, kommt das Hero-Motiv über Sanity rein.
   const heroImageSrc = page?.heroImage
-    ? urlFor(page.heroImage).width(800).height(600).url()
-    : "/images/domenic-massage.webp";
+    ? urlFor(page.heroImage).width(900).height(1125).url()
+    : "/images/behandlungsraum.webp";
 
   // Platzhalter für den Social-Proof-Slot: aktuell das Breakdance-Bühnenfoto von
-  // /ueber-mich. TODO(assets): wird durch das KC-Rebell-/Hyatt-Foto ersetzt,
+  // /ueber-mich. TODO(assets): wird durch das KC-Rebell-Foto ersetzt,
   // Bildunterschrift dann über Sanity (socialProofCaption) nachziehen.
   const socialProofImageSrc = page?.socialProofImage
     ? urlFor(page.socialProofImage).width(900).height(1100).url()
     : "/images/breakdance.jpg";
 
   const heroBadge = page?.heroBadge ?? "Hausbesuch in ganz Wien";
-  const heroHeading =
+  // Geschütztes Leerzeichen vor dem Gedankenstrich, damit der Strich nie
+  // allein an den Zeilenanfang rutscht ("Mobile Massage / – nachhaltige …").
+  const heroHeading = (
     page?.heroHeading ??
-    "Mobile Massage – nachhaltige Entspannung bei Ihnen zuhause";
+    "Mobile Massage – nachhaltige Entspannung bei Ihnen zuhause"
+  ).replace(/\s–\s/g, " – ");
   const heroSubtitle =
     page?.heroSubtitle ??
-    "Ich komme zu Ihnen — mit Massageliege, Ölen und Handtüchern. Sie brauchen nichts vorzubereiten außer einem ruhigen Platz. Diplomierte Heilmassage in Ihren eigenen vier Wänden.";
+    "Ich komme zu Ihnen – mit Liege, Ölen und Handtüchern. Sie kümmern sich um nichts außer Ihrer Entspannung. Therapeutische Massage auf Praxisniveau, in Ihren eigenen vier Wänden oder im Hotel.";
   const heroServiceLine =
     page?.heroServiceLine ?? "Hotel & VIP Service auf Anfrage";
 
-  const priceHeading = page?.priceHeading ?? "Ein Fixpreis, zwei Längen";
+  const priceHeading = page?.priceHeading ?? "Ein Fixpreis. Sie wählen die Zeit.";
   const priceDescription =
     page?.priceDescription ??
-    "Keine Staffelung, keine Überraschungen: Ein Hausbesuch kostet 120 € — egal ob Sie 60 oder 90 Minuten buchen. Anfahrt innerhalb Wiens ist im Preis enthalten.";
+    "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie. Die Anfahrt innerhalb Wiens ist enthalten.";
   const priceAmount = page?.priceAmount ?? 120;
   const priceDurations =
     page?.priceDurations && page.priceDurations.length > 0
@@ -202,7 +212,7 @@ export default async function MobileMassageWien() {
       : ["60 Minuten", "90 Minuten"];
   const priceNote =
     page?.priceNote ??
-    "Für Adressen außerhalb Wiens oder am Stadtrand kann ein Anfahrtsaufschlag dazukommen — den nenne ich Ihnen immer vorab, bevor der Termin fix ist.";
+    "Für Adressen außerhalb Wiens oder am Stadtrand kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.";
   // "60 Minuten" + "90 Minuten" soll als "60 oder 90 Minuten" laufen, nicht als
   // "60 Minuten oder 90 Minuten". Bei abweichenden Sanity-Werten bleibt der
   // vollständige Text erhalten.
@@ -217,15 +227,15 @@ export default async function MobileMassageWien() {
   const includedHeading = page?.includedHeading ?? "Ich bringe alles mit";
   const includedDescription =
     page?.includedDescription ??
-    "Sie müssen nichts besorgen, nichts umräumen und nichts vorbereiten. Ein Platz von etwa zwei mal zwei Metern reicht — den Rest bringe ich mit.";
+    "Nichts besorgen, nichts umräumen, nichts vorbereiten. Ein freier Platz von etwa zwei mal zwei Metern genügt – der Rest kommt mit mir.";
   const included =
     page?.included && page.included.length > 0 ? page.included : defaultIncluded;
 
   const forWhomHeading =
-    page?.forWhomHeading ?? "Wann eine Massage zu Hause die bessere Wahl ist";
+    page?.forWhomHeading ?? "Wann eine Massage zuhause die bessere Wahl ist";
   const forWhomDescription =
     page?.forWhomDescription ??
-    "Manchmal ist der Weg zur Praxis genau das, was fehlt. Wer nach der Behandlung nicht mehr in die U-Bahn steigen muss, kommt tiefer runter — und bleibt länger entspannt.";
+    "Oft ist der Weg zur Praxis der Grund, warum ein Termin nicht zustande kommt. Wer danach nicht mehr in die U-Bahn steigen muss, entspannt tiefer – und bleibt länger entspannt.";
   const occasions =
     page?.occasions && page.occasions.length > 0
       ? page.occasions
@@ -234,7 +244,7 @@ export default async function MobileMassageWien() {
   const processHeading = page?.processHeading ?? "So läuft ein Hausbesuch ab";
   const processDescription =
     page?.processDescription ??
-    "Diskret, pünktlich und ohne Aufwand für Sie. Vom Klingeln bis zum Abbau vergeht keine Minute, die Sie organisieren müssten.";
+    "Diskret, pünktlich und ohne Aufwand für Sie – vom Klingeln bis zum Abbau.";
   const processSteps =
     page?.processSteps && page.processSteps.length > 0
       ? page.processSteps
@@ -243,7 +253,7 @@ export default async function MobileMassageWien() {
   const vipHeading = page?.vipHeading ?? "Hotel & VIP Service auf Anfrage";
   const vipText =
     page?.vipText ??
-    "Für Gäste in Wiener Hotels, Künstlerinnen und Künstler auf Tour und alle, die einen diskreten Termin brauchen: Ich behandle auf Anfrage auch im Hotelzimmer, in der Suite oder Backstage. Terminfenster außerhalb der üblichen Zeiten sind möglich — fragen Sie einfach an.";
+    "Für Gäste in Wiener Hotels, für Künstlerinnen und Künstler auf Tour und für alle, die einen diskreten Termin brauchen: Auf Anfrage behandle ich auch im Hotelzimmer, in der Suite oder backstage. Terminfenster außerhalb der üblichen Zeiten sind möglich.";
   const vipPoints =
     page?.vipPoints && page.vipPoints.length > 0
       ? page.vipPoints
@@ -252,16 +262,16 @@ export default async function MobileMassageWien() {
   const socialProofEyebrow = page?.socialProofEyebrow ?? "Auf Tour & backstage";
   const socialProofHeading =
     page?.socialProofHeading ??
-    "Vertrauen von Menschen, die auf ihren Körper angewiesen sind";
+    "Therapeutisch fundiert, geprägt von der Bühne";
   const socialProofText =
     page?.socialProofText ??
-    "Bühne, Studio, Wettkampf: Wer beruflich mit dem Körper arbeitet, kann sich keine verschleppte Verspannung leisten. Aus dem Breakdance kenne ich diese Welt von innen — und weiß, wie viel ein guter Termin am richtigen Tag wert ist.";
+    "Seit meiner Jugend stehe ich als B-Boy auf der Bühne. Wer so trainiert, lernt früh, wie ein Körper unter Belastung funktioniert – und was er braucht, um sich wieder zu lösen. Diese Erfahrung fließt in jeden Handgriff: präzise, rhythmisch und mit Gefühl für den richtigen Druck zur richtigen Zeit. Das schätzen Menschen, die beruflich auf ihren Körper angewiesen sind – auf Tour, im Studio und im Hotel.";
   const socialProofCaption = page?.socialProofCaption;
 
   const areaHeading = page?.areaHeading ?? "Mobile Massage in ganz Wien";
   const areaDescription =
     page?.areaDescription ??
-    "Ausgangspunkt ist meine Praxis in der Josefstadt. Innerhalb Wiens komme ich in jeden Bezirk — in den Innenbezirken bin ich meist besonders kurzfristig verfügbar.";
+    "Ausgangspunkt ist meine Praxis in der Josefstadt. Innerhalb Wiens komme ich in jeden Bezirk – in den Innenbezirken meist besonders kurzfristig.";
   const areaDistricts =
     page?.areaDistricts && page.areaDistricts.length > 0
       ? page.areaDistricts
@@ -272,18 +282,23 @@ export default async function MobileMassageWien() {
   const ctaHeading = page?.ctaHeading ?? "Entspannung kommt zu Ihnen";
   const ctaText =
     page?.ctaText ??
-    "Termin online anfragen oder direkt anrufen — sagen Sie mir Adresse und Wunschzeit, den Rest übernehme ich.";
+    "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Online anfragen oder direkt anrufen.";
 
   const phone = settings?.phone ?? "+43 670 189 52 56";
+  const telHref = `tel:${phone.replace(/\s/g, "")}`;
+  const practiceAddress = settings?.address ?? "Feldgasse 3/20, 1080 Wien";
+
+  const rise = (delay: string) =>
+    `motion-safe:animate-[mm-rise_0.9s_cubic-bezier(0.16,1,0.3,1)_both] ${delay}`;
 
   return (
     <>
       <JsonLdService variant="mobilemassage" />
       <FaqJsonLd faqs={faqs.map((f) => ({ q: f.question, a: f.answer }))} />
-      <main>
+      <main className="selection:bg-[#f2a93b]/40 selection:text-[#111]">
         {/* ── HERO ─────────────────────────────────────────────────── */}
-        <section className="relative bg-[#0d4f4f] overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#e8654a] via-[#f2a93b] to-[#0d4f4f]" />
+        <section className="relative overflow-hidden bg-[#0d4f4f]">
+          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#e8654a] via-[#f2a93b] to-[#0d4f4f]" />
           <div
             aria-hidden
             className="absolute inset-0 opacity-[0.04]"
@@ -293,50 +308,71 @@ export default async function MobileMassageWien() {
               backgroundSize: "32px 32px",
             }}
           />
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#f2a93b]/8 pointer-events-none" />
+          <div className="pointer-events-none absolute -top-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#f2a93b]/8" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#083737]/60 to-transparent" />
 
-          <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-16 sm:pt-36 sm:pb-24">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-24">
+            <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
               <div>
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white/70">
+                <p
+                  className={`flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/60 ${rise("[animation-delay:0ms]")}`}
+                >
+                  <span className="inline-flex items-center gap-1.5">
+                    <MapPin size={13} strokeWidth={2.5} aria-hidden={true} />
                     {heroBadge}
-                  </p>
-                  <p className="inline-flex items-center gap-1.5 rounded-full border border-[#f2a93b]/40 bg-[#f2a93b]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#f2a93b]">
-                    <Sparkles size={12} strokeWidth={2.5} aria-hidden={true} />
+                  </span>
+                  <span
+                    aria-hidden
+                    className="hidden h-1 w-1 rounded-full bg-[#f2a93b] sm:block"
+                  />
+                  <span className="inline-flex items-center gap-1.5 text-[#f2a93b]">
+                    <Sparkles size={13} strokeWidth={2.5} aria-hidden={true} />
                     {heroServiceLine}
-                  </p>
-                </div>
+                  </span>
+                </p>
 
-                <h1 className="mt-5 text-[clamp(2.25rem,5vw,3.75rem)] font-extrabold text-white leading-[1.05] tracking-tight">
+                <h1
+                  className={`mt-6 text-balance text-[clamp(2.4rem,5.2vw,4rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-white ${rise("[animation-delay:80ms]")}`}
+                >
                   {heroHeading}
                 </h1>
-                <p className="mt-5 text-lg text-white/70 max-w-xl leading-relaxed">
+                <p
+                  className={`mt-6 max-w-xl text-lg leading-relaxed text-white/72 ${rise("[animation-delay:160ms]")}`}
+                >
                   {heroSubtitle}
                 </p>
 
-                {/* Preis-Chip — der wichtigste Fakt gleich im Sichtfeld */}
-                <div className="mt-8 inline-flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-white/[0.12] bg-white/[0.07] px-5 py-4">
-                  <span className="text-3xl font-extrabold text-[#f2a93b]">
-                    {priceAmount} €
+                {/* Preis-Lockup: der wichtigste Fakt gleich im Sichtfeld */}
+                <div
+                  className={`mt-9 flex flex-wrap items-end gap-x-5 gap-y-3 border-l-2 border-[#f2a93b] pl-5 ${rise("[animation-delay:240ms]")}`}
+                >
+                  <span className="text-5xl font-extrabold leading-none tracking-tight text-white">
+                    {priceAmount}
+                    <span className="ml-1 text-2xl font-bold text-[#f2a93b]">
+                      €
+                    </span>
                   </span>
-                  <span className="h-8 w-px bg-white/15" aria-hidden="true" />
-                  <span className="text-sm font-semibold text-white/80">
-                    Fixpreis für {durationSummary}
+                  <span className="pb-0.5 text-sm leading-snug text-white/72">
+                    <span className="block font-semibold text-white">
+                      Fixpreis für {durationSummary}
+                    </span>
+                    Anfahrt in Wien inklusive
                   </span>
                 </div>
 
-                <div className="mt-9 flex flex-col sm:flex-row items-start gap-4">
+                <div
+                  className={`mt-10 flex flex-col items-start gap-4 sm:flex-row ${rise("[animation-delay:320ms]")}`}
+                >
                   <Link
                     href="/buchen"
-                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#e8654a]/30 transition-all duration-200 hover:shadow-xl hover:shadow-[#e8654a]/40 motion-safe:hover:scale-[1.03]"
+                    className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#e8654a]/30 transition-all duration-200 hover:shadow-xl hover:shadow-[#e8654a]/40 motion-safe:hover:scale-[1.03] ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f]`}
                   >
                     <Calendar size={18} strokeWidth={2.5} aria-hidden={true} />
                     Hausbesuch anfragen
                   </Link>
                   <a
-                    href={`tel:${phone.replace(/\s/g, "")}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-semibold text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white"
+                    href={telHref}
+                    className={`inline-flex items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-semibold text-white/85 transition-all duration-200 hover:bg-white/10 hover:text-white ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f]`}
                   >
                     <Phone size={16} strokeWidth={2.5} aria-hidden={true} />
                     {phone}
@@ -344,65 +380,108 @@ export default async function MobileMassageWien() {
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl bg-[#f2a93b]/15 rotate-1 pointer-events-none" />
-                <div className="relative rounded-3xl overflow-hidden aspect-[4/3] max-w-lg mx-auto lg:mx-0 lg:ml-auto">
-                  <Image
-                    src={heroImageSrc}
-                    alt="Domenic Hacker bei einer Massagebehandlung an der mobilen Massageliege"
-                    fill
-                    className="object-cover"
-                    priority
-                    quality={75}
-                    sizes="(max-width: 1024px) 100vw, 512px"
-                  />
-                </div>
+              <div className={`relative ${rise("[animation-delay:200ms]")}`}>
+                <div className="pointer-events-none absolute -top-4 -right-4 h-full w-full rotate-1 rounded-3xl bg-[#f2a93b]/15" />
+                <figure className="relative mx-auto max-w-md lg:mx-0 lg:ml-auto">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-[4/5]">
+                    <Image
+                      src={heroImageSrc}
+                      alt="Domenic Hacker bei einer Massagebehandlung in ruhiger Atmosphäre"
+                      fill
+                      className="object-cover object-[50%_25%]"
+                      priority
+                      quality={75}
+                      sizes="(max-width: 1024px) 100vw, 448px"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-gradient-to-t from-[#0d4f4f]/45 via-transparent to-transparent"
+                    />
+                  </div>
+                  <figcaption className="absolute bottom-5 left-5 right-5 text-white">
+                    <span className="block text-sm font-bold">Domenic Hacker</span>
+                    <span className="block text-xs text-white/75">
+                      Diplomierter Heilmasseur · Wien
+                    </span>
+                  </figcaption>
+                </figure>
               </div>
             </div>
           </div>
         </section>
 
         {/* ── PREIS ────────────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="mx-auto max-w-4xl px-5 sm:px-8">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#e8654a]/10 px-4 py-1.5 text-sm font-bold text-[#e8654a]">
-              Preis
-            </span>
-            <h2 className="mt-4 text-2xl sm:text-3xl font-extrabold text-[#0d4f4f]">
-              {priceHeading}
-            </h2>
-            <p className="mt-3 text-[#555] leading-relaxed max-w-2xl">
-              {priceDescription}
-            </p>
-
-            <div className="mt-10 grid sm:grid-cols-2 gap-4">
-              {priceDurations.map((duration) => (
-                <div
-                  key={duration}
-                  className="rounded-3xl border border-[#0d4f4f]/10 bg-[#f5fafa] p-7 sm:p-8"
-                >
-                  <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/60">
-                    <Clock size={13} strokeWidth={2.5} aria-hidden={true} />
-                    {duration}
-                  </p>
-                  <p className="mt-3 text-4xl font-extrabold text-[#111]">
-                    {priceAmount} €
-                  </p>
-                  <p className="mt-2 text-sm text-[#555]">
-                    Inklusive Anfahrt innerhalb Wiens
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 flex items-start gap-4 rounded-2xl border border-[#0d4f4f]/10 bg-gradient-to-r from-[#0d4f4f]/[0.06] to-[#0d4f4f]/[0.02] p-6 sm:p-8">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0d4f4f]/10">
-                <MapPin size={20} className="text-[#0d4f4f]" aria-hidden={true} />
-              </div>
+        <section className="bg-white py-20 sm:py-28">
+          <div className="mx-auto max-w-5xl px-5 sm:px-8">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
               <div>
-                <p className="font-bold text-[#111]">Hinweis zur Anfahrt</p>
-                <p className="mt-1 text-sm text-[#555] leading-relaxed">
-                  {priceNote}
+                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
+                  {priceHeading}
+                </h2>
+                <p className="mt-5 max-w-lg leading-relaxed text-[#555]">
+                  {priceDescription}
+                </p>
+
+                <div className="mt-10 flex items-end gap-4">
+                  <span className="text-[clamp(4rem,9vw,6rem)] font-extrabold leading-none tracking-[-0.03em] text-[#111]">
+                    {priceAmount}
+                  </span>
+                  <span className="pb-2 text-3xl font-extrabold text-[#e8654a] sm:pb-3">
+                    €
+                  </span>
+                  <span className="pb-2 text-sm font-semibold uppercase tracking-widest text-[#0d4f4f]/60 sm:pb-3">
+                    pro Hausbesuch
+                  </span>
+                </div>
+
+                <ul className="mt-6 flex flex-wrap gap-2.5">
+                  {priceDurations.map((duration) => (
+                    <li
+                      key={duration}
+                      className="rounded-full border border-[#0d4f4f]/15 bg-[#f5fafa] px-5 py-2.5 text-sm font-bold text-[#0d4f4f]"
+                    >
+                      {duration}
+                    </li>
+                  ))}
+                  <li className="px-1 py-2.5 text-sm text-[#555]">
+                    beide zum selben Preis
+                  </li>
+                </ul>
+              </div>
+
+              <div className="lg:pt-2">
+                <div className="rounded-3xl border border-[#0d4f4f]/10 bg-[#f5fafa] p-7 sm:p-9">
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/60">
+                    Im Preis enthalten
+                  </p>
+                  <ul className="mt-5 divide-y divide-[#0d4f4f]/10">
+                    {defaultPriceIncludes.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-3.5 py-3.5 first:pt-0 last:pb-0"
+                      >
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#e8654a] to-[#f2a93b]">
+                          <Check
+                            size={11}
+                            strokeWidth={3}
+                            className="text-white"
+                            aria-hidden={true}
+                          />
+                        </span>
+                        <span className="text-sm font-semibold leading-snug text-[#111] sm:text-base">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="mt-5 flex items-start gap-2.5 px-1 text-sm leading-relaxed text-[#555]">
+                  <MapPin
+                    size={16}
+                    className="mt-0.5 shrink-0 text-[#0d4f4f]"
+                    aria-hidden={true}
+                  />
+                  <span>{priceNote}</span>
                 </p>
               </div>
             </div>
@@ -410,112 +489,102 @@ export default async function MobileMassageWien() {
         </section>
 
         {/* ── WAS ICH MITBRINGE ────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-[#f0f7f7]">
-          <div className="mx-auto max-w-4xl px-5 sm:px-8">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#0d4f4f]/8 px-4 py-1.5 text-sm font-bold text-[#0d4f4f]">
-              <Package size={14} strokeWidth={2.5} aria-hidden={true} />
-              Ausstattung
-            </span>
-            <h2 className="mt-4 text-2xl sm:text-3xl font-extrabold text-[#0d4f4f]">
-              {includedHeading}
-            </h2>
-            <p className="mt-3 text-[#555] leading-relaxed max-w-2xl">
-              {includedDescription}
-            </p>
+        <section className="bg-[#f0f7f7] py-20 sm:py-28">
+          <div className="mx-auto max-w-5xl px-5 sm:px-8">
+            <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+              <div>
+                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
+                  {includedHeading}
+                </h2>
+                <p className="mt-5 max-w-md leading-relaxed text-[#555]">
+                  {includedDescription}
+                </p>
+                <p className="mt-10 max-w-md text-balance text-2xl font-extrabold leading-snug tracking-tight text-[#0d4f4f]">
+                  Ihre einzige Aufgabe:{" "}
+                  <span className="text-[#e8654a]">liegen bleiben.</span>
+                </p>
+              </div>
 
-            <div className="mt-10 grid sm:grid-cols-2 gap-5">
-              {included.map((item, i) => {
-                const Icon = INCLUDED_ICONS[i % INCLUDED_ICONS.length];
-                return (
-                  <div
-                    key={item.title}
-                    className="rounded-2xl bg-white border border-[#0d4f4f]/8 p-6 shadow-sm"
-                  >
-                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0d4f4f]/8">
-                      <Icon
-                        size={20}
-                        className="text-[#0d4f4f]"
-                        strokeWidth={2}
-                        aria-hidden={true}
-                      />
-                    </div>
-                    <h3 className="mt-4 font-bold text-[#0d4f4f]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-[#555] leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                );
-              })}
+              <ul className="divide-y divide-[#0d4f4f]/10 border-y border-[#0d4f4f]/10">
+                {included.map((item, i) => {
+                  const Icon = INCLUDED_ICONS[i % INCLUDED_ICONS.length];
+                  return (
+                    <li key={item.title} className="flex gap-5 py-6">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white shadow-sm shadow-[#0d4f4f]/10">
+                        <Icon
+                          size={20}
+                          className="text-[#0d4f4f]"
+                          strokeWidth={2}
+                          aria-hidden={true}
+                        />
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-bold text-[#0d4f4f]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-1.5 max-w-md text-sm leading-relaxed text-[#555] sm:text-base">
+                          {item.description}
+                        </p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-
-            <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#0d4f4f] shadow-sm">
-              <ShieldCheck size={16} strokeWidth={2.5} aria-hidden={true} />
-              Ihre Aufgabe: liegen bleiben.
-            </p>
           </div>
         </section>
 
         {/* ── FÜR WEN / ANLÄSSE ────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="mx-auto max-w-4xl px-5 sm:px-8">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0d4f4f] mb-2">
+        <section className="bg-white py-20 sm:py-28">
+          <div className="mx-auto max-w-5xl px-5 sm:px-8">
+            <h2 className="max-w-2xl text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
               {forWhomHeading}
             </h2>
-            <p className="text-[#555] mb-10 leading-relaxed max-w-2xl">
+            <p className="mt-5 max-w-2xl leading-relaxed text-[#555]">
               {forWhomDescription}
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+            <ul className="mt-10 flex flex-wrap gap-3">
               {occasions.map((label) => (
-                <div
+                <li
                   key={label}
-                  className="flex items-center gap-3 rounded-2xl bg-[#f5fafa] border border-[#0d4f4f]/10 px-4 py-3.5"
+                  className="rounded-full border border-[#0d4f4f]/15 bg-white px-5 py-3 text-sm font-semibold text-[#111] shadow-sm shadow-[#0d4f4f]/5 sm:text-base"
                 >
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-[#e8654a] to-[#f2a93b] flex items-center justify-center">
-                    <Check
-                      size={11}
-                      strokeWidth={3}
-                      className="text-white"
-                      aria-hidden={true}
-                    />
-                  </span>
-                  <span className="text-sm font-semibold text-[#111]">
-                    {label}
-                  </span>
-                </div>
+                  {label}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
 
         {/* ── ABLAUF ───────────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-[#f0f7f7]">
-          <div className="mx-auto max-w-4xl px-5 sm:px-8">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0d4f4f] mb-2">
-              {processHeading}
-            </h2>
-            <p className="text-[#555] mb-10 leading-relaxed max-w-2xl">
-              {processDescription}
-            </p>
+        <section className="bg-[#f0f7f7] py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <div className="max-w-2xl">
+              <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
+                {processHeading}
+              </h2>
+              <p className="mt-5 leading-relaxed text-[#555]">
+                {processDescription}
+              </p>
+            </div>
 
-            <ol className="grid sm:grid-cols-2 gap-5">
+            <ol className="mt-12 grid gap-8 lg:grid-cols-4 lg:gap-6">
               {processSteps.map((step, i) => (
                 <li
                   key={step.title}
-                  className="relative overflow-hidden rounded-2xl bg-white border border-[#0d4f4f]/8 p-6 shadow-sm"
+                  className="relative border-l-2 border-[#0d4f4f]/15 pl-6 lg:border-l-0 lg:border-t-2 lg:pl-0 lg:pt-6"
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute top-3 right-5 text-[4.5rem] font-extrabold leading-none text-[#0d4f4f] opacity-[0.05] select-none"
-                  >
+                    className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-gradient-to-br from-[#e8654a] to-[#f2a93b] lg:-top-[7px] lg:left-0"
+                  />
+                  <p className="text-sm font-extrabold tracking-[0.2em] text-[#e8654a]">
                     {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-xs font-bold uppercase tracking-widest text-[#e8654a]">
-                    Schritt {i + 1}
                   </p>
-                  <h3 className="mt-2 font-bold text-[#0d4f4f]">{step.title}</h3>
-                  <p className="mt-2 text-sm text-[#555] leading-relaxed">
+                  <h3 className="mt-2 text-lg font-bold text-[#0d4f4f]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#555] sm:text-base lg:text-sm">
                     {step.description}
                   </p>
                 </li>
@@ -525,37 +594,45 @@ export default async function MobileMassageWien() {
         </section>
 
         {/* ── HOTEL & VIP ──────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="mx-auto max-w-4xl px-5 sm:px-8">
-            <div className="relative overflow-hidden rounded-3xl bg-[#0d4f4f] p-8 sm:p-12">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#e8654a] via-[#f2a93b] to-[#0d4f4f]" />
-              <div className="absolute -bottom-28 -right-28 w-[360px] h-[360px] rounded-full bg-[#f2a93b]/8 pointer-events-none" />
+        <section className="bg-white py-20 sm:py-28">
+          <div className="mx-auto max-w-5xl px-5 sm:px-8">
+            <div className="relative overflow-hidden rounded-3xl bg-[#0d4f4f] p-8 sm:p-12 lg:p-14">
+              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#e8654a] via-[#f2a93b] to-[#0d4f4f]" />
+              <div className="pointer-events-none absolute -bottom-32 -right-32 h-[400px] w-[400px] rounded-full bg-[#f2a93b]/8" />
 
-              <div className="relative grid sm:grid-cols-2 gap-10 items-start">
+              <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
                 <div>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-[#f2a93b]/40 bg-[#f2a93b]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#f2a93b]">
-                    <BedDouble size={13} strokeWidth={2.5} aria-hidden={true} />
-                    Auf Anfrage
-                  </span>
-                  <h2 className="mt-4 text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                  <BedDouble
+                    size={28}
+                    strokeWidth={1.75}
+                    className="text-[#f2a93b]"
+                    aria-hidden={true}
+                  />
+                  <h2 className="mt-5 text-balance text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
                     {vipHeading}
                   </h2>
-                  <p className="mt-4 text-white/65 leading-relaxed">{vipText}</p>
+                  <p className="mt-5 max-w-lg leading-relaxed text-white/70">
+                    {vipText}
+                  </p>
+                  <a
+                    href={telHref}
+                    className={`mt-8 inline-flex items-center gap-2 rounded-full border border-[#f2a93b]/50 px-6 py-3 text-sm font-bold text-[#f2a93b] transition-all duration-200 hover:bg-[#f2a93b] hover:text-[#0d4f4f] ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f]`}
+                  >
+                    <Phone size={15} strokeWidth={2.5} aria-hidden={true} />
+                    Diskret anfragen
+                  </a>
                 </div>
 
-                <ul className="flex flex-col gap-3">
+                <ul className="divide-y divide-white/10 border-y border-white/10 self-center">
                   {vipPoints.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-start gap-3 rounded-2xl bg-white/[0.07] border border-white/[0.12] px-5 py-4"
-                    >
+                    <li key={point} className="flex items-start gap-3.5 py-4">
                       <Check
                         size={16}
                         strokeWidth={3}
-                        className="mt-0.5 shrink-0 text-[#f2a93b]"
+                        className="mt-1 shrink-0 text-[#f2a93b]"
                         aria-hidden={true}
                       />
-                      <span className="text-sm font-semibold text-white/85">
+                      <span className="font-semibold leading-snug text-white/90">
                         {point}
                       </span>
                     </li>
@@ -567,13 +644,13 @@ export default async function MobileMassageWien() {
         </section>
 
         {/* ── SOCIAL PROOF ─────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-[#f0f7f7]">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <section className="bg-[#f0f7f7] py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
               <div className="relative order-2 lg:order-1">
-                <div className="absolute -bottom-6 -left-6 w-full h-full rounded-3xl bg-[#0d4f4f]/8 rotate-2 pointer-events-none" />
-                <figure className="relative">
-                  <div className="relative rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto">
+                <div className="pointer-events-none absolute -bottom-5 -left-5 h-full w-full rotate-2 rounded-3xl bg-[#0d4f4f]/8" />
+                <figure className="relative mx-auto max-w-md">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
                     <Image
                       src={socialProofImageSrc}
                       alt="Domenic Hacker auf der Bühne beim Breakdance"
@@ -582,9 +659,12 @@ export default async function MobileMassageWien() {
                       quality={75}
                       sizes="(max-width: 1024px) 100vw, 448px"
                     />
+                    <span className="absolute top-5 left-5 rounded-full bg-[#0d4f4f]/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+                      {socialProofEyebrow}
+                    </span>
                   </div>
                   {socialProofCaption && (
-                    <figcaption className="mx-auto mt-4 max-w-md text-sm text-[#555]">
+                    <figcaption className="mt-4 text-sm leading-relaxed text-[#555]">
                       {socialProofCaption}
                     </figcaption>
                   )}
@@ -592,18 +672,15 @@ export default async function MobileMassageWien() {
               </div>
 
               <div className="order-1 lg:order-2">
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#0d4f4f]/8 px-4 py-1.5 text-sm font-bold text-[#0d4f4f]">
-                  {socialProofEyebrow}
-                </span>
-                <h2 className="mt-4 text-[clamp(1.6rem,3.2vw,2.4rem)] font-extrabold leading-[1.15] tracking-tight text-[#111]">
+                <h2 className="text-balance text-[clamp(1.8rem,3.4vw,2.6rem)] font-extrabold leading-[1.1] tracking-tight text-[#0d4f4f]">
                   {socialProofHeading}
                 </h2>
-                <p className="mt-5 text-base text-[#555] leading-relaxed max-w-xl">
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-[#555] sm:text-lg">
                   {socialProofText}
                 </p>
                 <Link
                   href="/ueber-mich"
-                  className="mt-7 inline-flex items-center gap-2 rounded-full border-2 border-[#0d4f4f] px-6 py-3 text-sm font-bold text-[#0d4f4f] hover:bg-[#0d4f4f] hover:text-white transition-all duration-200"
+                  className={`mt-8 inline-flex items-center gap-2 rounded-full border-2 border-[#0d4f4f] px-6 py-3 text-sm font-bold text-[#0d4f4f] transition-all duration-200 hover:bg-[#0d4f4f] hover:text-white ${FOCUS_RING}`}
                 >
                   Mehr über meinen Weg
                   <ArrowRight size={16} strokeWidth={2.5} aria-hidden={true} />
@@ -614,60 +691,67 @@ export default async function MobileMassageWien() {
         </section>
 
         {/* ── EINZUGSGEBIET ────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="mx-auto max-w-4xl px-5 sm:px-8">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0d4f4f] mb-2">
-              {areaHeading}
-            </h2>
-            <p className="text-[#555] mb-10 leading-relaxed max-w-2xl">
-              {areaDescription}
-            </p>
+        <section className="bg-white py-20 sm:py-28">
+          <div className="mx-auto max-w-5xl px-5 sm:px-8">
+            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+              <div>
+                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
+                  {areaHeading}
+                </h2>
+                <p className="mt-5 max-w-md leading-relaxed text-[#555]">
+                  {areaDescription}
+                </p>
+              </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {areaDistricts.map((district) => (
-                <div
-                  key={district}
-                  className="rounded-2xl bg-[#f5fafa] border border-[#0d4f4f]/10 px-4 py-3.5 text-sm font-semibold text-[#111]"
-                >
-                  {district}
-                </div>
-              ))}
+              <div>
+                <ul className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
+                  {areaDistricts.map((district) => (
+                    <li
+                      key={district}
+                      className="flex items-center gap-3 border-b border-[#0d4f4f]/10 py-3.5 font-semibold text-[#111]"
+                    >
+                      <span
+                        aria-hidden
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#e8654a]"
+                      />
+                      {district}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-6 text-sm leading-relaxed text-[#555]">
+                  Sie möchten lieber in die Praxis kommen? Die Behandlungsräume
+                  liegen in der {practiceAddress} (Josefstadt) – dort gibt es
+                  zusätzlich Anwendungen, die zuhause nicht möglich sind.
+                </p>
+              </div>
             </div>
-
-            <p className="mt-8 text-sm text-[#555] leading-relaxed">
-              Sie möchten lieber in die Praxis kommen? Die Behandlungsräume
-              liegen in der {settings?.address ?? "Feldgasse 3/20"}, 1080 Wien
-              (Josefstadt) — dort gibt es zusätzlich Anwendungen, die zu Hause
-              nicht möglich sind.
-            </p>
           </div>
         </section>
 
         {/* ── FAQ ──────────────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-[#f0f7f7]">
+        <section className="bg-[#f0f7f7] py-20 sm:py-28">
           <div className="mx-auto max-w-4xl px-5 sm:px-8">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0d4f4f] mb-3">
+            <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
               Häufige Fragen zur mobilen Massage in Wien
             </h2>
-            <p className="text-[#555] mb-10 leading-relaxed">
+            <p className="mt-4 leading-relaxed text-[#555]">
               Antworten auf die Fragen, die mir vor einem Hausbesuch am
               häufigsten gestellt werden.
             </p>
-            <div className="space-y-3">
+            <div className="mt-10 divide-y divide-[#0d4f4f]/10 border-y border-[#0d4f4f]/10">
               {faqs.map((faq) => (
-                <details
-                  key={faq._key}
-                  className="group rounded-2xl bg-white border border-[#0d4f4f]/10 overflow-hidden"
-                >
-                  <summary className="flex items-center justify-between gap-4 cursor-pointer px-6 py-5 font-semibold text-[#111] text-sm sm:text-base list-none">
+                <details key={faq._key} className="group">
+                  <summary
+                    className={`flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-base font-semibold text-[#111] transition-colors hover:text-[#0d4f4f] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS_RING} rounded-lg`}
+                  >
                     {faq.question}
                     <ChevronDown
-                      size={18}
-                      className="text-[#0d4f4f] shrink-0 transition-transform duration-200 group-open:rotate-180"
+                      size={20}
+                      className="shrink-0 text-[#0d4f4f] transition-transform duration-200 group-open:rotate-180"
                       aria-hidden={true}
                     />
                   </summary>
-                  <p className="px-6 pb-5 text-sm text-[#555] leading-relaxed border-t border-[#0d4f4f]/5 pt-4">
+                  <p className="max-w-3xl pb-6 text-sm leading-relaxed text-[#555] sm:text-base">
                     {faq.answer}
                   </p>
                 </details>
@@ -677,38 +761,39 @@ export default async function MobileMassageWien() {
         </section>
 
         {/* ── QUERVERWEISE ─────────────────────────────────────────── */}
-        <section className="py-12 sm:py-16 bg-white border-t border-[#0d4f4f]/8">
-          <div className="mx-auto max-w-4xl px-5 sm:px-8 grid sm:grid-cols-2 gap-4">
-            <div className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-[#f0f7f7] p-6 sm:p-8">
+        <section className="bg-white py-14 sm:py-20">
+          <div className="mx-auto grid max-w-5xl gap-4 px-5 sm:grid-cols-2 sm:px-8">
+            <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-[#f0f7f7] p-7 sm:p-9">
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/60 mb-1">
+                <p className="text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/60">
                   In der Praxis
                 </p>
-                <p className="text-lg sm:text-xl font-extrabold text-[#111]">
-                  Bei Verspannungen, Rückenschmerzen und chronischen Beschwerden
+                <p className="mt-2 text-balance text-xl font-extrabold tracking-tight text-[#111]">
+                  Heilmassage bei Verspannungen, Rückenschmerzen und chronischen
+                  Beschwerden
                 </p>
               </div>
               <Link
                 href="/heilmassage-wien-1080"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[#0d4f4f] px-6 py-3 text-sm font-bold text-[#0d4f4f] hover:bg-[#0d4f4f] hover:text-white transition-all duration-200 whitespace-nowrap"
+                className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-[#0d4f4f] px-6 py-3 text-sm font-bold text-[#0d4f4f] transition-all duration-200 hover:bg-[#0d4f4f] hover:text-white ${FOCUS_RING}`}
               >
                 Heilmassage ansehen
                 <ArrowRight size={16} strokeWidth={2.5} aria-hidden={true} />
               </Link>
             </div>
 
-            <div className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-[#f0f7f7] p-6 sm:p-8">
+            <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-[#f0f7f7] p-7 sm:p-9">
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/60 mb-1">
+                <p className="text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/60">
                   Alle Behandlungen
                 </p>
-                <p className="text-lg sm:text-xl font-extrabold text-[#111]">
-                  Preise & Block-Karten für die Praxis auf einen Blick
+                <p className="mt-2 text-balance text-xl font-extrabold tracking-tight text-[#111]">
+                  Preise und Block-Karten für die Praxis auf einen Blick
                 </p>
               </div>
               <Link
                 href="/preise"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[#0d4f4f] px-6 py-3 text-sm font-bold text-[#0d4f4f] hover:bg-[#0d4f4f] hover:text-white transition-all duration-200 whitespace-nowrap"
+                className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-[#0d4f4f] px-6 py-3 text-sm font-bold text-[#0d4f4f] transition-all duration-200 hover:bg-[#0d4f4f] hover:text-white ${FOCUS_RING}`}
               >
                 Preise einsehen
                 <ArrowRight size={16} strokeWidth={2.5} aria-hidden={true} />
@@ -718,23 +803,26 @@ export default async function MobileMassageWien() {
         </section>
 
         {/* ── FINAL CTA ────────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-[#0d4f4f]">
-          <div className="mx-auto max-w-2xl px-5 sm:px-8 text-center">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">
+        <section className="relative overflow-hidden bg-[#0d4f4f] py-20 sm:py-28">
+          <div className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-[#f2a93b]/8" />
+          <div className="relative mx-auto max-w-2xl px-5 text-center sm:px-8">
+            <h2 className="text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               {ctaHeading}
             </h2>
-            <p className="text-white/65 mb-10 leading-relaxed">{ctaText}</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <p className="mx-auto mt-5 max-w-lg leading-relaxed text-white/70">
+              {ctaText}
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/buchen"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#e8654a]/30 transition-all duration-200 hover:shadow-xl hover:shadow-[#e8654a]/40 motion-safe:hover:scale-[1.03]"
+                className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#e8654a]/30 transition-all duration-200 hover:shadow-xl hover:shadow-[#e8654a]/40 motion-safe:hover:scale-[1.03] ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f]`}
               >
                 <Calendar size={18} strokeWidth={2.5} aria-hidden={true} />
                 Hausbesuch anfragen
               </Link>
               <a
-                href={`tel:${phone.replace(/\s/g, "")}`}
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-semibold text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white"
+                href={telHref}
+                className={`inline-flex items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-semibold text-white/85 transition-all duration-200 hover:bg-white/10 hover:text-white ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f]`}
               >
                 <Phone size={16} strokeWidth={2.5} aria-hidden={true} />
                 {phone}
