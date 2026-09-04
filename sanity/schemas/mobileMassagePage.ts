@@ -17,7 +17,7 @@ export const mobileMassagePageSchema = defineType({
       name: "heroHeading",
       title: "Hero — Überschrift",
       type: "string",
-      initialValue: "Mobile Massage — nachhaltige Entspannung bei Ihnen zuhause",
+      initialValue: "Mobile Massage – nachhaltige Entspannung bei Ihnen zuhause",
       group: "hero",
     }),
     defineField({

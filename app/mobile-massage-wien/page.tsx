@@ -184,7 +184,7 @@ export default async function MobileMassageWien() {
   const heroBadge = page?.heroBadge ?? "Hausbesuch in ganz Wien";
   const heroHeading =
     page?.heroHeading ??
-    "Mobile Massage — nachhaltige Entspannung bei Ihnen zuhause";
+    "Mobile Massage – nachhaltige Entspannung bei Ihnen zuhause";
   const heroSubtitle =
     page?.heroSubtitle ??
     "Ich komme zu Ihnen — mit Massageliege, Ölen und Handtüchern. Sie brauchen nichts vorzubereiten außer einem ruhigen Platz. Diplomierte Heilmassage in Ihren eigenen vier Wänden.";
@@ -203,6 +203,16 @@ export default async function MobileMassageWien() {
   const priceNote =
     page?.priceNote ??
     "Für Adressen außerhalb Wiens oder am Stadtrand kann ein Anfahrtsaufschlag dazukommen — den nenne ich Ihnen immer vorab, bevor der Termin fix ist.";
+  // "60 Minuten" + "90 Minuten" soll als "60 oder 90 Minuten" laufen, nicht als
+  // "60 Minuten oder 90 Minuten". Bei abweichenden Sanity-Werten bleibt der
+  // vollständige Text erhalten.
+  const durationSummary = priceDurations
+    .map((duration, i) =>
+      i === priceDurations.length - 1
+        ? duration
+        : duration.replace(/\s*Minuten$/, ""),
+    )
+    .join(" oder ");
 
   const includedHeading = page?.includedHeading ?? "Ich bringe alles mit";
   const includedDescription =
@@ -312,7 +322,7 @@ export default async function MobileMassageWien() {
                   </span>
                   <span className="h-8 w-px bg-white/15" aria-hidden="true" />
                   <span className="text-sm font-semibold text-white/80">
-                    Fixpreis für {priceDurations.join(" oder ")}
+                    Fixpreis für {durationSummary}
                   </span>
                 </div>
 
