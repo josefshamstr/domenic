@@ -187,8 +187,6 @@ export const mobileMassagePageSchema = defineType({
         "Nach Fernflügen",
         "Eingeschränkte Mobilität",
         "Junge Eltern",
-        "Vor wichtigen Terminen",
-        "Als fixer Termin im Kalender",
         "Als Geschenk",
       ],
       group: "forWhom",
