@@ -16,6 +16,7 @@ import { Footer } from "@/components/Footer";
 import { FaqJsonLd } from "@/components/FaqJsonLd";
 import { JsonLdService } from "@/components/JsonLdService";
 import { MobileStickyCta } from "@/components/MobileStickyCta";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { fetchReviewSummary } from "@/components/GoogleReviewsBadge";
 import { getMobileMassagePage, getSettings } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
@@ -333,8 +334,32 @@ export default async function MobileMassageWien() {
           <div className="pointer-events-none absolute -top-56 -right-56 h-[640px] w-[640px] rounded-full bg-[#f2a93b]/8" />
 
           <div className="relative mx-auto max-w-6xl px-5 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-24">
-            <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+            <div className="grid items-center lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
               <div>
+                <div
+                  className={`mb-7 flex items-center gap-4 lg:hidden ${rise("[animation-delay:0ms]")}`}
+                >
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl ring-2 ring-[#f2a93b]/60">
+                    <Image
+                      src={heroImageSrc}
+                      alt="Domenic Hacker, diplomierter Heilmasseur in Wien"
+                      fill
+                      className="object-cover object-[50%_22%]"
+                      priority
+                      quality={85}
+                      sizes="64px"
+                    />
+                  </div>
+                  <div>
+                    <span className="block text-base font-bold text-white">
+                      Domenic Hacker
+                    </span>
+                    <span className="block text-sm text-white/75">
+                      Diplomierter Heilmasseur · B-Boy · Wien
+                    </span>
+                  </div>
+                </div>
+
                 <p
                   className={`flex flex-col gap-y-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 lg:flex-col lg:items-start xl:flex-row xl:items-center ${rise("[animation-delay:0ms]")}`}
                 >
@@ -462,8 +487,10 @@ export default async function MobileMassageWien() {
                 </a>
               </div>
 
-              <div className={`relative ${rise("[animation-delay:200ms]")}`}>
-                <figure className="relative mx-auto max-w-sm lg:mx-0 lg:ml-auto lg:max-w-md">
+              <div
+                className={`relative hidden lg:block ${rise("[animation-delay:200ms]")}`}
+              >
+                <figure className="relative ml-auto max-w-md">
                   <div className="pointer-events-none absolute -top-4 -right-4 h-full w-full rotate-1 rounded-3xl bg-[#f2a93b]/15 lg:-right-3 xl:-right-4" />
                   <div className="relative aspect-[4/5] overflow-hidden rounded-3xl lg:aspect-[3/4]">
                     <Image
@@ -474,7 +501,7 @@ export default async function MobileMassageWien() {
                       priority
                       fetchPriority="high"
                       quality={85}
-                      sizes="(max-width: 1024px) 384px, 448px"
+                      sizes="(max-width: 1024px) 1px, 448px"
                     />
                     <div
                       aria-hidden
@@ -585,39 +612,19 @@ export default async function MobileMassageWien() {
         </section>
 
         {/* ── ABLAUF ───────────────────────────────────────────────── */}
-        <section className="bg-[#f0f7f7] py-20 sm:py-28">
+        <section id="ablauf" className="bg-[#f0f7f7] py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-5 sm:px-8">
-            <div className="max-w-2xl">
-              <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
-                {processHeading}
-              </h2>
-              <p className="mt-5 leading-relaxed text-[#555]">
-                {processDescription}
-              </p>
+            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+              <div className="lg:sticky lg:top-28 lg:self-start">
+                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
+                  {processHeading}
+                </h2>
+                <p className="mt-5 max-w-md leading-relaxed text-[#555]">
+                  {processDescription}
+                </p>
+              </div>
+              <ProcessTimeline steps={processSteps} />
             </div>
-
-            <ol className="mt-12 grid gap-8 lg:grid-cols-4 lg:gap-6">
-              {processSteps.map((step, i) => (
-                <li
-                  key={step.title}
-                  className="relative border-l-2 border-[#0d4f4f]/15 pl-6 lg:border-l-0 lg:border-t-2 lg:pl-0 lg:pt-6"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-gradient-to-br from-[#e8654a] to-[#f2a93b] lg:-top-[7px] lg:left-0"
-                  />
-                  <p className="text-sm font-extrabold tracking-[0.06em] tabular-nums text-[#0d4f4f]">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="mt-2 text-lg font-bold text-[#0d4f4f]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#555] sm:text-base lg:text-sm">
-                    {step.description}
-                  </p>
-                </li>
-              ))}
-            </ol>
           </div>
         </section>
 
@@ -726,17 +733,12 @@ export default async function MobileMassageWien() {
                 <p className="mt-5 max-w-lg leading-relaxed text-[#555]">
                   {areaDescription}
                 </p>
-                <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[15px] font-medium text-[#111] sm:text-base">
-                  {areaDistricts.map((district) => (
-                    <li key={district} className="flex items-start gap-2.5">
-                      <span
-                        aria-hidden
-                        className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0d4f4f]/40"
-                      />
-                      {district}
-                    </li>
-                  ))}
-                </ul>
+                <p className="mt-6 max-w-lg text-sm leading-relaxed text-[#555]">
+                  <span className="font-semibold text-[#0d4f4f]">
+                    Zum Beispiel:{" "}
+                  </span>
+                  {areaDistricts.join(" · ")}
+                </p>
                 <p className="mt-6 flex items-start gap-2.5 text-sm leading-relaxed text-[#555]">
                   <MapPin
                     size={16}
