@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowRight,
   Calendar,
   Check,
   ChevronDown,
@@ -84,8 +83,6 @@ const defaultOccasions = [
   "Nach Fernflügen",
   "Eingeschränkte Mobilität",
   "Junge Eltern",
-  "Vor wichtigen Terminen",
-  "Als fixer Termin im Kalender",
   "Als Geschenk",
 ];
 
@@ -253,10 +250,6 @@ export default async function MobileMassageWien() {
     "Für Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.";
   const durationSummary = summarizeDurations(priceDurations);
 
-  const includedHeading = page?.includedHeading ?? "Ich bringe alles mit";
-  const includedDescription =
-    page?.includedDescription ??
-    "Nichts besorgen, nichts umräumen, nichts vorbereiten. Ein freier Platz von etwa zwei mal zwei Metern genügt – der Rest kommt mit mir.";
   const included =
     page?.included && page.included.length > 0
       ? page.included
@@ -339,7 +332,7 @@ export default async function MobileMassageWien() {
                 <div
                   className={`mb-7 flex items-center gap-4 lg:hidden ${rise("[animation-delay:0ms]")}`}
                 >
-                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl ring-2 ring-[#f2a93b]/60">
+                  <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl ring-2 ring-[#f2a93b]/60">
                     <Image
                       src={heroImageSrc}
                       alt="Domenic Hacker, diplomierter Heilmasseur in Wien"
@@ -347,21 +340,21 @@ export default async function MobileMassageWien() {
                       className="object-cover object-[50%_22%]"
                       priority
                       quality={85}
-                      sizes="64px"
+                      sizes="96px"
                     />
                   </div>
                   <div>
-                    <span className="block text-base font-bold text-white">
+                    <span className="block text-lg font-bold text-white">
                       Domenic Hacker
                     </span>
-                    <span className="block text-sm text-white/75">
+                    <span className="block text-sm leading-snug text-white/75">
                       Diplomierter Heilmasseur · B-Boy · Wien
                     </span>
                   </div>
                 </div>
 
                 <p
-                  className={`flex flex-col gap-y-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/70 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 lg:flex-col lg:items-start xl:flex-row xl:items-center ${rise("[animation-delay:0ms]")}`}
+                  className={`hidden text-xs font-bold uppercase tracking-[0.18em] text-white/70 lg:flex lg:flex-col lg:items-start lg:gap-y-1.5 xl:flex-row xl:items-center xl:gap-x-3 ${rise("[animation-delay:0ms]")}`}
                 >
                   <span className="inline-flex items-center gap-1.5">
                     <MapPin size={13} strokeWidth={2.5} aria-hidden={true} />
@@ -553,14 +546,11 @@ export default async function MobileMassageWien() {
               </figure>
 
               <div>
-                <h3 className="text-2xl font-extrabold tracking-tight text-[#0d4f4f]">
-                  {includedHeading}
+                <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-[#0d4f4f]/75">
+                  Im Preis enthalten
                 </h3>
-                <p className="mt-3 max-w-lg leading-relaxed text-[#555]">
-                  {includedDescription}
-                </p>
 
-                <ul className="mt-8 divide-y divide-[#0d4f4f]/10 border-y border-[#0d4f4f]/10">
+                <ul className="mt-4 divide-y divide-[#0d4f4f]/10 border-y border-[#0d4f4f]/10">
                   {included.map((item) => (
                     <li key={item.title} className="flex gap-4 py-5">
                       <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#e8654a] to-[#f2a93b]">
@@ -827,56 +817,6 @@ export default async function MobileMassageWien() {
               <Mail size={14} strokeWidth={2.5} aria-hidden={true} />
               {email}
             </a>
-          </div>
-        </section>
-
-        {/* ── QUERVERWEISE ─────────────────────────────────────────── */}
-        <section className="bg-[#f0f7f7] py-12 sm:py-16">
-          <div className="mx-auto max-w-6xl px-5 sm:px-8">
-            <ul className="grid gap-4 sm:grid-cols-2">
-              <li>
-                <Link
-                  href="/heilmassage-wien-1080"
-                  className={`group flex items-center justify-between gap-6 rounded-3xl border border-[#0d4f4f]/10 bg-white px-6 py-5 transition-colors duration-200 hover:border-[#0d4f4f]/30 ${FOCUS_RING}`}
-                >
-                  <span>
-                    <span className="block text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/75">
-                      In der Praxis
-                    </span>
-                    <span className="mt-1 block font-extrabold text-[#111]">
-                      Heilmassage in Wien 1080
-                    </span>
-                  </span>
-                  <ArrowRight
-                    size={18}
-                    strokeWidth={2.5}
-                    className="shrink-0 text-[#0d4f4f] transition-transform duration-200 group-hover:translate-x-1"
-                    aria-hidden={true}
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/preise"
-                  className={`group flex items-center justify-between gap-6 rounded-3xl border border-[#0d4f4f]/10 bg-white px-6 py-5 transition-colors duration-200 hover:border-[#0d4f4f]/30 ${FOCUS_RING}`}
-                >
-                  <span>
-                    <span className="block text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/75">
-                      Alle Behandlungen
-                    </span>
-                    <span className="mt-1 block font-extrabold text-[#111]">
-                      Preise & Block-Karten
-                    </span>
-                  </span>
-                  <ArrowRight
-                    size={18}
-                    strokeWidth={2.5}
-                    className="shrink-0 text-[#0d4f4f] transition-transform duration-200 group-hover:translate-x-1"
-                    aria-hidden={true}
-                  />
-                </Link>
-              </li>
-            </ul>
           </div>
         </section>
       </main>
