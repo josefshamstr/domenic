@@ -418,7 +418,7 @@ export default async function MobileMassageWien() {
                   href={GOOGLE_MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-7 flex w-fit flex-wrap items-center gap-x-3 gap-y-1.5 rounded-lg transition-opacity duration-300 hover:opacity-80 ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f] ${rise("[animation-delay:400ms]")}`}
+                  className={`mt-7 flex w-fit flex-nowrap items-center gap-x-2.5 rounded-lg transition-opacity duration-300 hover:opacity-80 sm:gap-x-3 ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f] ${rise("[animation-delay:400ms]")}`}
                 >
                   <span className="flex -space-x-2">
                     {reviewSummary.avatars.slice(0, 3).map((a, i) => (
@@ -454,21 +454,23 @@ export default async function MobileMassageWien() {
                       {reviewSummary.rating.toFixed(1)}
                     </span>
                   </span>
-                  <span className="text-sm text-white/75">
-                    {reviewSummary.count} Google-Bewertungen
+                  <span className="whitespace-nowrap text-xs text-white/75 sm:text-sm">
+                    {reviewSummary.count}{" "}
+                    <span className="sm:hidden">Bewertungen</span>
+                    <span className="hidden sm:inline">Google-Bewertungen</span>
                   </span>
                 </a>
               </div>
 
               <div className={`relative ${rise("[animation-delay:200ms]")}`}>
                 <figure className="relative mx-auto max-w-sm lg:mx-0 lg:ml-auto lg:max-w-md">
-                  <div className="pointer-events-none absolute -top-4 -right-4 h-full w-full rotate-1 rounded-3xl bg-[#f2a93b]/15" />
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+                  <div className="pointer-events-none absolute -top-4 -right-4 h-full w-full rotate-1 rounded-3xl bg-[#f2a93b]/15 lg:-right-3 xl:-right-4" />
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl lg:aspect-[3/4]">
                     <Image
                       src={heroImageSrc}
                       alt="Domenic Hacker, diplomierter Heilmasseur in Wien"
                       fill
-                      className="object-cover object-[50%_18%]"
+                      className="object-cover object-[50%_22%]"
                       priority
                       fetchPriority="high"
                       quality={85}
@@ -512,7 +514,7 @@ export default async function MobileMassageWien() {
                     src="/images/behandlungsraum-liege.webp"
                     alt="Die Massageliege von Domenic Hacker im Behandlungsraum"
                     fill
-                    className="object-cover object-bottom"
+                    className="scale-110 object-cover object-bottom [transform-origin:50%_100%]"
                     quality={75}
                     sizes="(max-width: 1024px) 100vw, 480px"
                   />
@@ -569,14 +571,17 @@ export default async function MobileMassageWien() {
                     </div>
                   </li>
                 </ul>
-
-                <p className="mt-8 text-balance text-2xl font-extrabold leading-snug tracking-tight text-[#0d4f4f]">
-                  Ihre einzige Aufgabe:{" "}
-                  <span className="text-[#e8654a]">liegen bleiben.</span>
-                </p>
               </div>
             </div>
           </div>
+        </section>
+
+        {/* ── PULL-QUOTE ───────────────────────────────────────────── */}
+        <section className="border-y border-[#0d4f4f]/10 bg-white py-14 sm:py-20">
+          <p className="mx-auto max-w-6xl px-5 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-[#0d4f4f] sm:px-8 sm:text-5xl lg:text-6xl">
+            Ihre einzige Aufgabe:{" "}
+            <span className="text-[#e8654a]">liegen bleiben.</span>
+          </p>
         </section>
 
         {/* ── ABLAUF ───────────────────────────────────────────────── */}
@@ -701,7 +706,7 @@ export default async function MobileMassageWien() {
                 <p className="mt-5 max-w-lg leading-relaxed text-[#555]">
                   {forWhomDescription}
                 </p>
-                <ul className="mt-8 grid gap-x-6 gap-y-2.5 text-base font-medium text-[#111] sm:grid-cols-2">
+                <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[15px] font-medium text-[#111] sm:text-base">
                   {occasions.map((label) => (
                     <li key={label} className="flex items-start gap-2.5">
                       <span
@@ -721,7 +726,7 @@ export default async function MobileMassageWien() {
                 <p className="mt-5 max-w-lg leading-relaxed text-[#555]">
                   {areaDescription}
                 </p>
-                <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-base font-medium text-[#111]">
+                <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[15px] font-medium text-[#111] sm:text-base">
                   {areaDistricts.map((district) => (
                     <li key={district} className="flex items-start gap-2.5">
                       <span
@@ -797,7 +802,10 @@ export default async function MobileMassageWien() {
             <p className="mx-auto mt-5 max-w-lg leading-relaxed text-white/75">
               {ctaText}
             </p>
-            <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <p className="mt-6 text-sm font-semibold tracking-wide text-[#f2a93b]">
+              {formatPrice(priceAmount)} € · {durationSummary} · ganz Wien
+            </p>
+            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
               <Link
                 href={bookingHref}
                 className={`${PRIMARY_BTN} focus-visible:ring-offset-[#0d4f4f]`}
@@ -821,13 +829,13 @@ export default async function MobileMassageWien() {
         </section>
 
         {/* ── QUERVERWEISE ─────────────────────────────────────────── */}
-        <section className="bg-white py-12 sm:py-16">
+        <section className="bg-[#f0f7f7] py-12 sm:py-16">
           <div className="mx-auto max-w-6xl px-5 sm:px-8">
             <ul className="grid gap-4 sm:grid-cols-2">
               <li>
                 <Link
                   href="/heilmassage-wien-1080"
-                  className={`group flex items-center justify-between gap-6 rounded-3xl border border-[#0d4f4f]/10 bg-[#f0f7f7] px-6 py-5 transition-colors duration-200 hover:border-[#0d4f4f]/30 ${FOCUS_RING}`}
+                  className={`group flex items-center justify-between gap-6 rounded-3xl border border-[#0d4f4f]/10 bg-white px-6 py-5 transition-colors duration-200 hover:border-[#0d4f4f]/30 ${FOCUS_RING}`}
                 >
                   <span>
                     <span className="block text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/75">
@@ -848,7 +856,7 @@ export default async function MobileMassageWien() {
               <li>
                 <Link
                   href="/preise"
-                  className={`group flex items-center justify-between gap-6 rounded-3xl border border-[#0d4f4f]/10 bg-[#f0f7f7] px-6 py-5 transition-colors duration-200 hover:border-[#0d4f4f]/30 ${FOCUS_RING}`}
+                  className={`group flex items-center justify-between gap-6 rounded-3xl border border-[#0d4f4f]/10 bg-white px-6 py-5 transition-colors duration-200 hover:border-[#0d4f4f]/30 ${FOCUS_RING}`}
                 >
                   <span>
                     <span className="block text-xs font-bold uppercase tracking-widest text-[#0d4f4f]/75">
