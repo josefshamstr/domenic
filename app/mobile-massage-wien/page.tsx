@@ -108,7 +108,7 @@ const defaultProcessSteps = [
   {
     title: "Nachklingen lassen",
     description:
-      "Ich packe zusammen und verabschiede mich leise. Sie bleiben liegen, trinken einen Tee oder schlafen einfach weiter.",
+      "Nach der Behandlung baue ich die Liege ab und verabschiede mich. Sie müssen nirgendwohin – Sie bleiben, wo Sie sind, und lassen die Wirkung nachklingen.",
   },
 ];
 
