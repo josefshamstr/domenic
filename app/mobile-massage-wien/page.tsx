@@ -59,7 +59,7 @@ const defaultIncluded = [
   {
     title: "Professionelle Massageliege",
     description:
-      "Stabil, gepolstert, mit Nackenstütze – dieselbe Liege wie in der Praxis, in wenigen Minuten aufgebaut.",
+      "Stabil, gepolstert, mit Nackenstütze – klappbar, aber auf Praxisniveau.",
   },
   {
     title: "Hochwertige Öle",
@@ -547,8 +547,8 @@ export default async function MobileMassageWien() {
                   />
                 </div>
                 <figcaption className="mt-4 text-sm leading-relaxed text-[#555]">
-                  Diese Liege steht in wenigen Minuten in Ihrem Wohnzimmer –
-                  dieselbe wie in der Praxis.
+                  Mein Behandlungsraum in der Josefstadt. Zum Hausbesuch kommt
+                  eine mobile Liege mit – in wenigen Minuten aufgebaut.
                 </figcaption>
               </figure>
 
