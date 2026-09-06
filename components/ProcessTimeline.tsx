@@ -177,7 +177,7 @@ export function ProcessTimeline({ steps }: { steps: Step[] }) {
         return (
           <li
             key={step.title}
-            className="relative grid gap-1 border-b border-[#0d4f4f]/10 py-7 pl-9 transition-all duration-500 last:border-0 md:grid-cols-[180px_1fr] md:items-baseline md:gap-8 md:py-9"
+            className="relative grid gap-1 py-7 pl-9 transition-all duration-500 after:absolute after:bottom-0 after:left-9 after:right-0 after:h-px after:bg-[#0d4f4f]/10 last:after:hidden md:grid-cols-[180px_1fr] md:items-baseline md:gap-8 md:py-9"
             style={{
               opacity: inView ? 1 : 0,
               transform: inView ? "translateY(0)" : "translateY(20px)",
