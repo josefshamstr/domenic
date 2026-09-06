@@ -135,7 +135,7 @@ export const mobileMassagePageSchema = defineType({
           _key: "included-1",
           title: "Professionelle Massageliege",
           description:
-            "Stabil, gepolstert, mit Nackenstütze – dieselbe Liege wie in der Praxis, in wenigen Minuten aufgebaut.",
+            "Stabil, gepolstert, mit Nackenstütze – klappbar, aber auf Praxisniveau.",
         },
         {
           _key: "included-2",
