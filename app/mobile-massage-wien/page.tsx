@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   title:
     "Mobile Massage Wien · Massage zu Hause & Hausbesuch | Heilmasseur Domenic Hacker",
   description:
-    "Mobile Massage in Wien: Hausbesuch mit eigener Massageliege, Ölen und Handtüchern. 120 € Fixpreis für 60 oder 90 Minuten. Hotel & VIP Service auf Anfrage.",
+    "Mobile Massage in Wien: Hausbesuch mit eigener Massageliege, Ölen und Handtüchern. 120 € Fixpreis für 60 oder 90 Minuten. Hotel & VIP-Service auf Anfrage.",
   alternates: { canonical: CANONICAL },
   openGraph: {
     title: "Mobile Massage Wien · Massage zu Hause bei Ihnen",
@@ -102,7 +102,7 @@ const defaultProcessSteps = [
   {
     title: "Die Behandlung",
     description:
-      "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit an Ihrem Körper.",
+      "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit dort, wo Sie sie brauchen.",
   },
   {
     title: "Nachklingen lassen",
@@ -139,6 +139,12 @@ const defaultFaqs = [
       "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
   },
   {
+    _key: "default-mobile-faq-7",
+    question: "Zahlt die Krankenkasse eine mobile Massage?",
+    answer:
+      "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.",
+  },
+  {
     _key: "default-mobile-faq-2",
     question: "Was muss ich für den Termin zuhause vorbereiten?",
     answer:
@@ -167,12 +173,6 @@ const defaultFaqs = [
     question: "Wie kurzfristig kann ich einen Hausbesuch buchen?",
     answer:
       "In den Innenbezirken geht oft noch etwas am selben oder am nächsten Tag. Für Wunschtermine am Abend oder am Wochenende melden Sie sich am besten ein paar Tage vorher.",
-  },
-  {
-    _key: "default-mobile-faq-7",
-    question: "Zahlt die Krankenkasse eine mobile Massage?",
-    answer:
-      "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.",
   },
 ];
 
@@ -224,8 +224,16 @@ export default async function MobileMassageWien() {
   const heroSubtitle =
     page?.heroSubtitle ??
     "Ich komme zu Ihnen – mit Liege, Ölen und Handtüchern. Sie kümmern sich um nichts außer Ihrer Entspannung. Therapeutische Massage auf Praxisniveau, in Ihren eigenen vier Wänden oder im Hotel.";
+  // Auf schmalen Screens nur die ersten zwei Sätze, damit Preis und CTA
+  // im ersten Viewport bleiben; ab sm der ganze Text.
+  const subtitleSentences = heroSubtitle.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [
+    heroSubtitle,
+  ];
+  const subtitleLead = subtitleSentences.slice(0, 2).join("").trim();
+  const subtitleRest = subtitleSentences.slice(2).join("").trim() || null;
+
   const heroServiceLine =
-    page?.heroServiceLine ?? "Hotel & VIP Service auf Anfrage";
+    page?.heroServiceLine ?? "Hotel & VIP-Service auf Anfrage";
 
   const bookingHref = page?.bookingUrl ?? "/buchen";
 
@@ -233,7 +241,7 @@ export default async function MobileMassageWien() {
     page?.priceHeading ?? "Ein Fixpreis. Sie wählen die Zeit.";
   const priceDescription =
     page?.priceDescription ??
-    "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie. Die Anfahrt innerhalb Wiens ist enthalten.";
+    "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie.";
   const priceAmount = page?.priceAmount ?? 120;
   const priceDurations =
     page?.priceDurations && page.priceDurations.length > 0
@@ -254,7 +262,7 @@ export default async function MobileMassageWien() {
       : defaultIncluded;
 
   const forWhomHeading =
-    page?.forWhomHeading ?? "Wann eine Massage zuhause die bessere Wahl ist";
+    page?.forWhomHeading ?? "Wann zuhause die bessere Wahl ist";
   const forWhomDescription =
     page?.forWhomDescription ??
     "Oft ist der Weg zur Praxis der Grund, warum ein Termin nicht zustande kommt. Wer danach nicht mehr in die U-Bahn steigen muss, entspannt tiefer – und bleibt länger entspannt.";
@@ -281,7 +289,6 @@ export default async function MobileMassageWien() {
       ? page.vipPoints
       : defaultVipPoints;
 
-  const stageEyebrow = page?.socialProofEyebrow ?? "Auf der Bühne";
   const stageHeading =
     page?.socialProofHeading ?? "Therapeutisch fundiert, geprägt von der Bühne";
   const stageText =
@@ -364,7 +371,10 @@ export default async function MobileMassageWien() {
                 <p
                   className={`mt-6 max-w-xl text-lg leading-relaxed text-white/75 ${rise("[animation-delay:160ms]")}`}
                 >
-                  {heroSubtitle}
+                  {subtitleLead}
+                  {subtitleRest && (
+                    <span className="hidden sm:inline"> {subtitleRest}</span>
+                  )}
                 </p>
 
                 <div
@@ -451,8 +461,8 @@ export default async function MobileMassageWien() {
               </div>
 
               <div className={`relative ${rise("[animation-delay:200ms]")}`}>
-                <div className="pointer-events-none absolute -top-4 -right-4 h-full w-full rotate-1 rounded-3xl bg-[#f2a93b]/15" />
                 <figure className="relative mx-auto max-w-sm lg:mx-0 lg:ml-auto lg:max-w-md">
+                  <div className="pointer-events-none absolute -top-4 -right-4 h-full w-full rotate-1 rounded-3xl bg-[#f2a93b]/15" />
                   <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
                     <Image
                       src={heroImageSrc}
@@ -474,7 +484,7 @@ export default async function MobileMassageWien() {
                       Domenic Hacker
                     </span>
                     <span className="block text-sm text-white/80">
-                      Diplomierter Heilmasseur · Wien
+                      Diplomierter Heilmasseur · B-Boy · Wien
                     </span>
                   </figcaption>
                 </figure>
@@ -591,7 +601,7 @@ export default async function MobileMassageWien() {
                     aria-hidden="true"
                     className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-gradient-to-br from-[#e8654a] to-[#f2a93b] lg:-top-[7px] lg:left-0"
                   />
-                  <p className="text-sm font-extrabold tracking-[0.2em] text-[#0d4f4f]">
+                  <p className="text-sm font-extrabold tracking-[0.06em] tabular-nums text-[#0d4f4f]">
                     {String(i + 1).padStart(2, "0")}
                   </p>
                   <h3 className="mt-2 text-lg font-bold text-[#0d4f4f]">
@@ -670,9 +680,6 @@ export default async function MobileMassageWien() {
                       quality={75}
                       sizes="(max-width: 1024px) 100vw, 448px"
                     />
-                    <span className="absolute top-5 left-5 rounded-full bg-[#0d4f4f]/85 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
-                      {stageEyebrow}
-                    </span>
                   </div>
                 </div>
                 <figcaption className="mt-4 text-sm leading-relaxed text-white/70">
@@ -688,7 +695,7 @@ export default async function MobileMassageWien() {
           <div className="mx-auto max-w-6xl px-5 sm:px-8">
             <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
               <div>
-                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
+                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl lg:min-h-[2lh]">
                   {forWhomHeading}
                 </h2>
                 <p className="mt-5 max-w-lg leading-relaxed text-[#555]">
@@ -696,10 +703,10 @@ export default async function MobileMassageWien() {
                 </p>
                 <ul className="mt-8 grid gap-x-6 gap-y-2.5 text-base font-medium text-[#111] sm:grid-cols-2">
                   {occasions.map((label) => (
-                    <li key={label} className="flex items-center gap-2.5">
+                    <li key={label} className="flex items-start gap-2.5">
                       <span
                         aria-hidden
-                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#e8654a]"
+                        className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#e8654a]"
                       />
                       {label}
                     </li>
@@ -708,18 +715,18 @@ export default async function MobileMassageWien() {
               </div>
 
               <div>
-                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
+                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl lg:min-h-[2lh]">
                   {areaHeading}
                 </h2>
                 <p className="mt-5 max-w-lg leading-relaxed text-[#555]">
                   {areaDescription}
                 </p>
-                <ul className="mt-8 grid gap-x-6 gap-y-2.5 text-base font-medium text-[#111] sm:grid-cols-2">
+                <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-base font-medium text-[#111]">
                   {areaDistricts.map((district) => (
-                    <li key={district} className="flex items-center gap-2.5">
+                    <li key={district} className="flex items-start gap-2.5">
                       <span
                         aria-hidden
-                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#0d4f4f]/40"
+                        className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0d4f4f]/40"
                       />
                       {district}
                     </li>
@@ -746,7 +753,7 @@ export default async function MobileMassageWien() {
         <section className="bg-[#f0f7f7] py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-5 sm:px-8">
             <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-              <div>
+              <div className="lg:sticky lg:top-28 lg:self-start">
                 <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
                   Häufige Fragen zur mobilen Massage
                 </h2>
@@ -768,7 +775,7 @@ export default async function MobileMassageWien() {
                         aria-hidden={true}
                       />
                     </summary>
-                    <p className="pb-6 text-sm leading-relaxed text-[#555] sm:text-base">
+                    <p className="pb-6 text-base leading-relaxed text-[#555]">
                       {faq.answer}
                     </p>
                   </details>

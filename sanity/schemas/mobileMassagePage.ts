@@ -33,7 +33,7 @@ export const mobileMassagePageSchema = defineType({
       name: "heroServiceLine",
       title: "Hero — Service-Zeile (VIP-Badge)",
       type: "string",
-      initialValue: "Hotel & VIP Service auf Anfrage",
+      initialValue: "Hotel & VIP-Service auf Anfrage",
       group: "hero",
     }),
     defineField({
@@ -66,7 +66,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie. Die Anfahrt innerhalb Wiens ist enthalten.",
+        "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie.",
       group: "price",
     }),
     defineField({
@@ -164,7 +164,7 @@ export const mobileMassagePageSchema = defineType({
       name: "forWhomHeading",
       title: "Für wen — Überschrift",
       type: "string",
-      initialValue: "Wann eine Massage zuhause die bessere Wahl ist",
+      initialValue: "Wann zuhause die bessere Wahl ist",
       group: "forWhom",
     }),
     defineField({
@@ -247,7 +247,7 @@ export const mobileMassagePageSchema = defineType({
           _key: "step-3",
           title: "Die Behandlung",
           description:
-            "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit an Ihrem Körper.",
+            "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit dort, wo Sie sie brauchen.",
         },
         {
           _key: "step-4",
@@ -395,6 +395,12 @@ export const mobileMassagePageSchema = defineType({
             "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
         },
         {
+          _key: "faq-7",
+          question: "Zahlt die Krankenkasse eine mobile Massage?",
+          answer:
+            "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.",
+        },
+        {
           _key: "faq-2",
           question: "Was muss ich für den Termin zuhause vorbereiten?",
           answer:
@@ -423,12 +429,6 @@ export const mobileMassagePageSchema = defineType({
           question: "Wie kurzfristig kann ich einen Hausbesuch buchen?",
           answer:
             "In den Innenbezirken geht oft noch etwas am selben oder am nächsten Tag. Für Wunschtermine am Abend oder am Wochenende melden Sie sich am besten ein paar Tage vorher.",
-        },
-        {
-          _key: "faq-7",
-          question: "Zahlt die Krankenkasse eine mobile Massage?",
-          answer:
-            "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.",
         },
       ],
       group: "faqs",
