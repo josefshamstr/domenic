@@ -43,6 +43,14 @@ export const mobileMassagePageSchema = defineType({
       options: { hotspot: true },
       group: "hero",
     }),
+    defineField({
+      name: "bookingUrl",
+      title: "Buchungslink Hausbesuch",
+      description:
+        "Optional: eigener Calendly-Event für Hausbesuche (mit Fragen zu Adresse, Dauer, Hotel). Leer = allgemeine Buchungsseite /buchen.",
+      type: "url",
+      group: "hero",
+    }),
 
     // ── Preis ─────────────────────────────────────────────────
     defineField({
@@ -82,7 +90,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Für Adressen außerhalb Wiens oder am Stadtrand kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.",
+        "Für Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.",
       group: "price",
     }),
 
@@ -133,7 +141,7 @@ export const mobileMassagePageSchema = defineType({
           _key: "included-2",
           title: "Hochwertige Öle",
           description:
-            "Hautverträglich und dezent im Duft. Auf Wunsch neutral und unparfümiert, wenn Sie empfindlich reagieren.",
+            "Hautverträglich und dezent im Duft. Auf Wunsch neutral und unparfümiert.",
         },
         {
           _key: "included-3",
@@ -256,7 +264,7 @@ export const mobileMassagePageSchema = defineType({
       name: "vipHeading",
       title: "VIP — Überschrift",
       type: "string",
-      initialValue: "Hotel & VIP Service auf Anfrage",
+      initialValue: "Hotel, Suite, Backstage",
       group: "vip",
     }),
     defineField({
@@ -265,7 +273,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 4,
       initialValue:
-        "Für Gäste in Wiener Hotels, für Künstlerinnen und Künstler auf Tour und für alle, die einen diskreten Termin brauchen: Auf Anfrage behandle ich auch im Hotelzimmer, in der Suite oder backstage. Terminfenster außerhalb der üblichen Zeiten sind möglich.",
+        "Für Gäste in Wiener Hotels, für Künstlerinnen und Künstler auf Tour und für alle, die einen diskreten Termin brauchen: Auf Anfrage behandle ich auch im Hotelzimmer, in der Suite oder backstage – auch spät nach der Show.",
       group: "vip",
     }),
     defineField({
@@ -274,9 +282,9 @@ export const mobileMassagePageSchema = defineType({
       type: "array",
       of: [{ type: "string" }],
       initialValue: [
-        "Behandlung im Hotelzimmer oder in der Suite",
+        "Behandlung im Hotelzimmer, in der Suite oder backstage",
         "Absolute Diskretion",
-        "Termine auch abends und am Wochenende",
+        "Termine auch spätabends und am Wochenende",
         "Auf Wunsch Abrechnung über Rezeption oder Management",
       ],
       group: "vip",
@@ -287,7 +295,7 @@ export const mobileMassagePageSchema = defineType({
       name: "socialProofEyebrow",
       title: "Social Proof — Eyebrow",
       type: "string",
-      initialValue: "Auf Tour & backstage",
+      initialValue: "Auf der Bühne",
       group: "socialProof",
     }),
     defineField({
@@ -303,7 +311,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 4,
       initialValue:
-        "Seit meiner Jugend stehe ich als B-Boy auf der Bühne. Wer so trainiert, lernt früh, wie ein Körper unter Belastung funktioniert – und was er braucht, um sich wieder zu lösen. Diese Erfahrung fließt in jeden Handgriff: präzise, rhythmisch und mit Gefühl für den richtigen Druck zur richtigen Zeit. Das schätzen Menschen, die beruflich auf ihren Körper angewiesen sind – auf Tour, im Studio und im Hotel.",
+        "Seit meiner Jugend stehe ich als B-Boy auf der Bühne. Wer so trainiert, lernt früh, wie ein Körper unter Belastung funktioniert – und was er braucht, um sich wieder zu lösen. Diese Erfahrung fließt in jeden Handgriff: präzise, rhythmisch und mit Gefühl für den richtigen Druck zur richtigen Zeit.",
       group: "socialProof",
     }),
     defineField({
@@ -318,7 +326,7 @@ export const mobileMassagePageSchema = defineType({
       title: "Social Proof — Bildunterschrift",
       type: "string",
       description:
-        "Bildunterschrift unter dem Foto, z. B. Name und Anlass. Leer lassen, um die Unterschrift auszublenden.",
+        "Bildunterschrift unter dem Foto, z. B. Name und Anlass. Leer = Standardtext.",
       group: "socialProof",
     }),
 
@@ -327,7 +335,7 @@ export const mobileMassagePageSchema = defineType({
       name: "areaHeading",
       title: "Einzugsgebiet — Überschrift",
       type: "string",
-      initialValue: "Mobile Massage in ganz Wien",
+      initialValue: "In ganz Wien",
       group: "area",
     }),
     defineField({
@@ -336,7 +344,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Ausgangspunkt ist meine Praxis in der Josefstadt. Innerhalb Wiens komme ich in jeden Bezirk – in den Innenbezirken meist besonders kurzfristig.",
+        "Ausgangspunkt ist meine Praxis in der Josefstadt. In den Innenbezirken bin ich oft noch am selben oder nächsten Tag bei Ihnen, alle weiteren Bezirke nach Vereinbarung.",
       group: "area",
     }),
     defineField({
@@ -352,7 +360,9 @@ export const mobileMassagePageSchema = defineType({
         "1070 Neubau",
         "1080 Josefstadt",
         "1090 Alsergrund",
-        "Alle weiteren Bezirke auf Anfrage",
+        "1130 Hietzing",
+        "1180 Währing",
+        "1190 Döbling",
       ],
       group: "area",
     }),
@@ -382,7 +392,7 @@ export const mobileMassagePageSchema = defineType({
           _key: "faq-1",
           question: "Was kostet eine mobile Massage in Wien?",
           answer:
-            "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen weiter außerhalb kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
+            "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
         },
         {
           _key: "faq-2",
@@ -438,7 +448,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 2,
       initialValue:
-        "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Online anfragen oder direkt anrufen.",
+        "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Online anfragen, anrufen oder schreiben.",
       group: "cta",
     }),
   ],
