@@ -25,6 +25,7 @@ const navItems: NavItem[] = [
     items: [
       { label: "Heilmassage", href: "/heilmassage-wien-1080" },
       { label: "Sportmassage", href: "/sportmassage-wien" },
+      { label: "Mobile Massage", href: "/mobile-massage-wien" },
     ],
   },
   { kind: "link", label: "Preise", href: "/preise" },
@@ -42,7 +43,10 @@ const DARK_HERO_PATHS = new Set<string>([
   "/ueber-mich",
   "/heilmassage-wien-1080",
   "/sportmassage-wien",
+  "/mobile-massage-wien",
   "/buchen",
+  // Labs-Varianten mit dunklem Hero
+  "/labs/mobile-massage/b",
 ]);
 
 export function Navbar({ initialPathname = "" }: { initialPathname?: string }) {

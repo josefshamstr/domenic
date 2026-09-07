@@ -40,6 +40,13 @@ const VARIANT_DATA = {
     serviceType: "Sportmassage",
     priceRange: "€55–€85",
   },
+  mobilemassage: {
+    name: "Mobile Massage Wien — Hausbesuch",
+    description:
+      "Mobile Massage in Wien: Hausbesuch mit eigener Massageliege, Ölen und Handtüchern. 120 € Fixpreis für 60 oder 90 Minuten, Anfahrt innerhalb Wiens inklusive. Hotel- und VIP-Termine auf Anfrage.",
+    serviceType: "Mobile Massage",
+    priceRange: "€120",
+  },
 } as const;
 
 export type JsonLdServiceVariant = keyof typeof VARIANT_DATA;

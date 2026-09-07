@@ -60,6 +60,7 @@ export const deskStructure = (S: StructureBuilder) =>
       singleton(S, "Startseite", "homePage", "homePage"),
       singleton(S, "Heilmassage Wien", "heilmassagePage", "heilmassagePage"),
       singleton(S, "Sportmassage Wien", "sportmassagePage", "sportmassagePage"),
+      singleton(S, "Mobile Massage Wien", "mobileMassagePage", "mobileMassagePage"),
       singleton(S, "Preise (Seite)", "pricingPage", "pricingPage"),
       singleton(S, "Gutscheine (Seite)", "gutscheinePage", "gutscheinePage"),
       singleton(S, "Block-Karten Preise", "blockPricing", "blockPricing"),
