@@ -113,7 +113,7 @@ export function Hero({
             {subheading}
           </p>
 
-          <div className="mt-8 sm:mt-10 flex flex-wrap gap-4">
+          <div id="hero-cta" className="mt-8 sm:mt-10 flex flex-wrap gap-4">
             <a
               href="/buchen"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-7 py-3.5 text-base font-bold text-white shadow-xl shadow-[#e8654a]/30 transition-all duration-300 hover:shadow-2xl hover:shadow-[#e8654a]/40 hover:scale-105"

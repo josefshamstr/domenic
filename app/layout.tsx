@@ -8,12 +8,13 @@ import Script from "next/script";
 import CookieConsentComponent from "@/components/CookieConsent";
 import { SanityLive } from "@/sanity/lib/live";
 import { Navbar } from "@/components/Navbar";
+import { SiteStickyCta } from "@/components/SiteStickyCta";
+import { getSettings } from "@/sanity/lib/queries";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 
 export const metadata: Metadata = {
   title: "Heilmasseur Domenic Hacker | Heilmassage Wien 1080",
@@ -39,11 +40,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const initialPathname = (await headers()).get("x-pathname") ?? "/";
+  const settings = await getSettings();
   return (
-    <html
-      lang="de"
-      className={`${geistSans.variable} h-full antialiased`}
-    >
+    <html lang="de" className={`${geistSans.variable} h-full antialiased`}>
       <head>
         <JsonLd />
         {/* Google Consent Mode v2 — must run before any GA tag loads */}
@@ -99,6 +98,10 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col">
         <Navbar initialPathname={initialPathname} />
         {children}
+        <SiteStickyCta
+          phone={settings?.phone ?? "+43 670 189 52 56"}
+          email={settings?.email ?? "praxis@heilmasseur-domenic.at"}
+        />
         <SanityLive />
         <Analytics />
         <CookieConsentComponent />

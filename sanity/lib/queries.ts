@@ -163,11 +163,9 @@ export type SanityMobileMassagePage = {
   heroSubtitle: string;
   heroServiceLine: string;
   heroImage?: { asset: { _ref: string } };
-  bookingUrl?: string;
   priceHeading: string;
   priceDescription: string;
-  priceAmount: number;
-  priceDurations: string[];
+  priceTiers: { duration: string; amount?: number }[];
   priceNote: string;
   includedHeading: string;
   includedDescription: string;
@@ -447,8 +445,8 @@ export const getMobileMassagePage = cache(
   async (): Promise<SanityMobileMassagePage | null> => {
     return safeFetch<SanityMobileMassagePage>(
       `*[_type == "mobileMassagePage"][0] {
-        heroBadge, heroHeading, heroSubtitle, heroServiceLine, heroImage, bookingUrl,
-        priceHeading, priceDescription, priceAmount, priceDurations, priceNote,
+        heroBadge, heroHeading, heroSubtitle, heroServiceLine, heroImage,
+        priceHeading, priceDescription, priceTiers[] { duration, amount }, priceNote,
         includedHeading, includedDescription, included[] { title, description },
         forWhomHeading, forWhomDescription, occasions,
         processHeading, processDescription, processSteps[] { title, description },

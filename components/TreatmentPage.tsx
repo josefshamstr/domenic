@@ -115,7 +115,10 @@ export function TreatmentPage({
                 <p className="mt-5 text-lg sm:text-xl text-white/70 max-w-xl leading-relaxed">
                   {data.heroSubtitle}
                 </p>
-                <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
+                <div
+                  id="hero-cta"
+                  className="mt-10 flex flex-col sm:flex-row items-start gap-4"
+                >
                   <Link
                     href="/buchen"
                     className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#e8654a]/30 transition-all duration-200 hover:shadow-xl hover:shadow-[#e8654a]/40 motion-safe:hover:scale-[1.03]"
@@ -411,7 +414,7 @@ export function TreatmentPage({
         </section>
 
         {/* ── FINAL CTA ────────────────────────────────────────────── */}
-        <section className="py-16 sm:py-24 bg-[#0d4f4f]">
+        <section id="final-cta" className="py-16 sm:py-24 bg-[#0d4f4f]">
           <div className="mx-auto max-w-2xl px-5 sm:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">
               {data.ctaHeading}

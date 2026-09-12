@@ -25,7 +25,7 @@ const praxisLinks = [
 export function Footer({ sanitySettings }: { sanitySettings?: SanitySettings | null }) {
   const instagramUrl = sanitySettings?.instagramUrl || "https://www.instagram.com/heilmasseurdomenic";
   return (
-    <footer className="relative bg-[#0a0a0a] pt-16 pb-8">
+    <footer id="site-footer" className="relative bg-[#0a0a0a] pt-16 pb-8">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">

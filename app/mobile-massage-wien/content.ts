@@ -3,9 +3,8 @@ import { getMobileMassagePage, getSettings } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 
 /**
- * Gemeinsame Inhaltsbasis für die Design-Varianten unter /labs/mobile-massage.
- * Alle Varianten rendern dieselben Fakten und Texte – nur Layout, Typografie
- * und Bildeinsatz unterscheiden sich. Keine erfundenen Claims hinzufügen.
+ * Inhaltsbasis für /mobile-massage-wien: Sanity-Dokument (mobileMassagePage)
+ * mit Defaults, dazu Settings, Google-Bewertungen und Bildpfade.
  */
 
 export type Step = { title: string; description: string };
@@ -90,25 +89,12 @@ const defaultVipPoints = [
   "Auf Wunsch Abrechnung über Rezeption oder Management",
 ];
 
-const defaultAreaDistricts = [
-  "1010 Innere Stadt",
-  "1030 Landstraße",
-  "1040 Wieden",
-  "1060 Mariahilf",
-  "1070 Neubau",
-  "1080 Josefstadt",
-  "1090 Alsergrund",
-  "1130 Hietzing",
-  "1180 Währing",
-  "1190 Döbling",
-];
-
 const defaultFaqs: Faq[] = [
   {
     _key: "faq-1",
     question: "Was kostet eine mobile Massage in Wien?",
     answer:
-      "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
+      "Ein Hausbesuch startet bei 120 € für 60 Minuten. Für 90 Minuten kommt ein Aufpreis dazu – den nenne ich Ihnen bei der Anfrage. Die Anfahrt innerhalb Wiens ist enthalten; bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
   },
   {
     _key: "faq-7",
@@ -148,6 +134,17 @@ const defaultFaqs: Faq[] = [
   },
 ];
 
+export type PriceTier = { duration: string; amount?: number };
+
+/**
+ * Preise pflegt Domenic in Sanity (Feld „Preis — Dauer & Betrag“). Solange dort
+ * nichts steht, gelten diese Werte. Betrag weglassen = „auf Anfrage“.
+ */
+const defaultPriceTiers: PriceTier[] = [
+  { duration: "60 Minuten", amount: 120 },
+  { duration: "90 Minuten" },
+];
+
 /** "60 Minuten", "90 Minuten" → "60 oder 90 Minuten" */
 export function summarizeDurations(durations: string[]): string {
   if (durations.length === 0) return "";
@@ -177,10 +174,16 @@ export async function getMobileMassageContent() {
 
   const phone = settings?.phone ?? "+43 670 189 52 56";
   const email = settings?.email ?? "praxis@heilmasseur-domenic.at";
-  const priceDurations =
-    page?.priceDurations && page.priceDurations.length > 0
-      ? page.priceDurations
-      : ["60 Minuten", "90 Minuten"];
+  const priceTiers: PriceTier[] =
+    page?.priceTiers && page.priceTiers.length > 0
+      ? page.priceTiers
+      : defaultPriceTiers;
+  // Der „ab“-Preis ist der günstigste hinterlegte Betrag. Zeilen ohne Betrag
+  // sind noch offen und erscheinen als „auf Anfrage“.
+  const knownAmounts = priceTiers
+    .map((t) => t.amount)
+    .filter((a): a is number => typeof a === "number");
+  const priceFrom = knownAmounts.length > 0 ? Math.min(...knownAmounts) : null;
 
   return {
     // Kontakt & Buchung
@@ -188,7 +191,6 @@ export async function getMobileMassageContent() {
     telHref: `tel:${phone.replace(/\s/g, "")}`,
     email,
     mailHref: `mailto:${email}?subject=${encodeURIComponent("Anfrage Hausbesuch")}`,
-    bookingHref: page?.bookingUrl ?? "/buchen",
     practiceAddress: settings?.address ?? "Feldgasse 3/20, 1080 Wien",
     settings,
     reviews, // { rating, count, avatars[] }
@@ -217,13 +219,13 @@ export async function getMobileMassageContent() {
     name: "Domenic Hacker",
 
     // Preis
-    priceHeading: page?.priceHeading ?? "Ein Fixpreis. Sie wählen die Zeit.",
+    priceHeading: page?.priceHeading ?? "Klarer Preis. Sie wählen die Dauer.",
     priceDescription:
       page?.priceDescription ??
-      "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie.",
-    priceAmount: page?.priceAmount ?? 120,
-    priceDurations,
-    durationSummary: summarizeDurations(priceDurations),
+      "Ein Hausbesuch beginnt beim Preis für die kürzere Behandlung; für die längere kommt ein Aufpreis dazu. Was für Sie anfällt, steht hier – und ich bestätige es in meiner Antwort, bevor der Termin fix ist.",
+    priceTiers,
+    priceFrom,
+    durationSummary: summarizeDurations(priceTiers.map((t) => t.duration)),
     priceNote:
       page?.priceNote ??
       "Für Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.",
@@ -249,11 +251,11 @@ export async function getMobileMassageContent() {
     areaHeading: page?.areaHeading ?? "In ganz Wien",
     areaDescription:
       page?.areaDescription ??
-      "Ausgangspunkt ist meine Praxis in der Josefstadt. In den Innenbezirken bin ich oft noch am selben oder nächsten Tag bei Ihnen, alle weiteren Bezirke nach Vereinbarung.",
-    areaDistricts:
-      page?.areaDistricts && page.areaDistricts.length > 0
-        ? page.areaDistricts
-        : defaultAreaDistricts,
+      "Ausgangspunkt ist meine Praxis in der Josefstadt. In den Innenbezirken bin ich oft noch am selben oder nächsten Tag bei Ihnen; alle übrigen Bezirke – von Floridsdorf über Donaustadt bis Liesing – nach Vereinbarung.",
+    // Standardmäßig leer: „In ganz Wien“ sagt bereits alles, eine vollständige
+    // Bezirksliste trägt keine Information. Trägt Domenic in Sanity Bezirke
+    // ein, erscheinen sie als Chips – dann ist die Liste eine echte Eingrenzung.
+    areaDistricts: page?.areaDistricts ?? [],
 
     // Ablauf
     processHeading: page?.processHeading ?? "So läuft ein Hausbesuch ab",
@@ -293,7 +295,7 @@ export async function getMobileMassageContent() {
     ctaHeading: page?.ctaHeading ?? "Entspannung kommt zu Ihnen",
     ctaText:
       page?.ctaText ??
-      "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Online anfragen, anrufen oder schreiben.",
+      "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Schreiben Sie mir oder rufen Sie an.",
     ctaPrimaryLabel: "Hausbesuch anfragen",
   };
 }
