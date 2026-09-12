@@ -63,7 +63,7 @@ export function Footer({ sanitySettings }: { sanitySettings?: SanitySettings | n
           <div className="flex flex-col sm:flex-row gap-10 sm:gap-16">
             {/* Angebot column */}
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+              <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-4">
                 Angebot
               </p>
               <nav className="flex flex-col gap-2.5">
@@ -81,7 +81,7 @@ export function Footer({ sanitySettings }: { sanitySettings?: SanitySettings | n
 
             {/* Praxis column */}
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+              <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-4">
                 Praxis
               </p>
               <nav className="flex flex-col gap-2.5">

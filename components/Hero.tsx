@@ -82,6 +82,10 @@ export function Hero({
                       <img
                         src={a.photoUri}
                         alt=""
+                        width={36}
+                        height={36}
+                        loading="lazy"
+                        decoding="async"
                         className="absolute inset-0 h-full w-full object-cover"
                         referrerPolicy="no-referrer"
                       />

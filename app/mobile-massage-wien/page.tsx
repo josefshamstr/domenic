@@ -174,9 +174,12 @@ export default async function MobileMassageWien() {
                     <span>{c.heroServiceLine}</span>
                   </p>
 
+                  {/* Headline und Vorspann laufen bewusst ohne mm-rise: Der
+                      opacity-0-Start macht sie für Largest Contentful Paint
+                      unsichtbar, wodurch LCP auf das später eingeblendete
+                      Cookie-Banner fällt (gemessen 5,0 s statt 3,4 s). */}
                   <h1
-                    className={`${DISPLAY} mt-5 text-[clamp(2.3rem,5.1vw,4.15rem)] leading-[1.04] sm:mt-6 ${T_PRIMARY} ${RISE}`}
-                    style={rise(80)}
+                    className={`${DISPLAY} mt-5 text-[clamp(2.3rem,5.1vw,4.15rem)] leading-[1.04] sm:mt-6 ${T_PRIMARY}`}
                   >
                     <span className="block">{headingLead}</span>
                     {headingRest && (
@@ -188,8 +191,7 @@ export default async function MobileMassageWien() {
                   </h1>
 
                   <p
-                    className={`mt-6 max-w-xl text-[17px] leading-[1.6] ${T_BODY} sm:mt-7 sm:text-lg sm:leading-[1.65] ${RISE}`}
-                    style={rise(160)}
+                    className={`mt-6 max-w-xl text-[17px] leading-[1.6] ${T_BODY} sm:mt-7 sm:text-lg sm:leading-[1.65]`}
                   >
                     {c.heroSubtitle}
                   </p>
@@ -258,6 +260,10 @@ export default async function MobileMassageWien() {
                             <img
                               src={a.photoUri}
                               alt=""
+                              width={32}
+                              height={32}
+                              loading="lazy"
+                              decoding="async"
                               className="absolute inset-0 h-full w-full object-cover"
                               referrerPolicy="no-referrer"
                             />
@@ -304,7 +310,9 @@ export default async function MobileMassageWien() {
                         src={c.heroImageSrc}
                         alt={`${c.name}, diplomierter Heilmasseur in Wien`}
                         fill
-                        priority
+                        // Kein priority: Die Figure ist unter lg ausgeblendet,
+                        // wurde aber trotzdem eager geladen (~33 KB umsonst).
+                        // Der Mobile-Avatar oben behält priority.
                         quality={85}
                         sizes="(min-width: 1280px) 256px, 224px"
                         className="object-cover object-[50%_22%]"
