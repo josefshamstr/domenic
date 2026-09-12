@@ -45,8 +45,6 @@ const DARK_HERO_PATHS = new Set<string>([
   "/sportmassage-wien",
   "/mobile-massage-wien",
   "/buchen",
-  // Labs-Varianten mit dunklem Hero
-  "/labs/mobile-massage/b",
 ]);
 
 export function Navbar({ initialPathname = "" }: { initialPathname?: string }) {

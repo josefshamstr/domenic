@@ -43,21 +43,13 @@ export const mobileMassagePageSchema = defineType({
       options: { hotspot: true },
       group: "hero",
     }),
-    defineField({
-      name: "bookingUrl",
-      title: "Buchungslink Hausbesuch",
-      description:
-        "Optional: eigener Calendly-Event für Hausbesuche (mit Fragen zu Adresse, Dauer, Hotel). Leer = allgemeine Buchungsseite /buchen.",
-      type: "url",
-      group: "hero",
-    }),
 
     // ── Preis ─────────────────────────────────────────────────
     defineField({
       name: "priceHeading",
       title: "Preis — Überschrift",
       type: "string",
-      initialValue: "Ein Fixpreis. Sie wählen die Zeit.",
+      initialValue: "Klarer Preis. Sie wählen die Dauer.",
       group: "price",
     }),
     defineField({
@@ -66,22 +58,49 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie.",
+        "Ein Hausbesuch beginnt beim Preis für die kürzere Behandlung; für die längere kommt ein Aufpreis dazu. Was für Sie anfällt, steht hier – und ich bestätige es in meiner Antwort, bevor der Termin fix ist.",
       group: "price",
     }),
     defineField({
-      name: "priceAmount",
-      title: "Preis — Betrag in €",
-      type: "number",
-      initialValue: 120,
-      group: "price",
-    }),
-    defineField({
-      name: "priceDurations",
-      title: "Preis — Dauer-Optionen",
+      name: "priceTiers",
+      title: "Preis — Dauer & Betrag",
+      description:
+        "Eine Zeile je Behandlungsdauer. Der niedrigste Betrag ist automatisch der „ab“-Preis, der oben in der Hero-Section steht. Betrag leer lassen = „auf Anfrage“.",
       type: "array",
-      of: [{ type: "string" }],
-      initialValue: ["60 Minuten", "90 Minuten"],
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "duration",
+              title: "Dauer",
+              description: 'z. B. „60 Minuten“',
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "amount",
+              title: "Preis in €",
+              description: "Leer lassen, solange der Preis noch nicht feststeht.",
+              type: "number",
+              validation: (Rule) => Rule.min(0),
+            }),
+          ],
+          preview: {
+            select: { title: "duration", subtitle: "amount" },
+            prepare: ({ title, subtitle }) => ({
+              title,
+              subtitle:
+                typeof subtitle === "number" ? `${subtitle} €` : "auf Anfrage",
+            }),
+          },
+        },
+      ],
+      initialValue: [
+        { _key: "tier-60", duration: "60 Minuten", amount: 120 },
+        { _key: "tier-90", duration: "90 Minuten" },
+      ],
+      validation: (Rule) => Rule.min(1),
       group: "price",
     }),
     defineField({
@@ -342,26 +361,16 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 3,
       initialValue:
-        "Ausgangspunkt ist meine Praxis in der Josefstadt. In den Innenbezirken bin ich oft noch am selben oder nächsten Tag bei Ihnen, alle weiteren Bezirke nach Vereinbarung.",
+        "Ausgangspunkt ist meine Praxis in der Josefstadt. In den Innenbezirken bin ich oft noch am selben oder nächsten Tag bei Ihnen; alle übrigen Bezirke – von Floridsdorf über Donaustadt bis Liesing – nach Vereinbarung.",
       group: "area",
     }),
     defineField({
       name: "areaDistricts",
       title: "Einzugsgebiet — Bezirke / Gebiete",
+      description:
+        "Leer lassen, solange du in ganz Wien unterwegs bist – dann steht auf der Seite nur „In ganz Wien“. Trägst du hier Bezirke ein (z. B. „1010“ oder „1010 Innere Stadt“), erscheinen sie als Liste und die Seite sagt damit: nur diese Bezirke.",
       type: "array",
       of: [{ type: "string" }],
-      initialValue: [
-        "1010 Innere Stadt",
-        "1030 Landstraße",
-        "1040 Wieden",
-        "1060 Mariahilf",
-        "1070 Neubau",
-        "1080 Josefstadt",
-        "1090 Alsergrund",
-        "1130 Hietzing",
-        "1180 Währing",
-        "1190 Döbling",
-      ],
       group: "area",
     }),
 
@@ -390,7 +399,7 @@ export const mobileMassagePageSchema = defineType({
           _key: "faq-1",
           question: "Was kostet eine mobile Massage in Wien?",
           answer:
-            "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
+            "Ein Hausbesuch startet bei 120 € für 60 Minuten. Für 90 Minuten kommt ein Aufpreis dazu – den nenne ich Ihnen bei der Anfrage. Die Anfahrt innerhalb Wiens ist enthalten; bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
         },
         {
           _key: "faq-7",
@@ -446,7 +455,7 @@ export const mobileMassagePageSchema = defineType({
       type: "text",
       rows: 2,
       initialValue:
-        "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Online anfragen, anrufen oder schreiben.",
+        "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Schreiben Sie mir oder rufen Sie an.",
       group: "cta",
     }),
   ],

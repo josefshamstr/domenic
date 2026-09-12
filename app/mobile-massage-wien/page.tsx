@@ -1,39 +1,29 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import {
-  Calendar,
-  Check,
-  ChevronDown,
-  ConciergeBell,
-  Mail,
-  MapPin,
-  Phone,
-  Star,
-} from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone, Plus, Star } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { FaqJsonLd } from "@/components/FaqJsonLd";
 import { JsonLdService } from "@/components/JsonLdService";
-import { MobileStickyCta } from "@/components/MobileStickyCta";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
-import { fetchReviewSummary } from "@/components/GoogleReviewsBadge";
-import { getMobileMassagePage, getSettings } from "@/sanity/lib/queries";
-import { urlFor } from "@/sanity/lib/image";
+import {
+  GOOGLE_MAPS_URL,
+  formatPrice,
+  getMobileMassageContent,
+  splitHeading,
+} from "./content";
 
 const CANONICAL = "https://heilmasseur-domenic.at/mobile-massage-wien";
-const GOOGLE_MAPS_URL =
-  "https://maps.google.com/?q=Heilmasseur+Domenic+Hacker+Wien";
 
 export const metadata: Metadata = {
   title:
     "Mobile Massage Wien · Massage zu Hause & Hausbesuch | Heilmasseur Domenic Hacker",
   description:
-    "Mobile Massage in Wien: Hausbesuch mit eigener Massageliege, Ölen und Handtüchern. 120 € Fixpreis für 60 oder 90 Minuten. Hotel & VIP-Service auf Anfrage.",
+    "Mobile Massage in Wien: Hausbesuch mit eigener Massageliege, Ölen und Handtüchern. Ab 120 € für 60 Minuten, 90 Minuten auf Anfrage. Hotel & VIP-Service auf Anfrage.",
   alternates: { canonical: CANONICAL },
   openGraph: {
     title: "Mobile Massage Wien · Massage zu Hause bei Ihnen",
     description:
-      "Hausbesuch in ganz Wien – Massageliege, Öle und Handtücher bringe ich mit. 120 € Fixpreis für 60 oder 90 Minuten.",
+      "Hausbesuch in ganz Wien – Massageliege, Öle und Handtücher bringe ich mit. Ab 120 €, Anfahrt innerhalb Wiens inklusive.",
     url: CANONICAL,
     locale: "de_AT",
     type: "website",
@@ -48,786 +38,706 @@ export const metadata: Metadata = {
   },
 };
 
-const FOCUS_RING =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2a93b] focus-visible:ring-offset-2";
+/* ── Farben: teal-getönte Weißtöne auf dunklem Teal, Gold als Akzent ─── */
+const T_PRIMARY = "text-[#f4fbf9]";
+const T_BODY = "text-[#cfe4e0]";
+const T_MUTED = "text-[#9fc6bf]";
 
-const PRIMARY_BTN = `inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#e8654a] to-[#f2a93b] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#e8654a]/30 transition-all duration-200 hover:shadow-xl hover:shadow-[#e8654a]/40 motion-safe:hover:scale-[1.03] ${FOCUS_RING}`;
-const GHOST_BTN_DARK = `inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:bg-white/10 ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f]`;
+const FOCUS =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2a93b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07302f]";
 
-const defaultIncluded = [
-  {
-    title: "Professionelle Massageliege",
-    description:
-      "Stabil, gepolstert, mit Nackenstütze – klappbar, aber auf Praxisniveau.",
-  },
-  {
-    title: "Hochwertige Öle",
-    description:
-      "Hautverträglich und dezent im Duft. Auf Wunsch neutral und unparfümiert.",
-  },
-  {
-    title: "Frische Handtücher & Auflagen",
-    description:
-      "Für jeden Termin frisch gewaschen. Ihre eigenen Textilien bleiben im Schrank.",
-  },
-  {
-    title: "Ruhe nach Ihrem Maß",
-    description:
-      "Leise Musik oder Stille, viel Gespräch oder gar keines – Sie geben den Ton vor.",
-  },
-];
+const BTN_BASE =
+  "inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-full px-7 text-[15px] font-semibold tracking-[0.01em] transition-colors duration-200";
+const BTN_GOLD = `${BTN_BASE} bg-[#f2a93b] text-[#07302f] hover:bg-[#f6ba5c] ${FOCUS}`;
+const BTN_GHOST = `${BTN_BASE} border border-white/25 text-[#f4fbf9] hover:border-white/50 hover:bg-white/[0.04] ${FOCUS}`;
 
-const defaultOccasions = [
-  "Nach langen Arbeitstagen",
-  "Hotelaufenthalt in Wien",
-  "Nach Fernflügen",
-  "Eingeschränkte Mobilität",
-  "Junge Eltern",
-  "Als Geschenk",
-];
+const EYEBROW =
+  "text-[11px] font-semibold uppercase tracking-[0.24em] text-[#f2a93b]";
+const DISPLAY = "font-extrabold tracking-tight";
+const NUM = "font-extrabold tabular-nums tracking-[-0.02em]";
+const H2 = `${DISPLAY} text-balance text-[clamp(1.9rem,3vw,2.6rem)] leading-[1.1] ${T_PRIMARY}`;
 
-const defaultProcessSteps = [
-  {
-    title: "Anfrage & Termin",
-    description:
-      "Sie nennen mir Adresse, Wunschtermin und ob 60 oder 90 Minuten. Ich bestätige Termin und Preis verbindlich.",
-  },
-  {
-    title: "Ankunft & Aufbau",
-    description:
-      "Ich komme pünktlich, Sie zeigen mir den Platz. Die Liege steht in wenigen Minuten – leise und ohne Umräumen.",
-  },
-  {
-    title: "Die Behandlung",
-    description:
-      "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit dort, wo Sie sie brauchen.",
-  },
-  {
-    title: "Nachklingen lassen",
-    description:
-      "Nach der Behandlung baue ich die Liege ab und verabschiede mich. Sie müssen nirgendwohin – Sie bleiben, wo Sie sind, und lassen die Wirkung nachklingen.",
-  },
-];
+const CONTAINER = "mx-auto w-full max-w-6xl px-5 sm:px-8";
 
-const defaultVipPoints = [
-  "Behandlung im Hotelzimmer, in der Suite oder backstage",
-  "Absolute Diskretion",
-  "Termine auch spätabends und am Wochenende",
-  "Auf Wunsch Abrechnung über Rezeption oder Management",
-];
+/** Bildradius wie auf allen anderen Seiten (rounded-3xl), Rahmen etwas weiter. */
+const IMG_RADIUS = "rounded-3xl";
+const FRAME_RADIUS = "rounded-[2.25rem]";
 
-const defaultAreaDistricts = [
-  "1010 Innere Stadt",
-  "1030 Landstraße",
-  "1040 Wieden",
-  "1060 Mariahilf",
-  "1070 Neubau",
-  "1080 Josefstadt",
-  "1090 Alsergrund",
-  "1130 Hietzing",
-  "1180 Währing",
-  "1190 Döbling",
-];
+const RISE = "motion-safe:animate-[mm-rise_1s_cubic-bezier(0.16,1,0.3,1)_both]";
+const rise = (delayMs: number) => ({ animationDelay: `${delayMs}ms` });
 
-const defaultFaqs = [
-  {
-    _key: "default-mobile-faq-1",
-    question: "Was kostet eine mobile Massage in Wien?",
-    answer:
-      "Ein Hausbesuch kostet 120 € als Fixpreis – für 60 genauso wie für 90 Minuten. Die Anfahrt innerhalb Wiens ist enthalten. Bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
-  },
-  {
-    _key: "default-mobile-faq-7",
-    question: "Zahlt die Krankenkasse eine mobile Massage?",
-    answer:
-      "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.",
-  },
-  {
-    _key: "default-mobile-faq-2",
-    question: "Was muss ich für den Termin zuhause vorbereiten?",
-    answer:
-      "Nichts. Ich bringe Massageliege, Öle und frische Handtücher mit. Sie brauchen nur einen freien Platz von etwa zwei mal zwei Metern – Wohnzimmer, Schlafzimmer oder Büro funktionieren alle gleich gut.",
-  },
-  {
-    _key: "default-mobile-faq-3",
-    question: "Wie viel Platz braucht die Massageliege?",
-    answer:
-      "Die Liege ist rund 190 cm lang und 70 cm breit. Damit ich rundherum arbeiten kann, sind etwa zwei mal zwei Meter ideal. Wenn Sie unsicher sind, schicken Sie mir vorab ein Foto des Raums – dann klären wir das in einer Minute.",
-  },
-  {
-    _key: "default-mobile-faq-4",
-    question: "Kommen Sie auch ins Hotel?",
-    answer:
-      "Ja. Hotelzimmer und Suiten sind auf Anfrage möglich, ebenso Termine außerhalb der üblichen Zeiten. Bitte geben Sie bei der Anfrage Hotel, Zimmernummer und Ihren Wunschtermin an, damit ich mich an der Rezeption anmelden kann.",
-  },
-  {
-    _key: "default-mobile-faq-5",
-    question: "Welche Massage bekomme ich beim Hausbesuch?",
-    answer:
-      "Dieselbe Arbeit wie in der Praxis: klassische Massage, Heilmassage-Techniken und gezielte Behandlung von Verspannungen – abgestimmt auf das, was Ihr Körper an diesem Tag braucht. Nur Anwendungen mit Geräten sind zuhause nicht möglich.",
-  },
-  {
-    _key: "default-mobile-faq-6",
-    question: "Wie kurzfristig kann ich einen Hausbesuch buchen?",
-    answer:
-      "In den Innenbezirken geht oft noch etwas am selben oder am nächsten Tag. Für Wunschtermine am Abend oder am Wochenende melden Sie sich am besten ein paar Tage vorher.",
-  },
-];
-
-/** "60 Minuten", "90 Minuten" → "60 oder 90 Minuten"; drei Werte → "60, 90 oder 120 Minuten". */
-function summarizeDurations(durations: string[]): string {
-  if (durations.length === 0) return "";
-  if (durations.length === 1) return durations[0];
-  const stripped = durations.map((d, i) =>
-    i === durations.length - 1 ? d : d.replace(/\s*Minuten$/, ""),
+function Hairline({ className = "" }: { className?: string }) {
+  return (
+    <span aria-hidden className={`block h-px w-10 bg-[#f2a93b] ${className}`} />
   );
-  const head = stripped.slice(0, -1).join(", ");
-  return `${head} oder ${stripped[stripped.length - 1]}`;
 }
-
-/** Splits "Mobile Massage – nachhaltige …" into a controlled two-part heading. */
-function splitHeading(heading: string): [string, string | null] {
-  const idx = heading.indexOf(" – ");
-  if (idx === -1) return [heading, null];
-  return [heading.slice(0, idx + 2), heading.slice(idx + 3)];
-}
-
-const formatPrice = (amount: number) =>
-  new Intl.NumberFormat("de-AT", { maximumFractionDigits: 2 }).format(amount);
 
 export default async function MobileMassageWien() {
-  const [page, settings, reviewSummary] = await Promise.all([
-    getMobileMassagePage(),
-    getSettings(),
-    fetchReviewSummary(),
-  ]);
+  const c = await getMobileMassageContent();
 
-  // Hero-Portrait aus dem Bildpool (Sanity-Asset "domenic portrait.jpg", lokal
-  // optimiert). Über Sanity (heroImage) jederzeit austauschbar.
-  const heroImageSrc = page?.heroImage
-    ? urlFor(page.heroImage).width(900).height(1125).url()
-    : "/images/domenic-portrait.webp";
+  const [headingLead, headingRest] = splitHeading(c.heroHeading);
+  // Das letzte Wort der Überschrift wird zum Akzentwort – Text bleibt wörtlich.
+  const restWords = (headingRest ?? "").split(" ");
+  const accentWord = restWords.pop() ?? "";
+  const restBefore = restWords.join(" ");
 
-  // Slot für das KC-Rebell-Foto (Sanity: socialProofImage + socialProofCaption).
-  // Bis dahin das Bühnenfoto, eng beschnitten.
-  const stageImageSrc = page?.socialProofImage
-    ? urlFor(page.socialProofImage).width(900).height(1100).url()
-    : "/images/breakdance.jpg";
-
-  const heroBadge = page?.heroBadge ?? "Hausbesuch in ganz Wien";
-  const [headingLead, headingRest] = splitHeading(
-    page?.heroHeading ??
-      "Mobile Massage – nachhaltige Entspannung bei Ihnen zuhause",
-  );
-  const heroSubtitle =
-    page?.heroSubtitle ??
-    "Ich komme zu Ihnen – mit Liege, Ölen und Handtüchern. Sie kümmern sich um nichts außer Ihrer Entspannung. Therapeutische Massage auf Praxisniveau, in Ihren eigenen vier Wänden oder im Hotel.";
-  // Auf schmalen Screens nur die ersten zwei Sätze, damit Preis und CTA
-  // im ersten Viewport bleiben; ab sm der ganze Text.
-  const subtitleSentences = heroSubtitle.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [
-    heroSubtitle,
-  ];
-  const subtitleLead = subtitleSentences.slice(0, 2).join("").trim();
-  const subtitleRest = subtitleSentences.slice(2).join("").trim() || null;
-
-  const heroServiceLine =
-    page?.heroServiceLine ?? "Hotel & VIP-Service auf Anfrage";
-
-  const bookingHref = page?.bookingUrl ?? "/buchen";
-
-  const priceHeading =
-    page?.priceHeading ?? "Ein Fixpreis. Sie wählen die Zeit.";
-  const priceDescription =
-    page?.priceDescription ??
-    "Keine Staffelung, keine Zuschläge für die längere Behandlung: Ein Hausbesuch kostet 120 € – ob Sie 60 oder 90 Minuten möchten, entscheiden Sie.";
-  const priceAmount = page?.priceAmount ?? 120;
-  const priceDurations =
-    page?.priceDurations && page.priceDurations.length > 0
-      ? page.priceDurations
-      : ["60 Minuten", "90 Minuten"];
-  const priceNote =
-    page?.priceNote ??
-    "Für Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.";
-  const durationSummary = summarizeDurations(priceDurations);
-
-  const included =
-    page?.included && page.included.length > 0
-      ? page.included
-      : defaultIncluded;
-
-  const forWhomHeading =
-    page?.forWhomHeading ?? "Wann zuhause die bessere Wahl ist";
-  const forWhomDescription =
-    page?.forWhomDescription ??
-    "Oft ist der Weg zur Praxis der Grund, warum ein Termin nicht zustande kommt. Wer danach nicht mehr in die U-Bahn steigen muss, entspannt tiefer – und bleibt länger entspannt.";
-  const occasions =
-    page?.occasions && page.occasions.length > 0
-      ? page.occasions
-      : defaultOccasions;
-
-  const processHeading = page?.processHeading ?? "So läuft ein Hausbesuch ab";
-  const processDescription =
-    page?.processDescription ??
-    "Diskret, pünktlich und ohne Aufwand für Sie – vom Klingeln bis zum Abbau.";
-  const processSteps =
-    page?.processSteps && page.processSteps.length > 0
-      ? page.processSteps
-      : defaultProcessSteps;
-
-  const vipHeading = page?.vipHeading ?? "Hotel, Suite, Backstage";
-  const vipText =
-    page?.vipText ??
-    "Für Gäste in Wiener Hotels, für Künstlerinnen und Künstler auf Tour und für alle, die einen diskreten Termin brauchen: Auf Anfrage behandle ich auch im Hotelzimmer, in der Suite oder backstage – auch spät nach der Show.";
-  const vipPoints =
-    page?.vipPoints && page.vipPoints.length > 0
-      ? page.vipPoints
-      : defaultVipPoints;
-
-  const stageHeading =
-    page?.socialProofHeading ?? "Therapeutisch fundiert, geprägt von der Bühne";
-  const stageText =
-    page?.socialProofText ??
-    "Seit meiner Jugend stehe ich als B-Boy auf der Bühne. Wer so trainiert, lernt früh, wie ein Körper unter Belastung funktioniert – und was er braucht, um sich wieder zu lösen. Diese Erfahrung fließt in jeden Handgriff: präzise, rhythmisch und mit Gefühl für den richtigen Druck zur richtigen Zeit.";
-  const stageCaption =
-    page?.socialProofCaption ?? "Domenic Hacker als B-Boy auf der Bühne.";
-
-  const areaHeading = page?.areaHeading ?? "In ganz Wien";
-  const areaDescription =
-    page?.areaDescription ??
-    "Ausgangspunkt ist meine Praxis in der Josefstadt. In den Innenbezirken bin ich oft noch am selben oder nächsten Tag bei Ihnen, alle weiteren Bezirke nach Vereinbarung.";
-  const areaDistricts =
-    page?.areaDistricts && page.areaDistricts.length > 0
-      ? page.areaDistricts
-      : defaultAreaDistricts;
-
-  const faqs = page?.faqs && page.faqs.length > 0 ? page.faqs : defaultFaqs;
-
-  const ctaHeading = page?.ctaHeading ?? "Entspannung kommt zu Ihnen";
-  const ctaText =
-    page?.ctaText ??
-    "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Online anfragen, anrufen oder schreiben.";
-
-  const phone = settings?.phone ?? "+43 670 189 52 56";
-  const telHref = `tel:${phone.replace(/\s/g, "")}`;
-  const email = settings?.email ?? "praxis@heilmasseur-domenic.at";
-  const mailHref = `mailto:${email}?subject=${encodeURIComponent("Anfrage Hausbesuch")}`;
-  const practiceAddress = settings?.address ?? "Feldgasse 3/20, 1080 Wien";
-
-  const rise = (delay: string) =>
-    `motion-safe:animate-[mm-rise_0.9s_cubic-bezier(0.16,1,0.3,1)_both] ${delay}`;
+  // „ab“-Preis = günstigster hinterlegter Tarif; null, solange keiner feststeht.
+  const priceFrom = c.priceFrom !== null ? formatPrice(c.priceFrom) : null;
+  const avatars = c.reviews.avatars.slice(0, 3);
 
   return (
     <>
-      <JsonLdService variant="mobilemassage" />
-      <FaqJsonLd faqs={faqs.map((f) => ({ q: f.question, a: f.answer }))} />
-      <main className="selection:bg-[#f2a93b]/40 selection:text-[#111]">
-        {/* ── HERO ─────────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden bg-[#0d4f4f]">
-          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#e8654a] via-[#f2a93b] to-[#0d4f4f]" />
-          <div className="pointer-events-none absolute -top-56 -right-56 h-[640px] w-[640px] rounded-full bg-[#f2a93b]/8" />
+      <JsonLdService
+        variant="mobilemassage"
+        priceRange={priceFrom ? `ab €${priceFrom}` : undefined}
+      />
+      <FaqJsonLd faqs={c.faqs.map((f) => ({ q: f.question, a: f.answer }))} />
+      <div
+        className={`bg-[#07302f] ${T_BODY} selection:bg-[#f2a93b]/40 selection:text-[#f4fbf9]`}
+      >
+        <main>
+          {/* ── HERO ───────────────────────────────────────────────── */}
+          <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+            <div className="absolute inset-0 -z-10">
+              <Image
+                src={c.treatmentImageSrc}
+                alt=""
+                fill
+                priority
+                fetchPriority="high"
+                quality={75}
+                sizes="100vw"
+                className="object-cover object-[50%_40%] saturate-[0.85]"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-[#07302f] via-[#07302f]/85 to-[#07302f]/45"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-r from-[#07302f]/80 via-[#07302f]/35 to-transparent"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#07302f]/70 to-transparent"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#07302f]/55 to-transparent"
+              />
+            </div>
 
-          <div className="relative mx-auto max-w-6xl px-5 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-24">
-            <div className="grid items-center lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-              <div>
-                <div
-                  className={`mb-7 flex items-center gap-4 lg:hidden ${rise("[animation-delay:0ms]")}`}
-                >
-                  <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl ring-2 ring-[#f2a93b]/60">
-                    <Image
-                      src={heroImageSrc}
-                      alt="Domenic Hacker, diplomierter Heilmasseur in Wien"
-                      fill
-                      className="object-cover object-[50%_22%]"
-                      priority
-                      quality={85}
-                      sizes="96px"
-                    />
-                  </div>
-                  <div>
-                    <span className="block text-lg font-bold text-white">
-                      Domenic Hacker
-                    </span>
-                    <span className="block text-sm leading-snug text-white/75">
-                      Diplomierter Heilmasseur · B-Boy · Wien
-                    </span>
-                  </div>
-                </div>
-
-                <p
-                  className={`hidden text-xs font-bold uppercase tracking-[0.18em] text-white/70 lg:flex lg:flex-col lg:items-start lg:gap-y-1.5 xl:flex-row xl:items-center xl:gap-x-3 ${rise("[animation-delay:0ms]")}`}
-                >
-                  <span className="inline-flex items-center gap-1.5">
-                    <MapPin size={13} strokeWidth={2.5} aria-hidden={true} />
-                    {heroBadge}
-                  </span>
-                  <span
-                    aria-hidden
-                    className="hidden h-1 w-1 rounded-full bg-[#f2a93b] sm:block lg:hidden xl:block"
-                  />
-                  <span className="inline-flex items-center gap-1.5 text-[#f2a93b]">
-                    <ConciergeBell
-                      size={13}
-                      strokeWidth={2.5}
-                      aria-hidden={true}
-                    />
-                    {heroServiceLine}
-                  </span>
-                </p>
-
-                <h1
-                  className={`mt-6 text-[clamp(2.4rem,5vw,3.9rem)] font-extrabold leading-[1.02] tracking-[-0.02em] text-white ${rise("[animation-delay:80ms]")}`}
-                >
-                  {headingRest ? (
-                    <>
-                      <span className="block">{headingLead}</span>
-                      <span className="block text-balance">{headingRest}</span>
-                    </>
-                  ) : (
-                    <span className="text-balance">{headingLead}</span>
-                  )}
-                </h1>
-                <p
-                  className={`mt-6 max-w-xl text-lg leading-relaxed text-white/75 ${rise("[animation-delay:160ms]")}`}
-                >
-                  {subtitleLead}
-                  {subtitleRest && (
-                    <span className="hidden sm:inline"> {subtitleRest}</span>
-                  )}
-                </p>
-
-                <div
-                  className={`mt-9 flex flex-wrap items-end gap-x-5 gap-y-3 border-l-2 border-[#f2a93b] pl-5 ${rise("[animation-delay:240ms]")}`}
-                >
-                  <span className="text-5xl font-extrabold leading-none tracking-tight text-white">
-                    {formatPrice(priceAmount)}
-                    <span className="ml-1 text-2xl font-bold text-[#f2a93b]">
-                      €
-                    </span>
-                  </span>
-                  <span className="pb-0.5 text-sm leading-snug text-white/75">
-                    <span className="block font-semibold text-white">
-                      Fixpreis für {durationSummary}
-                    </span>
-                    Anfahrt innerhalb Wiens inklusive
-                  </span>
-                </div>
-
-                <div
-                  id="hero-cta"
-                  className={`mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 ${rise("[animation-delay:320ms]")}`}
-                >
-                  <Link
-                    href={bookingHref}
-                    className={`${PRIMARY_BTN} lg:px-6 xl:px-8 focus-visible:ring-offset-[#0d4f4f]`}
+            <div
+              className={`${CONTAINER} flex flex-1 flex-col justify-end pb-14 pt-28 sm:pb-16 sm:pt-32 lg:pb-20`}
+            >
+              <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
+                <div className="max-w-2xl">
+                  {/* Byline auf Mobile/Tablet */}
+                  <div
+                    className={`mb-8 flex items-center gap-4 lg:hidden ${RISE}`}
+                    style={rise(0)}
                   >
-                    <Calendar size={18} strokeWidth={2.5} aria-hidden={true} />
-                    Hausbesuch anfragen
-                  </Link>
-                  <a
-                    href={telHref}
-                    className={`${GHOST_BTN_DARK} lg:px-6 xl:px-8`}
-                  >
-                    <Phone size={16} strokeWidth={2.5} aria-hidden={true} />
-                    {phone}
-                  </a>
-                </div>
-
-                <a
-                  href={GOOGLE_MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`mt-7 flex w-fit flex-nowrap items-center gap-x-2.5 rounded-lg transition-opacity duration-300 hover:opacity-80 sm:gap-x-3 ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f] ${rise("[animation-delay:400ms]")}`}
-                >
-                  <span className="flex -space-x-2">
-                    {reviewSummary.avatars.slice(0, 3).map((a, i) => (
+                    <span className="relative block h-14 w-14 shrink-0 overflow-hidden rounded-full ring-1 ring-white/25">
+                      <Image
+                        src={c.heroImageSrc}
+                        alt={`${c.name}, diplomierter Heilmasseur in Wien`}
+                        fill
+                        priority
+                        quality={85}
+                        sizes="56px"
+                        className="object-cover object-[50%_22%]"
+                      />
+                    </span>
+                    <span>
                       <span
-                        key={i}
-                        className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border-2 border-[#0d4f4f] bg-white/20 text-xs font-bold text-white"
+                        className={`block text-[15px] font-semibold ${T_PRIMARY}`}
                       >
-                        {a.name.charAt(0).toUpperCase()}
-                        {a.photoUri && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={a.photoUri}
-                            alt=""
-                            className="absolute inset-0 h-full w-full object-cover"
-                            referrerPolicy="no-referrer"
-                          />
-                        )}
+                        {c.name}
                       </span>
-                    ))}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="flex items-center gap-0.5">
+                      <span
+                        className={`block text-[13px] leading-snug ${T_MUTED}`}
+                      >
+                        {c.identityLine}
+                      </span>
+                    </span>
+                  </div>
+
+                  <p
+                    className={`flex flex-col gap-y-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 ${EYEBROW} ${RISE}`}
+                    style={rise(0)}
+                  >
+                    <span>{c.heroBadge}</span>
+                    <span
+                      aria-hidden
+                      className="hidden h-px w-5 bg-[#f2a93b]/60 sm:block"
+                    />
+                    <span>{c.heroServiceLine}</span>
+                  </p>
+
+                  <h1
+                    className={`${DISPLAY} mt-5 text-[clamp(2.3rem,5.1vw,4.15rem)] leading-[1.04] sm:mt-6 ${T_PRIMARY} ${RISE}`}
+                    style={rise(80)}
+                  >
+                    <span className="block">{headingLead}</span>
+                    {headingRest && (
+                      <span className="block text-balance">
+                        {restBefore}{" "}
+                        <span className="text-[#f2a93b]">{accentWord}</span>
+                      </span>
+                    )}
+                  </h1>
+
+                  <p
+                    className={`mt-6 max-w-xl text-[17px] leading-[1.6] ${T_BODY} sm:mt-7 sm:text-lg sm:leading-[1.65] ${RISE}`}
+                    style={rise(160)}
+                  >
+                    {c.heroSubtitle}
+                  </p>
+
+                  {/* Preis-Lockup */}
+                  <div
+                    className={`mt-8 flex flex-wrap items-end gap-x-6 gap-y-2 sm:mt-9 ${RISE}`}
+                    style={rise(240)}
+                  >
+                    {priceFrom && (
+                      <span
+                        className={`${NUM} text-[3.1rem] leading-[0.85] text-[#f2a93b] sm:text-[3.7rem]`}
+                      >
+                        <span className="mr-2 align-top text-[1.3rem] font-semibold sm:text-[1.5rem]">
+                          ab
+                        </span>
+                        {priceFrom}
+                        <span className="ml-1.5 align-top text-[2rem]">€</span>
+                      </span>
+                    )}
+                    <span className="pb-0.5">
+                      <span
+                        className={`block text-[15px] font-semibold ${T_PRIMARY}`}
+                      >
+                        für {c.durationSummary}
+                      </span>
+                      <span className={`block text-[14px] ${T_MUTED}`}>
+                        Anfahrt innerhalb Wiens inklusive
+                      </span>
+                    </span>
+                  </div>
+
+                  {/* CTA: Anfrage per E-Mail, Telefon als Zweitweg */}
+                  <div
+                    id="hero-cta"
+                    className={`mt-8 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center ${RISE}`}
+                    style={rise(320)}
+                  >
+                    <a href={c.mailHref} className={BTN_GOLD}>
+                      <Mail size={17} strokeWidth={2.25} aria-hidden={true} />
+                      {c.ctaPrimaryLabel}
+                    </a>
+                    <a href={c.telHref} className={BTN_GHOST}>
+                      <Phone size={16} strokeWidth={2.25} aria-hidden={true} />
+                      {c.phone}
+                    </a>
+                  </div>
+
+                  {/* Google-Bewertungen */}
+                  <a
+                    href={GOOGLE_MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mt-7 inline-flex min-h-[44px] w-fit max-w-full items-center gap-2.5 rounded-full py-1 pr-2 transition-opacity hover:opacity-85 sm:mt-8 sm:gap-3 ${FOCUS} ${RISE}`}
+                    style={rise(400)}
+                  >
+                    <span className="flex -space-x-2">
+                      {avatars.map((a, i) => (
+                        <span
+                          key={`${a.name}-${i}`}
+                          className={`relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border-2 border-[#07302f] bg-white/15 text-xs font-semibold ${T_PRIMARY}`}
+                        >
+                          {a.name.charAt(0).toUpperCase()}
+                          {a.photoUri && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={a.photoUri}
+                              alt=""
+                              className="absolute inset-0 h-full w-full object-cover"
+                              referrerPolicy="no-referrer"
+                            />
+                          )}
+                        </span>
+                      ))}
+                    </span>
+                    <span className="flex items-center gap-0.5" aria-hidden>
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star
                           key={i}
-                          size={14}
+                          size={13}
                           className="fill-[#f2a93b] text-[#f2a93b]"
-                          aria-hidden={true}
                         />
                       ))}
                     </span>
-                    <span className="text-sm font-bold leading-none text-white">
-                      {reviewSummary.rating.toFixed(1)}
+                    <span className={`text-[13px] ${T_BODY} sm:text-sm`}>
+                      <span
+                        className={`font-semibold tabular-nums ${T_PRIMARY}`}
+                      >
+                        {c.reviews.rating.toFixed(1)}
+                      </span>{" "}
+                      · {c.reviews.count} Google-Bewertungen
                     </span>
-                  </span>
-                  <span className="whitespace-nowrap text-xs text-white/75 sm:text-sm">
-                    {reviewSummary.count}{" "}
-                    <span className="sm:hidden">Bewertungen</span>
-                    <span className="hidden sm:inline">Google-Bewertungen</span>
-                  </span>
-                </a>
-              </div>
+                    <ArrowUpRight
+                      size={14}
+                      className={`hidden shrink-0 sm:block ${T_MUTED}`}
+                      aria-hidden={true}
+                    />
+                  </a>
+                </div>
 
-              <div
-                className={`relative hidden lg:block ${rise("[animation-delay:200ms]")}`}
-              >
-                <figure className="relative ml-auto max-w-md">
-                  <div className="pointer-events-none absolute -top-4 -right-4 h-full w-full rotate-1 rounded-3xl bg-[#f2a93b]/15 lg:-right-3 xl:-right-4" />
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl lg:aspect-[3/4]">
-                    <Image
-                      src={heroImageSrc}
-                      alt="Domenic Hacker, diplomierter Heilmasseur in Wien"
-                      fill
-                      className="object-cover object-[50%_22%]"
-                      priority
-                      fetchPriority="high"
-                      quality={85}
-                      sizes="(max-width: 1024px) 1px, 448px"
+                {/* Portrait-Karte, Desktop */}
+                <figure className={`hidden lg:block ${RISE}`} style={rise(200)}>
+                  <div className="relative w-56 xl:w-64">
+                    <span
+                      aria-hidden
+                      className={`pointer-events-none absolute -inset-3 border border-[#f2a93b]/35 ${FRAME_RADIUS}`}
                     />
                     <div
-                      aria-hidden
-                      className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0d4f4f]/70 to-transparent"
-                    />
+                      className={`relative aspect-[3/4] overflow-hidden ${IMG_RADIUS}`}
+                    >
+                      <Image
+                        src={c.heroImageSrc}
+                        alt={`${c.name}, diplomierter Heilmasseur in Wien`}
+                        fill
+                        priority
+                        quality={85}
+                        sizes="(min-width: 1280px) 256px, 224px"
+                        className="object-cover object-[50%_22%]"
+                      />
+                    </div>
                   </div>
-                  <figcaption className="absolute bottom-5 left-5 right-5 text-white">
-                    <span className="block text-base font-bold">
-                      Domenic Hacker
+                  <figcaption className="mt-6">
+                    <span
+                      className={`block text-[15px] font-semibold ${T_PRIMARY}`}
+                    >
+                      {c.name}
                     </span>
-                    <span className="block text-sm text-white/80">
-                      Diplomierter Heilmasseur · B-Boy · Wien
+                    <span className={`block text-[13px] ${T_MUTED}`}>
+                      {c.identityLine}
                     </span>
                   </figcaption>
                 </figure>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ── PREIS & AUSSTATTUNG ──────────────────────────────────── */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-5 sm:px-8">
-            <div className="max-w-2xl">
-              <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
-                {priceHeading}
-              </h2>
-              <p className="mt-5 leading-relaxed text-[#555]">
-                {priceDescription}
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-              <figure className="lg:sticky lg:top-28 lg:self-start">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-                  <Image
-                    src="/images/behandlungsraum-liege.webp"
-                    alt="Die Massageliege von Domenic Hacker im Behandlungsraum"
-                    fill
-                    className="scale-110 object-cover object-bottom [transform-origin:50%_100%]"
-                    quality={75}
-                    sizes="(max-width: 1024px) 100vw, 480px"
-                  />
-                </div>
-                <figcaption className="mt-4 text-sm leading-relaxed text-[#555]">
-                  Mein Behandlungsraum in der Josefstadt. Zum Hausbesuch kommt
-                  eine mobile Liege mit – in wenigen Minuten aufgebaut.
-                </figcaption>
-              </figure>
-
-              <div>
-                <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-[#0d4f4f]/75">
-                  Im Preis enthalten
-                </h3>
-
-                <ul className="mt-4 divide-y divide-[#0d4f4f]/10 border-y border-[#0d4f4f]/10">
-                  {included.map((item) => (
-                    <li key={item.title} className="flex gap-4 py-5">
-                      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#e8654a] to-[#f2a93b]">
-                        <Check
-                          size={11}
-                          strokeWidth={3}
-                          className="text-white"
-                          aria-hidden={true}
-                        />
-                      </span>
-                      <div>
-                        <p className="font-bold text-[#111]">{item.title}</p>
-                        <p className="mt-1 text-sm leading-relaxed text-[#555]">
-                          {item.description}
-                        </p>
-                      </div>
-                    </li>
-                  ))}
-                  <li className="flex gap-4 py-5">
-                    <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#e8654a] to-[#f2a93b]">
-                      <Check
-                        size={11}
-                        strokeWidth={3}
-                        className="text-white"
-                        aria-hidden={true}
-                      />
-                    </span>
-                    <div>
-                      <p className="font-bold text-[#111]">
-                        Anfahrt, Auf- und Abbau
-                      </p>
-                      <p className="mt-1 text-sm leading-relaxed text-[#555]">
-                        Innerhalb Wiens im Preis enthalten. {priceNote}
-                      </p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── PULL-QUOTE ───────────────────────────────────────────── */}
-        <section className="border-y border-[#0d4f4f]/10 bg-white py-14 sm:py-20">
-          <p className="mx-auto max-w-6xl px-5 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-[#0d4f4f] sm:px-8 sm:text-5xl lg:text-6xl">
-            Ihre einzige Aufgabe:{" "}
-            <span className="text-[#e8654a]">liegen bleiben.</span>
-          </p>
-        </section>
-
-        {/* ── ABLAUF ───────────────────────────────────────────────── */}
-        <section id="ablauf" className="bg-[#f0f7f7] py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-5 sm:px-8">
-            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
-                  {processHeading}
-                </h2>
-                <p className="mt-5 max-w-md leading-relaxed text-[#555]">
-                  {processDescription}
-                </p>
-              </div>
-              <ProcessTimeline steps={processSteps} />
-            </div>
-          </div>
-        </section>
-
-        {/* ── HOTEL, SUITE, BACKSTAGE ──────────────────────────────── */}
-        <section className="relative overflow-hidden bg-[#0d4f4f] py-20 sm:py-28">
-          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-[#e8654a] via-[#f2a93b] to-[#0d4f4f]" />
-
-          <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
-            <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-              <div>
-                <h2 className="text-balance text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
-                  {stageHeading}
-                </h2>
-                <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/80">
-                  {stageText}
-                </p>
-
-                <h3 className="mt-12 text-2xl font-extrabold tracking-tight text-[#f2a93b]">
-                  {vipHeading}
-                </h3>
-                <p className="mt-3 max-w-xl leading-relaxed text-white/75">
-                  {vipText}
-                </p>
-
-                <ul className="mt-6 divide-y divide-white/10 border-y border-white/10">
-                  {vipPoints.map((point) => (
-                    <li key={point} className="flex items-start gap-3.5 py-3.5">
-                      <Check
-                        size={16}
-                        strokeWidth={3}
-                        className="mt-1 shrink-0 text-[#f2a93b]"
-                        aria-hidden={true}
-                      />
-                      <span className="font-semibold leading-snug text-white/90">
-                        {point}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
-                  <a
-                    href={telHref}
-                    className={`${PRIMARY_BTN} focus-visible:ring-offset-[#0d4f4f]`}
-                  >
-                    <Phone size={16} strokeWidth={2.5} aria-hidden={true} />
-                    Diskret anrufen
-                  </a>
-                  <a href={mailHref} className={GHOST_BTN_DARK}>
-                    <Mail size={16} strokeWidth={2.5} aria-hidden={true} />
-                    Per E-Mail anfragen
-                  </a>
-                </div>
-              </div>
-
-              <figure className="order-first mx-auto w-full max-w-md lg:order-none lg:mx-0 lg:ml-auto">
-                <div className="relative">
-                  <div className="pointer-events-none absolute -top-4 -right-4 h-full w-full rotate-2 rounded-3xl bg-[#f2a93b]/15" />
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
-                    <Image
-                      src={stageImageSrc}
-                      alt="Domenic Hacker als B-Boy auf der Bühne"
-                      fill
-                      className="object-cover object-[50%_55%]"
-                      quality={75}
-                      sizes="(max-width: 1024px) 100vw, 448px"
+          {/* ── PREIS & AUSSTATTUNG ────────────────────────────────── */}
+          <section className="border-t border-white/10 bg-[#0a3d3d] py-20 sm:py-28">
+            <div className={CONTAINER}>
+              <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+                <figure className="lg:sticky lg:top-28 lg:self-start">
+                  <div className="relative">
+                    <span
+                      aria-hidden
+                      className={`pointer-events-none absolute -inset-3 border border-[#f2a93b]/25 ${FRAME_RADIUS}`}
                     />
+                    <div
+                      className={`relative aspect-[4/5] overflow-hidden ${IMG_RADIUS}`}
+                    >
+                      <Image
+                        src={c.roomImageSrc}
+                        alt="Der Behandlungsraum von Domenic Hacker in der Josefstadt"
+                        fill
+                        quality={75}
+                        sizes="(max-width: 1024px) 100vw, 440px"
+                        className="object-cover object-bottom"
+                      />
+                      <div
+                        aria-hidden
+                        className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a3d3d]/60 to-transparent"
+                      />
+                    </div>
+                  </div>
+                  <figcaption
+                    className={`mt-6 max-w-md text-sm leading-relaxed ${T_MUTED}`}
+                  >
+                    {c.roomCaption}
+                  </figcaption>
+                </figure>
+
+                <div>
+                  <p className={EYEBROW}>Der Preis</p>
+                  <h2 className={`${H2} mt-4`}>{c.priceHeading}</h2>
+                  <p
+                    className={`mt-5 max-w-xl text-[17px] leading-[1.65] ${T_BODY}`}
+                  >
+                    {c.priceDescription}
+                  </p>
+
+                  <dl className="mt-8 border-y border-white/10">
+                    {c.priceTiers.map((tier, i) => (
+                      <div
+                        key={tier.duration}
+                        className={`flex items-baseline justify-between gap-4 py-4 ${
+                          i > 0 ? "border-t border-white/10" : ""
+                        }`}
+                      >
+                        <dt className={`text-[17px] font-semibold ${T_PRIMARY}`}>
+                          {tier.duration}
+                        </dt>
+                        <dd>
+                          {typeof tier.amount === "number" ? (
+                            <span
+                              className={`${NUM} text-[1.9rem] leading-none text-[#f2a93b]`}
+                            >
+                              {formatPrice(tier.amount)}
+                              <span className="ml-1 align-top text-base">€</span>
+                            </span>
+                          ) : (
+                            <span className={`text-[15px] ${T_MUTED}`}>
+                              auf Anfrage
+                            </span>
+                          )}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <p className={`mt-3 text-sm ${T_MUTED}`}>
+                    Anfahrt innerhalb Wiens inklusive
+                  </p>
+
+                  <h3 className={`mt-10 ${EYEBROW}`}>Im Preis enthalten</h3>
+                  <ul className="mt-2 divide-y divide-white/10">
+                    {[...c.included, c.includedExtra].map((item, i, arr) => {
+                      const isLast = i === arr.length - 1;
+                      return (
+                        <li
+                          key={item.title}
+                          className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5"
+                        >
+                          <Hairline className="mt-3" />
+                          <div>
+                            <p
+                              className={`text-[17px] font-semibold ${T_PRIMARY}`}
+                            >
+                              {item.title}
+                            </p>
+                            <p
+                              className={`mt-1 max-w-prose text-[15px] leading-relaxed ${T_MUTED}`}
+                            >
+                              {item.description}
+                              {isLast && <> {c.priceNote}</>}
+                            </p>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── BÜHNE · Signature-Band ─────────────────────────────── */}
+          <section
+            id="buehne"
+            className="relative border-t border-white/10 bg-[#07302f]"
+          >
+            <div className="relative aspect-[4/5] overflow-hidden sm:aspect-[4/3] lg:aspect-[21/9]">
+              {/* Ab lg wird das Bild vergrößert und nach rechts geschoben:
+                  Der Tänzer landet im rechten Drittel, das Zitat links steht
+                  frei – Gesicht und Text überlagern sich nicht. Die
+                  Sponsorentafeln am rechten Bildrand fallen dabei weg. */}
+              <Image
+                src={c.stageImageSrc}
+                alt={c.stageCaption}
+                fill
+                quality={75}
+                sizes="100vw"
+                className="object-cover object-[50%_35%] sm:object-[50%_50%] lg:scale-[1.45] lg:object-[50%_60%] lg:[transform-origin:0%_55%]"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-[#07302f] via-[#07302f]/60 to-[#07302f]/25 lg:via-[#07302f]/35 lg:to-[#07302f]/20"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#07302f]/70 to-transparent"
+              />
+              {/* Links abdunkeln, damit das Zitat sauber steht; rechts bleibt
+                  der Tänzer frei. */}
+              <div
+                aria-hidden
+                className="absolute inset-y-0 left-0 hidden w-[55%] bg-gradient-to-r from-[#07302f]/90 via-[#07302f]/55 to-transparent lg:block"
+              />
+
+              <div
+                className={`${CONTAINER} absolute inset-0 flex flex-col justify-end pb-12 sm:pb-16 lg:justify-center lg:pb-0`}
+              >
+                <p
+                  className={`${DISPLAY} max-w-xl text-balance text-[clamp(2.3rem,4.6vw,4rem)] leading-[1.02] ${T_PRIMARY} lg:max-w-[42%]`}
+                >
+                  {c.pullQuote.lead}{" "}
+                  <span className="text-[#f2a93b]">{c.pullQuote.accent}</span>
+                </p>
+                <p
+                  className={`mt-6 max-w-xl text-xs ${T_MUTED} lg:max-w-[42%]`}
+                >
+                  {c.stageCaption}
+                </p>
+              </div>
+            </div>
+
+            {/* Story unter dem Band */}
+            <div className={`${CONTAINER} py-16 sm:py-20`}>
+              <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+                <h2 className={`${H2} lg:sticky lg:top-28 lg:self-start`}>
+                  {c.stageHeading}
+                </h2>
+                <p
+                  className={`max-w-2xl border-l border-[#f2a93b]/50 pl-6 text-[17px] leading-[1.65] ${T_BODY} sm:pl-8`}
+                >
+                  {c.stageText}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── ABLAUF ─────────────────────────────────────────────── */}
+          <section
+            id="ablauf"
+            className="border-t border-white/10 bg-[#0a3d3d] py-20 sm:py-28"
+          >
+            <div className={CONTAINER}>
+              <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+                <div className="lg:sticky lg:top-28 lg:self-start">
+                  <p className={EYEBROW}>Ablauf</p>
+                  <h2 className={`${H2} mt-4`}>{c.processHeading}</h2>
+                  <p
+                    className={`mt-5 max-w-md text-[17px] leading-[1.65] ${T_BODY}`}
+                  >
+                    {c.processDescription}
+                  </p>
+                </div>
+                <ProcessTimeline steps={c.processSteps} tone="dark" />
+              </div>
+            </div>
+          </section>
+
+          {/* ── HOTEL · SUITE · BACKSTAGE ──────────────────────────── */}
+          <section className="border-t border-white/10 bg-[#07302f] py-20 sm:py-28">
+            <div className={CONTAINER}>
+              <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.95fr] lg:gap-20">
+                <div>
+                  <p className={EYEBROW}>Auf Anfrage</p>
+                  <h2 className={`${H2} mt-4`}>{c.vipHeading}</h2>
+                  <p
+                    className={`mt-5 max-w-xl text-[17px] leading-[1.65] ${T_BODY}`}
+                  >
+                    {c.vipText}
+                  </p>
+                  <ul className="mt-8 divide-y divide-white/10 border-y border-white/10">
+                    {c.vipPoints.map((point) => (
+                      <li
+                        key={point}
+                        className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-4"
+                      >
+                        <Hairline className="mt-3" />
+                        <span
+                          className={`text-[16px] font-medium leading-snug ${T_PRIMARY}`}
+                        >
+                          {point}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+                    <a href={c.telHref} className={BTN_GOLD}>
+                      <Phone size={16} strokeWidth={2.25} aria-hidden={true} />
+                      Diskret anrufen
+                    </a>
+                    <a href={c.mailHref} className={BTN_GHOST}>
+                      <Mail size={16} strokeWidth={2.25} aria-hidden={true} />
+                      Per E-Mail anfragen
+                    </a>
                   </div>
                 </div>
-                <figcaption className="mt-4 text-sm leading-relaxed text-white/70">
-                  {stageCaption}
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
 
-        {/* ── FÜR WEN & WO ─────────────────────────────────────────── */}
-        <section className="bg-white py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-5 sm:px-8">
-            <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
-              <div>
-                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl lg:min-h-[2lh]">
-                  {forWhomHeading}
-                </h2>
-                <p className="mt-5 max-w-lg leading-relaxed text-[#555]">
-                  {forWhomDescription}
-                </p>
-                <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[15px] font-medium text-[#111] sm:text-base">
-                  {occasions.map((label) => (
-                    <li key={label} className="flex items-start gap-2.5">
-                      <span
-                        aria-hidden
-                        className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#e8654a]"
-                      />
-                      {label}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl lg:min-h-[2lh]">
-                  {areaHeading}
-                </h2>
-                <p className="mt-5 max-w-lg leading-relaxed text-[#555]">
-                  {areaDescription}
-                </p>
-                <p className="mt-6 max-w-lg text-sm leading-relaxed text-[#555]">
-                  <span className="font-semibold text-[#0d4f4f]">
-                    Zum Beispiel:{" "}
-                  </span>
-                  {areaDistricts.join(" · ")}
-                </p>
-                <p className="mt-6 flex items-start gap-2.5 text-sm leading-relaxed text-[#555]">
-                  <MapPin
-                    size={16}
-                    className="mt-0.5 shrink-0 text-[#0d4f4f]"
-                    aria-hidden={true}
+                <figure className="relative">
+                  <span
+                    aria-hidden
+                    className={`pointer-events-none absolute -inset-3 border border-[#f2a93b]/25 ${FRAME_RADIUS}`}
                   />
-                  <span>
-                    Lieber in die Praxis? Die Behandlungsräume liegen in der{" "}
-                    {practiceAddress} (Josefstadt) – dort gibt es zusätzlich
-                    Anwendungen, die zuhause nicht möglich sind.
-                  </span>
-                </p>
+                  <div
+                    className={`relative aspect-[3/2] overflow-hidden ${IMG_RADIUS}`}
+                  >
+                    <Image
+                      src={c.treatmentWideImageSrc}
+                      alt="Domenic Hacker bei der Behandlung"
+                      fill
+                      quality={75}
+                      sizes="(max-width: 1024px) 100vw, 560px"
+                      className="object-cover"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-gradient-to-t from-[#07302f]/55 via-transparent to-transparent"
+                    />
+                  </div>
+                </figure>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ── FAQ ──────────────────────────────────────────────────── */}
-        <section className="bg-[#f0f7f7] py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-5 sm:px-8">
-            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <h2 className="text-balance text-3xl font-extrabold tracking-tight text-[#0d4f4f] sm:text-4xl">
-                  Häufige Fragen zur mobilen Massage
-                </h2>
-                <p className="mt-4 max-w-md leading-relaxed text-[#555]">
-                  Antworten auf die Fragen, die mir vor einem Hausbesuch am
-                  häufigsten gestellt werden.
-                </p>
-              </div>
-              <div className="divide-y divide-[#0d4f4f]/10 border-y border-[#0d4f4f]/10">
-                {faqs.map((faq) => (
-                  <details key={faq._key} className="group">
-                    <summary
-                      className={`flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg py-5 text-base font-semibold text-[#111] transition-colors hover:text-[#0d4f4f] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
-                    >
-                      {faq.question}
-                      <ChevronDown
-                        size={20}
-                        className="shrink-0 text-[#0d4f4f] transition-transform duration-200 group-open:rotate-180"
-                        aria-hidden={true}
-                      />
-                    </summary>
-                    <p className="pb-6 text-base leading-relaxed text-[#555]">
-                      {faq.answer}
-                    </p>
-                  </details>
-                ))}
+          {/* ── FÜR WEN · WO ───────────────────────────────────────── */}
+          <section className="border-t border-white/10 bg-[#0a3d3d] py-20 sm:py-28">
+            <div className={CONTAINER}>
+              <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
+                <div>
+                  <p className={EYEBROW}>Für wen</p>
+                  <h2 className={`${H2} mt-4 lg:min-h-[2lh]`}>
+                    {c.forWhomHeading}
+                  </h2>
+                  <p
+                    className={`mt-5 max-w-lg text-[17px] leading-[1.65] ${T_BODY}`}
+                  >
+                    {c.forWhomDescription}
+                  </p>
+                  <ul className="mt-8 grid grid-cols-1 gap-x-8 sm:grid-cols-2">
+                    {c.occasions.map((label) => (
+                      <li
+                        key={label}
+                        className={`flex items-center gap-3 border-b border-white/10 py-3 text-[16px] font-medium ${T_PRIMARY}`}
+                      >
+                        <span
+                          aria-hidden
+                          className="h-1 w-1 shrink-0 rounded-full bg-[#f2a93b]"
+                        />
+                        {label}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <p className={EYEBROW}>Wo</p>
+                  <h2 className={`${H2} mt-4 lg:min-h-[2lh]`}>
+                    {c.areaHeading}
+                  </h2>
+                  <p
+                    className={`mt-5 max-w-lg text-[17px] leading-[1.65] ${T_BODY}`}
+                  >
+                    {c.areaDescription}
+                  </p>
+                  {/* Nur wenn in Sanity Bezirke hinterlegt sind – sonst gilt
+                      die Überschrift „In ganz Wien“ ohne Einschränkung. */}
+                  {c.areaDistricts.length > 0 && (
+                    <ul className="mt-8 flex flex-wrap gap-2">
+                      {c.areaDistricts.map((d) => (
+                        <li
+                          key={d}
+                          className={`rounded-full border border-white/15 px-3 py-1 text-[13px] tabular-nums ${T_BODY}`}
+                        >
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <p
+                    className={`mt-8 flex max-w-lg items-start gap-3 text-[15px] leading-relaxed ${T_MUTED}`}
+                  >
+                    <MapPin
+                      size={16}
+                      className="mt-1 shrink-0 text-[#f2a93b]"
+                      aria-hidden={true}
+                    />
+                    <span>
+                      Lieber in die Praxis? Meine Praxis liegt in der{" "}
+                      <span className={T_PRIMARY}>{c.practiceAddress}</span>{" "}
+                      (Josefstadt) – dort sind zusätzlich Anwendungen mit
+                      Geräten möglich, die zuhause nicht gehen.
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ── FINAL CTA ────────────────────────────────────────────── */}
-        <section
-          id="final-cta"
-          className="relative overflow-hidden bg-[#0d4f4f] py-20 sm:py-28"
-        >
-          <div className="relative mx-auto max-w-2xl px-5 text-center sm:px-8">
-            <h2 className="text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              {ctaHeading}
-            </h2>
-            <p className="mx-auto mt-5 max-w-lg leading-relaxed text-white/75">
-              {ctaText}
-            </p>
-            <p className="mt-6 text-sm font-semibold tracking-wide text-[#f2a93b]">
-              {formatPrice(priceAmount)} € · {durationSummary} · ganz Wien
-            </p>
-            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <Link
-                href={bookingHref}
-                className={`${PRIMARY_BTN} focus-visible:ring-offset-[#0d4f4f]`}
+          {/* ── FAQ ────────────────────────────────────────────────── */}
+          <section className="border-t border-white/10 bg-[#07302f] py-20 sm:py-28">
+            <div className={CONTAINER}>
+              <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+                <div className="lg:sticky lg:top-28 lg:self-start">
+                  <p className={EYEBROW}>Fragen</p>
+                  <h2 className={`${H2} mt-4`}>{c.faqHeading}</h2>
+                  <p
+                    className={`mt-5 max-w-md text-[17px] leading-[1.65] ${T_BODY}`}
+                  >
+                    {c.faqIntro}
+                  </p>
+                </div>
+                <div className="divide-y divide-white/10 border-y border-white/10">
+                  {c.faqs.map((faq) => (
+                    <details key={faq._key} className="group">
+                      <summary
+                        className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 rounded-md py-5 text-[17px] font-medium ${T_PRIMARY} transition-colors hover:text-[#f2a93b] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS}`}
+                      >
+                        <span className="text-balance">{faq.question}</span>
+                        <Plus
+                          size={18}
+                          strokeWidth={1.75}
+                          className="shrink-0 text-[#f2a93b] transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
+                          aria-hidden={true}
+                        />
+                      </summary>
+                      <p
+                        className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}
+                      >
+                        {faq.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── FINAL CTA ──────────────────────────────────────────── */}
+          <section
+            id="final-cta"
+            className="relative overflow-hidden border-t border-white/10 bg-[#0a3d3d] py-24 sm:py-32"
+          >
+            <div
+              aria-hidden
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[820px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(242,169,59,0.14),transparent)]"
+            />
+            <div className={`${CONTAINER} relative text-center`}>
+              <Hairline className="mx-auto" />
+              <h2
+                className={`${DISPLAY} mx-auto mt-8 max-w-3xl text-balance text-[clamp(2.1rem,4.2vw,3.4rem)] leading-[1.06] ${T_PRIMARY}`}
               >
-                <Calendar size={18} strokeWidth={2.5} aria-hidden={true} />
-                Hausbesuch anfragen
-              </Link>
-              <a href={telHref} className={GHOST_BTN_DARK}>
-                <Phone size={16} strokeWidth={2.5} aria-hidden={true} />
-                {phone}
-              </a>
+                {c.ctaHeading}
+              </h2>
+              <p
+                className={`mx-auto mt-6 max-w-lg text-[17px] leading-[1.65] ${T_BODY}`}
+              >
+                {c.ctaText}
+              </p>
+              <p className="mt-7 text-balance text-sm font-semibold tracking-[0.06em] text-[#f2a93b]">
+                {priceFrom ? `ab ${priceFrom} € · ` : ""}
+                {c.durationSummary} · Anfahrt innerhalb Wiens inklusive
+              </p>
+              <div className="mx-auto mt-9 flex max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center">
+                <a href={c.mailHref} className={BTN_GOLD}>
+                  <Mail size={17} strokeWidth={2.25} aria-hidden={true} />
+                  {c.ctaPrimaryLabel}
+                </a>
+                <a href={c.telHref} className={BTN_GHOST}>
+                  <Phone size={16} strokeWidth={2.25} aria-hidden={true} />
+                  {c.phone}
+                </a>
+              </div>
+              <p className={`mt-7 text-[15px] ${T_MUTED}`}>{c.email}</p>
             </div>
-            <a
-              href={mailHref}
-              className={`mt-6 inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-white/80 underline-offset-4 hover:text-white hover:underline ${FOCUS_RING} focus-visible:ring-offset-[#0d4f4f]`}
-            >
-              <Mail size={14} strokeWidth={2.5} aria-hidden={true} />
-              {email}
-            </a>
-          </div>
-        </section>
-      </main>
-      <MobileStickyCta
-        href={bookingHref}
-        telHref={telHref}
-        label="Hausbesuch anfragen"
-        watchIds={["hero-cta", "final-cta", "site-footer"]}
-      />
-      <div id="site-footer">
-        <Footer sanitySettings={settings} />
+          </section>
+        </main>
+
+        <Footer sanitySettings={c.settings} />
       </div>
     </>
   );
