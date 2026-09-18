@@ -8,6 +8,7 @@ import type { SanitySettings } from "@/sanity/lib/queries";
 const angebotLinks = [
   { label: "Heilmassage Wien", href: "/heilmassage-wien-1080" },
   { label: "Sportmassage Wien", href: "/sportmassage-wien" },
+  { label: "Mobile Massage Wien", href: "/mobile-massage-wien" },
   { label: "Preise", href: "/preise" },
   { label: "Gutscheine", href: "/gutscheine" },
 ];
@@ -24,7 +25,7 @@ const praxisLinks = [
 export function Footer({ sanitySettings }: { sanitySettings?: SanitySettings | null }) {
   const instagramUrl = sanitySettings?.instagramUrl || "https://www.instagram.com/heilmasseurdomenic";
   return (
-    <footer className="relative bg-[#0a0a0a] pt-16 pb-8">
+    <footer id="site-footer" className="relative bg-[#0a0a0a] pt-16 pb-8">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -62,7 +63,7 @@ export function Footer({ sanitySettings }: { sanitySettings?: SanitySettings | n
           <div className="flex flex-col sm:flex-row gap-10 sm:gap-16">
             {/* Angebot column */}
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+              <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-4">
                 Angebot
               </p>
               <nav className="flex flex-col gap-2.5">
@@ -80,7 +81,7 @@ export function Footer({ sanitySettings }: { sanitySettings?: SanitySettings | n
 
             {/* Praxis column */}
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+              <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-4">
                 Praxis
               </p>
               <nav className="flex flex-col gap-2.5">

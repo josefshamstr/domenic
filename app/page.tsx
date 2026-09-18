@@ -126,11 +126,11 @@ export default async function Home() {
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/10">
                 <Image
-                  src={homePage?.praxisImage ? urlFor(homePage.praxisImage).width(800).height(534).url() : "/images/praxis-interior.png"}
+                  src="/images/behandlungsraum-liege.webp"
                   alt="Behandlungsraum der Heilmassage-Praxis in Wien 1080 – helle Altbauräume mit professioneller Massageliege"
                   width={800}
                   height={534}
-                  className="w-full h-auto"
+                  className="w-full h-auto aspect-[3/2] object-cover object-[50%_78%]"
                   quality={85}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
