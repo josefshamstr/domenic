@@ -46,7 +46,7 @@ export function Hero({
           </div>
 
           <h1 className="mt-6 sm:mt-8 text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-tight text-white">
-            <span data-edit-id="home-hero-headline">Weniger Schmerzen.</span>
+            <span data-edit-id="home-hero-headline">{"Weniger Schmerzen"}</span>
             <br />
             <span data-edit-id="home-hero-accent" className="text-[#f2a93b]">
               Tiefe Entspannung.
