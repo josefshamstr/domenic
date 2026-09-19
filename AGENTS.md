@@ -7,6 +7,8 @@ Bitte sieh dir immer zuerst die @package.json    an, bevor du irgendwas implemen
 
 ## Deploy-Workflow & Branches
 
+GitHub-Repo: `pixelheld-org/domenic` (seit 19.09.2026, vorher `josefshamstr/domenic`; GitHub leitet die alte Adresse weiter).
+
 Vercel-Projekt `domenic` (Team `josefs-projects-3ccea825`):
 
 - **`main`** → Production-Deploy. Auto-deployed zu `heilmasseur-domenic.at` + `www.heilmasseur-domenic.at`.
