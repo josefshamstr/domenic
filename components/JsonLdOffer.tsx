@@ -1,4 +1,12 @@
-import type { SanityPricingItem } from "@/sanity/lib/queries";
+type SanityPricingItem = {
+  _id: string;
+  serviceName: string;
+  price30: number | null;
+  price45: number | null;
+  price60: number | null;
+  popular: boolean;
+  sortOrder: number;
+};
 
 const BASE_URL = "https://heilmasseur-domenic.at";
 

@@ -12,7 +12,7 @@ import { generateUniqueVoucherCode } from "@/lib/voucher/generateCode";
 import { expiryFromNow } from "@/lib/voucher/expiry";
 import { sendVoucherConfirmation } from "@/lib/email/sendVoucherConfirmation";
 import { sendDomenicNotification } from "@/lib/email/sendDomenicNotification";
-import { getSettings } from "@/sanity/lib/queries";
+import { CONTACT_EMAIL } from "@/lib/site";
 import { VoucherPDF } from "@/components/VoucherPDF";
 import type { SanityVoucher, SanityVoucherProductType } from "@/sanity/lib/queries";
 
@@ -170,8 +170,7 @@ export async function POST(req: Request) {
       }
       // 2) Best-effort alert to Domenic
       try {
-        const settings = await getSettings();
-        const domenicEmail = settings?.email ?? "praxis@heilmasseur-domenic.at";
+        const domenicEmail = CONTACT_EMAIL;
         await sendDomenicNotification({
           voucher: mismatchVoucher,
           domenicEmail,
@@ -221,8 +220,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Sanity create failed" }, { status: 500 });
   }
 
-  const settings = await getSettings();
-  const domenicEmail = settings?.email ?? "praxis@heilmasseur-domenic.at";
+  const domenicEmail = CONTACT_EMAIL;
 
   // Render PDF
   let pdfBuffer: Buffer;

@@ -7,7 +7,6 @@ import { Calendar, Mail, Phone } from "lucide-react";
 type Props = {
   href: string;
   telHref: string;
-  label: string;
   /** Icon vor dem Label: Kalender (Buchung) oder Brief (Mail-Anfrage) */
   icon?: "calendar" | "mail";
   /**
@@ -28,7 +27,6 @@ const FALLBACK_SCROLL_Y = 560;
 export function MobileStickyCta({
   href,
   telHref,
-  label,
   icon = "calendar",
   watchIds,
 }: Props) {
@@ -99,7 +97,7 @@ export function MobileStickyCta({
         {isExternal ? (
           <a href={href} tabIndex={visible ? 0 : -1} className={primaryClass}>
             <Icon size={16} strokeWidth={2.5} aria-hidden={true} />
-            {label}
+            <span data-edit-id="sticky-cta-hausbesuch">Hausbesuch anfragen</span>
           </a>
         ) : (
           <Link
@@ -108,7 +106,7 @@ export function MobileStickyCta({
             className={primaryClass}
           >
             <Icon size={16} strokeWidth={2.5} aria-hidden={true} />
-            {label}
+            <span data-edit-id="sticky-cta-buchen">Termin buchen</span>
           </Link>
         )}
         <a

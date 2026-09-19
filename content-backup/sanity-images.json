@@ -1,0 +1,170 @@
+[
+  {
+    "_id": "image-01d58f0e0a511e13d0b51290cc65867dfa9b22a5-1000x600-png",
+    "extension": "png",
+    "h": 600,
+    "originalFilename": "hero-portrait.png",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/01d58f0e0a511e13d0b51290cc65867dfa9b22a5-1000x600.png",
+    "w": 1000
+  },
+  {
+    "_id": "image-0d4c64826b67d730236dd71e503e4b0d9abaf450-8106x8649-jpg",
+    "extension": "jpg",
+    "h": 8649,
+    "originalFilename": "IMG_0085.jpg",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/0d4c64826b67d730236dd71e503e4b0d9abaf450-8106x8649.jpg",
+    "w": 8106
+  },
+  {
+    "_id": "image-21b98f53d17e37d6964b87ef89587b60c273f25f-1365x2048-jpg",
+    "extension": "jpg",
+    "h": 2048,
+    "originalFilename": "IMG_9164.JPG",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/21b98f53d17e37d6964b87ef89587b60c273f25f-1365x2048.jpg",
+    "w": 1365
+  },
+  {
+    "_id": "image-2499409196f9db652444cb605c352cf98307094d-8256x5504-jpg",
+    "extension": "jpg",
+    "h": 5504,
+    "originalFilename": "DSC_4728.jpg",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/2499409196f9db652444cb605c352cf98307094d-8256x5504.jpg",
+    "w": 8256
+  },
+  {
+    "_id": "image-39824090e6fddc6fdf60f512038e9b21e8af60c4-2556x5541-jpg",
+    "extension": "jpg",
+    "h": 5541,
+    "originalFilename": "domenic portrait.jpg",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/39824090e6fddc6fdf60f512038e9b21e8af60c4-2556x5541.jpg",
+    "w": 2556
+  },
+  {
+    "_id": "image-3b4589c3d8ebe460602db0ad96bcf9950f7aa463-1536x990-webp",
+    "extension": "webp",
+    "h": 990,
+    "originalFilename": "Domenic-heilmasseur-wien-porträt.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/3b4589c3d8ebe460602db0ad96bcf9950f7aa463-1536x990.webp",
+    "w": 1536
+  },
+  {
+    "_id": "image-3d11928f0b22796e8391166012eccb1593e619c5-1400x933-webp",
+    "extension": "webp",
+    "h": 933,
+    "originalFilename": "heilmassage-wien.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/3d11928f0b22796e8391166012eccb1593e619c5-1400x933.webp",
+    "w": 1400
+  },
+  {
+    "_id": "image-3d51af796fa1b479e03f756fbd64a03eca6d28b9-1400x933-webp",
+    "extension": "webp",
+    "h": 933,
+    "originalFilename": "Domenic-hacker-heilmassage-wien.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/3d51af796fa1b479e03f756fbd64a03eca6d28b9-1400x933.webp",
+    "w": 1400
+  },
+  {
+    "_id": "image-4837d2618ac17581dc08da9d5535bbc537bdd32a-1536x990-jpg",
+    "extension": "jpg",
+    "h": 990,
+    "originalFilename": "heilmasseur-domenic-bei-der-massage-1536x990 (1) (1).jpg",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/4837d2618ac17581dc08da9d5535bbc537bdd32a-1536x990.jpg",
+    "w": 1536
+  },
+  {
+    "_id": "image-59f324bb10b9d4f954462fb0d2d4cd378d0dcd47-1400x933-webp",
+    "extension": "webp",
+    "h": 933,
+    "originalFilename": "lymphdrainage.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/59f324bb10b9d4f954462fb0d2d4cd378d0dcd47-1400x933.webp",
+    "w": 1400
+  },
+  {
+    "_id": "image-5e17b4e344f09f0712b65477dff58e86141d85e9-4661x2358-png",
+    "extension": "png",
+    "h": 2358,
+    "originalFilename": "Asset 2@4x-8.png",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/5e17b4e344f09f0712b65477dff58e86141d85e9-4661x2358.png",
+    "w": 4661
+  },
+  {
+    "_id": "image-62742db8992f5367370142a9b24ddf84284590ad-1365x2048-jpg",
+    "extension": "jpg",
+    "h": 2048,
+    "originalFilename": "Photoroom_20260714_232242.JPG",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/62742db8992f5367370142a9b24ddf84284590ad-1365x2048.jpg",
+    "w": 1365
+  },
+  {
+    "_id": "image-7ed777c31518e8d75768a1e40e914491e4f9e526-3150x4200-webp",
+    "extension": "webp",
+    "h": 4200,
+    "originalFilename": "sportmassage-domenic-wien-1080.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/7ed777c31518e8d75768a1e40e914491e4f9e526-3150x4200.webp",
+    "w": 3150
+  },
+  {
+    "_id": "image-93fb5d194ff24adb460025d527ab80927220986b-1179x1565-jpg",
+    "extension": "jpg",
+    "h": 1565,
+    "originalFilename": "Facetune_06-08-2026-14-52-37.jpg",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/93fb5d194ff24adb460025d527ab80927220986b-1179x1565.jpg",
+    "w": 1179
+  },
+  {
+    "_id": "image-98b9d3d056f97ab3847bf4be1e902269d78e73b2-1000x600-jpg",
+    "extension": "jpg",
+    "h": 600,
+    "originalFilename": "hero-slider.jpg",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/98b9d3d056f97ab3847bf4be1e902269d78e73b2-1000x600.jpg",
+    "w": 1000
+  },
+  {
+    "_id": "image-999fee83205a338cce1f54f37378e1e35cf5671b-1696x2181-webp",
+    "extension": "webp",
+    "h": 2181,
+    "originalFilename": "praxis-wien-1080.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/999fee83205a338cce1f54f37378e1e35cf5671b-1696x2181.webp",
+    "w": 1696
+  },
+  {
+    "_id": "image-a1d8e1334c25cc88ae65605fccb5c43834602fe4-3000x2000-jpg",
+    "extension": "jpg",
+    "h": 2000,
+    "originalFilename": "breakdance.jpg",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/a1d8e1334c25cc88ae65605fccb5c43834602fe4-3000x2000.jpg",
+    "w": 3000
+  },
+  {
+    "_id": "image-a53ca6ec8f4a58689be4de488d15470db28becb7-8256x5504-jpg",
+    "extension": "jpg",
+    "h": 5504,
+    "originalFilename": "DSC_4739.jpg",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/a53ca6ec8f4a58689be4de488d15470db28becb7-8256x5504.jpg",
+    "w": 8256
+  },
+  {
+    "_id": "image-d09a161a764caa0fd610bf49b4ea4b3b138987cc-720x720-webp",
+    "extension": "webp",
+    "h": 720,
+    "originalFilename": "Sportmassage-wien-1080.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/d09a161a764caa0fd610bf49b4ea4b3b138987cc-720x720.webp",
+    "w": 720
+  },
+  {
+    "_id": "image-d4cf57cce034a1bc3f5dc41bb55a3be5becc22fb-1360x1020-webp",
+    "extension": "webp",
+    "h": 1020,
+    "originalFilename": "2026-02-12.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/d4cf57cce034a1bc3f5dc41bb55a3be5becc22fb-1360x1020.webp",
+    "w": 1360
+  },
+  {
+    "_id": "image-ee6c2e1e0534805c3ff2fa36c71fdc0ccd722dd1-2000x1333-webp",
+    "extension": "webp",
+    "h": 1333,
+    "originalFilename": "domenic-1080.webp",
+    "url": "https://cdn.sanity.io/images/vm9l1skm/production/ee6c2e1e0534805c3ff2fa36c71fdc0ccd722dd1-2000x1333.webp",
+    "w": 2000
+  }
+]

@@ -1,0 +1,1201 @@
+[
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "about",
+    "_rev": "HgdL5GYxyg8jyYyxR2E93i",
+    "_system": {
+      "base": {
+        "id": "about",
+        "rev": "HgdL5GYxyg8jyYyxR2DMIj"
+      }
+    },
+    "_type": "about",
+    "_updatedAt": "2026-07-14T22:02:08Z",
+    "bio": [
+      "Ich verbinde fundiertes Fachwissen mit einem feinen Gespür für den Körper. Bewegung prägt mein Leben — sowohl in der Therapie als auch im Breakdance, der meine Körperwahrnehmung nachhaltig geschult hat.",
+      "Durch meine Erfahrung in Rehabilitationsinstituten behandle ich Beschwerden gezielt und unterstütze Sie dabei, wieder mehr Bewegungsfreiheit zu gewinnen. Heilmasseur ist meine Berufung — Ihre Entspannung mein Ziel.",
+      "Ich habe meine Ausbildung mit ausgezeichnetem Erfolg abgeschlossen. Eine ständige Fortbildung steht für mich an oberster Stelle."
+    ],
+    "breakdanceImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-62742db8992f5367370142a9b24ddf84284590ad-1365x2048-jpg",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.7721939606984425,
+        "width": 1,
+        "x": 0.5,
+        "y": 0.5717757597468406
+      }
+    },
+    "credentials": [
+      "Diplomierter Heilmasseur",
+      "Nuad Thai Massage (Watpo-Stil)",
+      "Thai Tisch Massage",
+      "Manuelle Lymphdrainage (Dr. Vodder)",
+      "Bindegewebs-Massage",
+      "Sportbetreuer",
+      "Dorn-Breuss Wirbelsäulenbehandlung",
+      "Fußreflexzonen-Massage",
+      "Akupunktur Massage (Penzel)",
+      "Schröpfen",
+      "Elektrotherapie",
+      "Triggerpunkt - Therapie",
+      "Segmentmassage",
+      "Teilnahme IMA Massage Meisterschaft Kopenhagen 2026"
+    ],
+    "ctaHeading": "Bereit für Ihre erste Behandlung?",
+    "ctaText": "Buchen Sie jetzt Ihren Termin online – unkompliziert und in wenigen Schritten.",
+    "heroImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-a1d8e1334c25cc88ae65605fccb5c43834602fe4-3000x2000-jpg",
+        "_type": "reference"
+      }
+    },
+    "heroSubtitle": "Diplomierter Heilmasseur mit Leidenschaft für Bewegung und gezieltes Arbeiten am Körper.",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-3d51af796fa1b479e03f756fbd64a03eca6d28b9-1400x933-webp",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.28085688403269093,
+        "left": 0.5897043320669649,
+        "right": 0.11641864518846765,
+        "top": 0.20993342846888005
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.509209687498429,
+        "width": 0.2938770227445674,
+        "x": 0.7366428434392487,
+        "y": 0.4645382722180945
+      }
+    },
+    "location": "1080 Wien",
+    "meinWegHighlights": [
+      {
+        "_key": "h1",
+        "subtitle": "Abschluss der Ausbildung",
+        "title": "Mit Auszeichnung"
+      },
+      {
+        "_key": "h2",
+        "subtitle": "In Reha-Einrichtungen",
+        "title": "Reha-Erfahrung"
+      }
+    ],
+    "philosophieTexte": [
+      "Jeder Körper reagiert anders. Deshalb beginne ich jede Behandlung mit einem kurzen Gespräch: Was passt gerade nicht? Was soll sich danach besser anfühlen?",
+      "Zu viel Druck löst Schutzmechanismen aus, zu wenig bringt nichts. Mein Ziel ist die goldene Mitte: eine Behandlung, die Sie spüren, ohne Sie zu überfordern.",
+      "Durch meine Erfahrung habe ich ein gutes Gespür dafür entwickelt, wie Bewegung und Spannung im Körper zusammenhängen – dieses Verständnis fließt direkt in meine Arbeit ein."
+    ],
+    "qualificationsCount": "13",
+    "quote": "Ein Raum ohne Urteil. Wo echte Verbindung auf Augenhöhe entsteht.",
+    "quoteAuthorTitle": "Diplomierter Heilmasseur, Wien 1080",
+    "title": "Von der Bewegung zur Heilung",
+    "yearsExperience": "7+"
+  },
+  {
+    "_createdAt": "2026-05-14T19:10:18Z",
+    "_id": "blockPricing",
+    "_rev": "EIi0Y0U1tcoxNM6XAkm8d6",
+    "_system": {
+      "base": {
+        "id": "blockPricing",
+        "rev": "aqJXJUQHIbJJqpOcKCQfYO"
+      }
+    },
+    "_type": "blockPricing",
+    "_updatedAt": "2026-05-14T19:45:46Z",
+    "block_10_30_fullPrice": 550,
+    "block_10_30_price": 489,
+    "block_10_45_fullPrice": 700,
+    "block_10_45_price": 619,
+    "block_10_60_fullPrice": 850,
+    "block_10_60_price": 749,
+    "block_5_30_fullPrice": 275,
+    "block_5_30_price": 259,
+    "block_5_45_fullPrice": 350,
+    "block_5_45_price": 329,
+    "block_5_60_fullPrice": 425,
+    "block_5_60_price": 399
+  },
+  {
+    "_createdAt": "2026-04-09T11:53:30Z",
+    "_id": "buchenPage",
+    "_rev": "F466EfwvGVMQnYM4c2X5OX",
+    "_system": {
+      "base": {
+        "id": "buchenPage",
+        "rev": "fHDU1dLPgDwvQhfFoKtBcT"
+      }
+    },
+    "_type": "buchenPage",
+    "_updatedAt": "2026-08-12T19:47:39Z",
+    "accessibilityFeatures": [
+      "Barrierefreier Zugang",
+      "Parkplätze in der Nähe",
+      "U-Bahn Rathaus (U2) in 5 Min."
+    ],
+    "googleMapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.6!2d16.349!3d48.211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFeldgasse+3%2C+1080+Wien!5e0!3m2!1sde!2sat!4v1",
+    "heading": "Termin online buchen —",
+    "headingAccent": "schnell & unkompliziert",
+    "infoDescription": "Die Praxis befindet sich im 8. Bezirk (Josefstadt) und ist mit öffentlichen Verkehrsmitteln gut erreichbar.",
+    "infoHeading": "So finden Sie",
+    "infoHeadingAccent": "die Praxis",
+    "steps": [
+      {
+        "_key": "s1",
+        "number": "1",
+        "text": "Behandlung auswählen"
+      },
+      {
+        "_key": "s2",
+        "number": "2",
+        "text": "Wunschtermin wählen"
+      },
+      {
+        "_key": "s3",
+        "number": "3",
+        "text": "Kontaktdaten eingeben"
+      }
+    ],
+    "subtitle": "In 3 einfachen Schritten zu Ihrem Termin",
+    "successHeading": "Termin erfolgreich gebucht!",
+    "successText": "Sie erhalten in Kürze eine Bestätigung per E-Mail."
+  },
+  {
+    "_createdAt": "2026-04-09T11:53:32Z",
+    "_id": "datenschutzPage",
+    "_rev": "WulXqL1YGJptzfdXf6LJZI",
+    "_type": "datenschutzPage",
+    "_updatedAt": "2026-04-09T11:53:32Z",
+    "lastUpdated": "09.04.2026",
+    "sections": [
+      {
+        "_key": "d1",
+        "content": "Verantwortlicher im Sinne der DSGVO:\n\nDomenic Hacker\nDiplomierter medizinischer Masseur und Heilmasseur\nFeldgasse 3/20\n1080 Wien, Österreich\n\nTelefon: +43 670 189 52 56\nE-Mail: praxis@heilmasseur-domenic.at",
+        "heading": "1. Verantwortlicher"
+      },
+      {
+        "_key": "d2",
+        "content": "",
+        "heading": "2. Erhobene Daten und Verarbeitungszwecke",
+        "subsections": [
+          {
+            "_key": "d2a",
+            "content": "Beim Besuch unserer Website werden automatisch technische Daten erhoben (IP-Adresse, Browsertyp, Betriebssystem, Referrer-URL, Zugriffszeitpunkt). Diese werden für den technischen Betrieb der Website benötigt.\nRechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interessen).",
+            "heading": "2.1 Website-Nutzungsdaten"
+          },
+          {
+            "_key": "d2b",
+            "content": "Für die Online-Terminbuchung nutzen wir den Dienst Calendly. Bei der Buchung werden Ihr Name, Ihre E-Mail-Adresse und ggf. Telefonnummer an Calendly übermittelt. Calendly verarbeitet diese Daten in unserem Auftrag.\nRechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung).",
+            "heading": "2.2 Terminbuchung"
+          },
+          {
+            "_key": "d2c",
+            "content": "Bei Kontaktaufnahme per E-Mail oder Telefon werden Ihre Angaben zur Bearbeitung der Anfrage und für mögliche Anschlussfragen gespeichert.\nRechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interessen).",
+            "heading": "2.3 Kontaktaufnahme"
+          }
+        ]
+      },
+      {
+        "_key": "d3",
+        "content": "",
+        "heading": "3. Verwendete Dienste",
+        "subsections": [
+          {
+            "_key": "d3a",
+            "content": "Diese Website wird bei Vercel Inc. gehostet. Bei jedem Zugriff werden automatisch Server-Logfiles gespeichert. Vercel verarbeitet Daten auch in den USA; die Übermittlung erfolgt auf Basis der EU-Standardvertragsklauseln.",
+            "heading": "Hosting (Vercel)"
+          },
+          {
+            "_key": "d3b",
+            "content": "Diese Website nutzt Google Analytics zur Analyse der Website-Nutzung. Die IP-Adresse wird vor der Speicherung anonymisiert. Die Datenverarbeitung erfolgt auf Grundlage Ihrer Einwilligung über den Cookie-Banner. Sie können der Datenerfassung jederzeit widersprechen, indem Sie Ihre Cookie-Einstellungen anpassen.\nRechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).",
+            "heading": "Google Analytics"
+          },
+          {
+            "_key": "d3c",
+            "content": "Wir nutzen den Google Tag Manager zur Verwaltung unserer Tracking-Tools. Der Tag Manager selbst erfasst keine personenbezogenen Daten.",
+            "heading": "Google Tag Manager"
+          },
+          {
+            "_key": "d3d",
+            "content": "Diese Website verwendet Google Fonts, die lokal eingebunden werden. Es findet keine Verbindung zu Google-Servern statt.",
+            "heading": "Google Fonts"
+          },
+          {
+            "_key": "d3e",
+            "content": "Für die Terminbuchung wird Calendly eingebunden. Beim Laden des Buchungsformulars werden Daten an Calendly Inc. (USA) übermittelt. Die Übermittlung erfolgt auf Basis der EU-Standardvertragsklauseln.",
+            "heading": "Calendly"
+          },
+          {
+            "_key": "d3f",
+            "content": "Zur Darstellung von Google-Bewertungen nutzen wir die Google Places API. Dabei werden serverseitig Bewertungsdaten von Google abgerufen. Es werden keine personenbezogenen Daten der Website-Besucher an Google übermittelt.",
+            "heading": "Google Places API"
+          },
+          {
+            "_key": "d3g",
+            "content": "Für die Verwaltung von Inhalten nutzen wir Sanity.io als Content-Management-System. Sanity verarbeitet keine personenbezogenen Daten der Website-Besucher.",
+            "heading": "Sanity CMS"
+          }
+        ]
+      },
+      {
+        "_key": "d4",
+        "content": "Diese Website verwendet Cookies. Technisch notwendige Cookies werden ohne Einwilligung gesetzt. Analyse-Cookies (z.B. Google Analytics) werden nur mit Ihrer ausdrücklichen Einwilligung über den Cookie-Banner gesetzt. Sie können Ihre Cookie-Einstellungen jederzeit über den Link „Cookie-Einstellungen“ im Footer dieser Website anpassen.",
+        "heading": "4. Cookies"
+      },
+      {
+        "_key": "d5",
+        "content": "Wir speichern personenbezogene Daten nur so lange, wie es für die jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen:\n\n• Terminbuchungsdaten: 1 Jahr nach dem Termin\n• Kontaktanfragen: 2 Jahre nach Abschluss der Korrespondenz\n• Buchhaltungsrelevante Daten: 7 Jahre gemäß österreichischem Steuerrecht\n• Technische Log-Daten: maximal 30 Tage",
+        "heading": "5. Speicherdauer"
+      },
+      {
+        "_key": "d6",
+        "content": "Sie haben gemäß DSGVO folgende Rechte gegenüber dem Verantwortlichen:\n\n• Auskunftsrecht (Art. 15 DSGVO)\n• Berichtigungsrecht (Art. 16 DSGVO)\n• Löschungsrecht (Art. 17 DSGVO)\n• Einschränkung der Verarbeitung (Art. 18 DSGVO)\n• Datenübertragbarkeit (Art. 20 DSGVO)\n• Widerspruchsrecht (Art. 21 DSGVO)\n• Widerrufsrecht (Art. 7 Abs. 3 DSGVO)\n\nZur Ausübung dieser Rechte wenden Sie sich bitte an: praxis@heilmasseur-domenic.at\n\nSie haben außerdem das Recht, sich bei der zuständigen Datenschutzbehörde zu beschweren:\n\nÖsterreichische Datenschutzbehörde\nBarichgasse 40–42\n1030 Wien\nE-Mail: dsb@dsb.gv.at\nWebsite: www.dsb.gv.at",
+        "heading": "6. Ihre Rechte"
+      },
+      {
+        "_key": "d7",
+        "content": "Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten gegen Manipulationen, Verlust, Zerstörung oder unbefugten Zugriff zu schützen. Alle Datenübertragungen erfolgen verschlüsselt (TLS/HTTPS).",
+        "heading": "7. Datensicherheit"
+      },
+      {
+        "_key": "d8",
+        "content": "Diese Datenschutzerklärung wurde zuletzt am 09.04.2026 aktualisiert. Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht.",
+        "heading": "8. Aktualität und Änderungen"
+      }
+    ]
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "faq-1",
+    "_rev": "Fb3E332TZkLq5toNt1ujcI",
+    "_system": {
+      "base": {
+        "id": "faq-1",
+        "rev": "Fb3E332TZkLq5toNt1qyMM"
+      }
+    },
+    "_type": "faqItem",
+    "_updatedAt": "2026-04-10T23:22:43Z",
+    "answer": "Für eine Heilmassage ist eine ärztliche Verordnung erforderlich.\nMit Verordnung ist je nach Krankenkasse eine teilweise Rückerstattung möglich.\nSie können aber auch ohne Verordnung einen Termin buchen.",
+    "question": "Brauche ich eine ärztliche Verordnung?",
+    "sortOrder": 3
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "faq-2",
+    "_rev": "Fb3E332TZkLq5toNt1PJjG",
+    "_system": {
+      "base": {
+        "id": "faq-2",
+        "rev": "JVu57E0cf42HGBLOggCigH"
+      }
+    },
+    "_type": "faqItem",
+    "_updatedAt": "2026-04-10T22:54:31Z",
+    "answer": "Zu Beginn besprechen wir kurz Ihre Beschwerden und Ziele. Die Behandlung wird individuell auf Ihre Bedürfnisse abgestimmt. Während der Massage können Sie sich entspannen, während gezielt an Verspannungen gearbeitet wird.",
+    "question": "Wie läuft die Behandlung ab?",
+    "sortOrder": 2
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "faq-3",
+    "_rev": "htrMui7M7v6ADvapqMgSJD",
+    "_system": {
+      "base": {
+        "id": "faq-3",
+        "rev": "Fb3E332TZkLq5toNt1JImg"
+      }
+    },
+    "_type": "faqItem",
+    "_updatedAt": "2026-04-10T22:50:19Z",
+    "answer": "Mit einer ärztlichen Verordnung ist je nach Krankenkasse eine teilweise Rückerstattung möglich. Die Honorarnote können Sie nach der Behandlung bei Ihrer Kasse einreichen.\nPrivate Zusatzversicherungen übernehmen je nach Tarif oft einen Großteil der Kosten, teilweise bis zu 100 %.",
+    "question": "Wird die Behandlung von der Krankenkasse bezahlt?",
+    "sortOrder": 1
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "faq-4",
+    "_rev": "Fb3E332TZkLq5toNt1t2Yk",
+    "_system": {
+      "base": {
+        "id": "faq-4",
+        "rev": "JVu57E0cf42HGBLOggCigH"
+      }
+    },
+    "_type": "faqItem",
+    "_updatedAt": "2026-04-10T23:21:38Z",
+    "answer": "Das hängt von Ihren Beschwerden und Zielen ab.\nBei akuten Verspannungen sind mehrere Behandlungen in kürzeren Abständen sinnvoll, z. B. einmal pro Woche.\nFür allgemeines Wohlbefinden und Prävention reicht meist ein Termin alle 2–4 Wochen.",
+    "question": "Wie oft sollte ich zur Massage kommen?",
+    "sortOrder": 4
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "faq-5",
+    "_rev": "JVu57E0cf42HGBLOggCigH",
+    "_type": "faqItem",
+    "_updatedAt": "2026-03-30T18:29:37Z",
+    "answer": "Bei akuten Entzündungen, Fieber, Infektionskrankheiten, Thrombosen oder bestimmten Hauterkrankungen sollte keine Massage durchgeführt werden. Im Zweifelsfall konsultieren Sie bitte Ihren Arzt.",
+    "question": "Welche Kontraindikationen gibt es?",
+    "sortOrder": 5
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "faq-6",
+    "_rev": "JVu57E0cf42HGBLOggCigH",
+    "_type": "faqItem",
+    "_updatedAt": "2026-03-30T18:29:37Z",
+    "answer": "Bitte sagen Sie Ihren Termin mindestens 24 Stunden vorher ab. Bei kurzfristigen Absagen kann ein Ausfallhonorar anfallen. Kontaktieren Sie mich einfach per Telefon oder E-Mail.",
+    "question": "Was mache ich, wenn ich absagen muss?",
+    "sortOrder": 6
+  },
+  {
+    "_createdAt": "2026-05-14T19:49:50Z",
+    "_id": "gutscheinePage",
+    "_rev": "EEpZN8GLwmkw74CEWsCykO",
+    "_type": "gutscheinePage",
+    "_updatedAt": "2026-05-14T19:49:50Z",
+    "agbNotice": "Mit dem Klick auf Bezahlen bestätigen Sie unsere AGB und das Widerrufsrecht. Hinweis: Bei digitalen Inhalten (PDF-Gutschein) erlischt das Widerrufsrecht nach Lieferung des PDFs an die angegebene E-Mail-Adresse (§ 18 FAGG).",
+    "blocksDurationLabel": "Behandlungsdauer wählen",
+    "blocksEyebrow": "Für sich selbst — Stammkunden-Vorteil",
+    "blocksHeading": "Block-Karte kaufen",
+    "blocksText": "Bis zu 12 % sparen. Ideal wenn Sie regelmäßig Behandlungen brauchen.",
+    "customCardSubtext": "einlösbar auf jede Behandlung",
+    "customCardTitle": "Beliebiger Geschenk-Betrag",
+    "customEyebrow": "Zum Verschenken",
+    "customHeading": "Einzelgutschein",
+    "customText": "Frei wählbarer Betrag — perfekt für Geburtstag, Weihnachten oder Muttertag. 3 Jahre gültig, Restguthaben bleibt erhalten.",
+    "detailsHeading": "Ihre Daten",
+    "detailsText": "Wir senden Ihnen den Gutschein als PDF an die angegebene E-Mail-Adresse.",
+    "heroBadge": "Geschenke, die wirklich gut tun",
+    "heroHeading": "Massage-Gutscheine",
+    "heroHeadingAccent": "aus Wien 1080",
+    "heroText": "Gutscheine sind sofort als PDF verfügbar — drei Jahre gültig, einlösbar gegen jede Behandlung. Block-Karten geben extra Vorteil ab fünf Behandlungen.",
+    "paymentHeading": "Zahlung",
+    "paymentText": "Sicher bezahlen via Stripe — Karten, Apple Pay, Google Pay, SEPA.",
+    "recipientHelpText": "Der Name erscheint auf dem PDF-Gutschein. Ohne Angabe ist der Gutschein neutral.",
+    "seoDescription": "Massage-Gutscheine aus Wien 1080 — sofort als PDF per E-Mail, 3 Jahre gültig. Block-Karten ab 5 Behandlungen mit bis zu 12 % Vorteil oder Einzelgutschein mit frei wählbarem Wert.",
+    "seoTitle": "Massage-Gutscheine Wien 1080 · sofort als PDF | Heilmasseur Domenic Hacker"
+  },
+  {
+    "_createdAt": "2026-04-09T11:53:29Z",
+    "_id": "heilmassagePage",
+    "_rev": "ykV8GIcna2n1HE3ppJNSbC",
+    "_system": {
+      "base": {
+        "id": "heilmassagePage",
+        "rev": "F466EfwvGVMQnYM4c2uQCP"
+      }
+    },
+    "_type": "heilmassagePage",
+    "_updatedAt": "2026-09-16T19:44:25Z",
+    "approachBottomText": "Keine Massage ist wie die andere. Was Sie bekommen, ist eine Behandlung, die sich an Ihrem Körper und Ihrem Feedback orientiert – nicht an einem Schema.",
+    "approachDescription": "Mein Schwerpunkt liegt auf der passenden Intensität. Durch Erfahrung und ein gutes Gespür finde ich meist genau den richtigen Druck – wirksam, aber ohne unnötigen Schmerz.",
+    "approachHeading": "Mein Schwerpunkt",
+    "approachImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-0d4c64826b67d730236dd71e503e4b0d9abaf450-8106x8649-jpg",
+        "_type": "reference"
+      }
+    },
+    "approachPoints": [
+      "Keine Standardmassage – gezielte Behandlung statt „drübermassieren\"",
+      "Intensität wird laufend angepasst – nicht zu wenig, nicht zu viel",
+      "Feedback jederzeit möglich und erwünscht",
+      "Erfahrung und ein gutes Gespür für den richtigen Druck"
+    ],
+    "conditions": [
+      "Rückenprobleme",
+      "Nacken & Schulter",
+      "Verspannungen",
+      "Nach dem Sport",
+      "Viel Sitzen",
+      "Stress"
+    ],
+    "ctaHeading": "Bereit für eine Behandlung?",
+    "ctaText": "Termin direkt online buchen – oder melden Sie sich, wenn Sie vorher Fragen haben.",
+    "effects": [
+      {
+        "_key": "e1",
+        "description": "Verhärtetes Gewebe wird gezielt gelockert und die Muskulatur entspannt – nicht nur oberflächlich, sondern in der Tiefe.",
+        "title": "Löst Verspannungen"
+      },
+      {
+        "_key": "e2",
+        "description": "Gezielte Behandlung der Schmerzpunkte – wirksam, ohne unnötigen Druck. Viele berichten schon nach der ersten Behandlung von spürbarer Erleichterung.",
+        "title": "Lindert Schmerzen"
+      },
+      {
+        "_key": "e3",
+        "description": "Wenn Spannung nachlässt, wird Bewegung wieder leichter – besonders in Bereichen, die im Alltag stark belastet sind.",
+        "title": "Verbessert Beweglichkeit"
+      },
+      {
+        "_key": "e4",
+        "description": "Bessere Durchblutung, schnellere Erholung – vor allem nach sportlicher Belastung oder nach langen Arbeitstagen am Schreibtisch.",
+        "title": "Unterstützt Regeneration"
+      }
+    ],
+    "effectsDescription": "Gezielt eingesetzt erzielt Massage messbare Ergebnisse – nicht nur im Moment, sondern nachhaltig.",
+    "effectsHeading": "Was Massage bewirkt",
+    "faqs": [
+      {
+        "_key": "f1",
+        "answer": "Eine Heilmassage ist eine medizinisch anerkannte Behandlung, die gezielt auf Beschwerden wie Rückenschmerzen, Verspannungen oder eingeschränkte Beweglichkeit abzielt – durchgeführt von einem diplomierten Heilmasseur. Eine Wellnessmassage dient primär der Entspannung. Bei mir steht der therapeutische Nutzen im Vordergrund – Entspannung ist ein angenehmer Nebeneffekt.",
+        "question": "Was ist der Unterschied zwischen Heilmassage und einer normalen Massage?"
+      },
+      {
+        "_key": "f2",
+        "answer": "Das hängt stark von Ihren Beschwerden ab. Akute Verspannungen lassen sich oft schon in 2–3 Terminen deutlich verbessern. Bei chronischen Beschwerden empfehle ich regelmäßigere Behandlungen. Gerne bespreche ich das mit Ihnen bei Ihrem Ersttermin.",
+        "question": "Wie viele Termine brauche ich bis zur Verbesserung?"
+      },
+      {
+        "_key": "f3",
+        "answer": "Das Ziel ist wirksame Behandlung – nicht Schmerz. Mein Schwerpunkt liegt auf der richtigen Intensität: wirksam, aber ohne unnötigen Druck. Sie können jederzeit sagen, wenn Ihnen etwas zu viel oder zu wenig ist – ich passe mich sofort an.",
+        "question": "Tut eine Heilmassage weh?"
+      },
+      {
+        "_key": "f4",
+        "answer": "Nein, alles Notwendige ist in der Praxis vorhanden. Kommen Sie einfach pünktlich – und wenn möglich mit einem kurzen Überblick über Ihre aktuellen Beschwerden, damit wir gleich gezielt loslegen können.",
+        "question": "Muss ich etwas zur Behandlung mitbringen?"
+      },
+      {
+        "_key": "f5",
+        "answer": "Mit einer ärztlichen Verordnung haben Sie die Möglichkeit, einen Teil der Kosten von Ihrer Krankenkasse rückerstattet zu bekommen.\nDie Abrechnung erfolgt über Ihre Honorarnote, die Sie nach der Behandlung bei Ihrer Kasse einreichen können.\nJe nach Tarif übernehmen private Zusatzversicherungen einen Großteil der Kosten, in manchen Fällen sogar vollständig.",
+        "question": "Kann ich die Heilmassage bei der Krankenkasse einreichen?"
+      },
+      {
+        "_key": "f6",
+        "answer": "Die Praxis liegt in der Feldgasse 3/20 im 8. Bezirk (Josefstadt). Gut erreichbar mit der U2 (Station Rathaus), U6 (Station Josefstädterstraße) oder mit der Straßenbahn 2, 5 , 12 oder 44. Parkmöglichkeiten sind in der unmittelbaren Umgebung vorhanden.",
+        "question": "Wie finde ich die Praxis in Wien 1080?"
+      }
+    ],
+    "forWhomDescription": "Ob Rückenschmerzen nach langem Sitzen, ein verspannter Nacken oder Muskeln, die nach dem Sport einfach nicht loslassen – wenn Sie sich hier wiedererkennen, sind Sie bei mir richtig.",
+    "forWhomHeading": "Für wen ist das?",
+    "heroBadge": "Wien 1080 · Josefstadt",
+    "heroHeading": "Heilmassage in 1080 Wien",
+    "heroImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-2499409196f9db652444cb605c352cf98307094d-8256x5504-jpg",
+        "_type": "reference"
+      }
+    },
+    "heroSubtitle": "gezielt, wirksam und in der richtigen Intensität",
+    "locationDescription": "Die Praxis liegt im 8. Bezirk – ruhig gelegen und gut erreichbar, nur wenige Minuten von der U2-Station Rathaus und mehreren Straßenbahnlinien entfernt.",
+    "locationHeading": "Heilmassage Wien 1080 – Josefstadt",
+    "transportInfo": [
+      {
+        "_key": "t1",
+        "label": "U-Bahn",
+        "value": "U2 – Station Rathaus"
+      },
+      {
+        "_key": "t2",
+        "label": "Straßenbahn",
+        "value": "Linien 2 · 5 · 12 · 44"
+      },
+      {
+        "_key": "t3",
+        "label": "Parken",
+        "value": "Parkplätze in der Umgebung"
+      }
+    ],
+    "whatIsHeading": "Was ist Heilmassage?",
+    "whatIsParagraphs": [
+      "Heilmassage ist eine medizinische Behandlung, die bei Beschwerden wie Rückenschmerzen, Verspannungen oder Bewegungseinschränkungen eingesetzt wird – auf ärztliche Verordnung.\nIm Unterschied zur klassischen Massage steht hier der gezielte therapeutische Nutzen im Vordergrund.",
+      "Ich arbeite hauptsächlich mit klassischer Massage und setze ergänzend auch tiefergehende Grifftechniken ein, um Verspannungen effektiv und nachhaltig zu lösen.\nJede Behandlung wird individuell aufgebaut und genau auf Ihren Körper abgestimmt – ohne starres Schema.",
+      "Neben Heilmassage biete ich auch klassische Massage zur Lockerung von Verspannungen und zur Regeneration an – auch ohne ärztliche Verordnung."
+    ]
+  },
+  {
+    "_createdAt": "2026-04-09T11:53:28Z",
+    "_id": "homePage",
+    "_rev": "S6tYaS54c3RVAoLXrcCc8z",
+    "_system": {
+      "base": {
+        "id": "homePage",
+        "rev": "ykV8GIcna2n1HE3ppJJF98"
+      }
+    },
+    "_type": "homePage",
+    "_updatedAt": "2026-09-16T19:33:03Z",
+    "aboutTeaserBadge": "Über Domenic Hacker",
+    "aboutTeaserHeading": "Heilmassage mit Erfahrung",
+    "aboutTeaserHeadingAccent": "und Feingefühl",
+    "aboutTeaserImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-2499409196f9db652444cb605c352cf98307094d-8256x5504-jpg",
+        "_type": "reference"
+      }
+    },
+    "heroBackgroundImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-ee6c2e1e0534805c3ff2fa36c71fdc0ccd722dd1-2000x1333-webp",
+        "_type": "reference"
+      }
+    },
+    "portraitImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-39824090e6fddc6fdf60f512038e9b21e8af60c4-2556x5541-jpg",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.32906182272852863,
+        "left": 0,
+        "right": 0,
+        "top": 0.027136433878195237
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.6438017433932761,
+        "width": 1,
+        "x": 0.5,
+        "y": 0.34903730557483326
+      }
+    },
+    "portraitName": "Domenic Hacker",
+    "portraitTitle": "Heilmasseur für klassische Massage · Wien 1080",
+    "praxisBadge": "Die Praxis",
+    "praxisDescription": "Meine Praxis befindet sich in einem ruhigen Altbau in der Josefstadt – zentral in Wien und dennoch abseits vom Trubel. Die hellen Räume und die ruhige Umgebung schaffen optimale Bedingungen für eine gezielte und entspannte Behandlung.",
+    "praxisHeading": "Ihre Behandlung in",
+    "praxisHeadingAccent": "ruhiger Atmosphäre",
+    "praxisImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-01d58f0e0a511e13d0b51290cc65867dfa9b22a5-1000x600-png",
+        "_type": "reference"
+      }
+    },
+    "pricingBadge": "Transparente Preise",
+    "pricingHeading": "Faire Preise.",
+    "pricingHeadingAccent": "Spürbare Wirkung",
+    "pricingText": "Alle Preise beinhalten Vor- und Nachgespräch. Bei der ersten Behandlung nehme ich mir zusätzlich Zeit für eine ausführliche Anamnese.",
+    "pricingWkoUrl": "https://www.wko.at/oe/gewerbe-handwerk/fusspfleger-kosmetiker-masseure/tarife-heilmasseure.pdf",
+    "reviewsBadge": "Kundenstimmen",
+    "reviewsHeading": "Erfahrungen meiner",
+    "reviewsHeadingAccent": "Klienten",
+    "reviewsText": "Echte Erfahrungen meiner Klientinnen und Klienten – direkt aus Google.",
+    "servicesBadge": "Massagen-Angebot",
+    "servicesHeading": "Wobei ich Sie gezielt",
+    "servicesHeadingAccent": "unterstützen kann",
+    "servicesText": "Ob Verspannungen, chronische Schmerzen oder einfach der Wunsch nach Entspannung – ich biete Ihnen individuell abgestimmte Behandlungen, die auf Ihre Bedürfnisse zugeschnitten sind."
+  },
+  {
+    "_createdAt": "2026-04-09T11:53:31Z",
+    "_id": "impressumPage",
+    "_rev": "Yr1hfJMVyNgqK8KUAeKU9f",
+    "_type": "impressumPage",
+    "_updatedAt": "2026-04-09T11:53:31Z",
+    "sections": [
+      {
+        "_key": "s1",
+        "content": "Domenic Hacker\nDiplomierter medizinischer Masseur und Heilmasseur\nFeldgasse 3/20\n1080 Wien, Österreich",
+        "heading": "Angaben gemäß § 5 ECG / § 25 MedienG"
+      },
+      {
+        "_key": "s2",
+        "content": "Telefon: +43 670 189 52 56\nE-Mail: praxis@heilmasseur-domenic.at",
+        "heading": "Kontakt"
+      },
+      {
+        "_key": "s3",
+        "content": "Diplomierter medizinischer Masseur und Heilmasseur\nBerufsbezeichnung verliehen in: Österreich",
+        "heading": "Berufsbezeichnung"
+      },
+      {
+        "_key": "s4",
+        "content": "Bezirkshauptmannschaft / Magistrat Wien\nGewerbebehörde: Magistratisches Bezirksamt für den 8. Bezirk",
+        "heading": "Zuständige Aufsichtsbehörde"
+      },
+      {
+        "_key": "s5",
+        "content": "Wirtschaftskammer Wien (WKO)\nFachgruppe der persönlichen Dienstleister",
+        "heading": "Kammerzugehörigkeit"
+      },
+      {
+        "_key": "s6",
+        "content": "Medizinischer Masseur- und Heilmasseurgesetz (MMHmG)\nGewerbeordnung (GewO)\nZugänglich unter: ris.bka.gv.at",
+        "heading": "Anwendbare Rechtsvorschriften"
+      },
+      {
+        "_key": "s7",
+        "content": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: ec.europa.eu/consumers/odr/",
+        "heading": "Streitschlichtung"
+      },
+      {
+        "_key": "s8",
+        "content": "Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.",
+        "heading": "Haftungsausschluss"
+      }
+    ]
+  },
+  {
+    "_createdAt": "2026-09-16T19:42:19Z",
+    "_id": "mobileMassagePage",
+    "_rev": "o3SBtT5tXrgnffkgMqx195",
+    "_type": "mobileMassagePage",
+    "_updatedAt": "2026-09-16T19:43:21Z",
+    "areaDescription": "Ausgangspunkt ist meine Praxis in der Josefstadt. In den Innenbezirken bin ich oft noch am selben oder nächsten Tag bei Ihnen; alle übrigen Bezirke – von Floridsdorf über Donaustadt bis Liesing – nach Vereinbarung.",
+    "areaHeading": "In ganz Wien",
+    "ctaHeading": "Entspannung kommt zu Ihnen",
+    "ctaText": "Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Schreiben Sie mir oder rufen Sie an.",
+    "faqs": [
+      {
+        "_key": "c40ebeb03810acea16095662c0079c72",
+        "answer": "Ein Hausbesuch startet bei 120 € für 60 Minuten. Für 90 Minuten kommt ein Aufpreis dazu – den nenne ich Ihnen bei der Anfrage. Die Anfahrt innerhalb Wiens ist enthalten; bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.",
+        "question": "Was kostet eine mobile Massage in Wien?"
+      },
+      {
+        "_key": "5c8b705beae803eccacd11b4f1e43291",
+        "answer": "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.",
+        "question": "Zahlt die Krankenkasse eine mobile Massage?"
+      },
+      {
+        "_key": "bafafafa61609ac8465406c37b0eae0d",
+        "answer": "Nichts. Ich bringe Massageliege, Öle und frische Handtücher mit. Sie brauchen nur einen freien Platz von etwa zwei mal zwei Metern – Wohnzimmer, Schlafzimmer oder Büro funktionieren alle gleich gut.",
+        "question": "Was muss ich für den Termin zuhause vorbereiten?"
+      },
+      {
+        "_key": "ab6d9cca2d4cbae4df8b2737ae30543e",
+        "answer": "Die Liege ist rund 190 cm lang und 70 cm breit. Damit ich rundherum arbeiten kann, sind etwa zwei mal zwei Meter ideal. Wenn Sie unsicher sind, schicken Sie mir vorab ein Foto des Raums – dann klären wir das in einer Minute.",
+        "question": "Wie viel Platz braucht die Massageliege?"
+      },
+      {
+        "_key": "b11684770f5457f577810036cd8b2c18",
+        "answer": "Ja. Hotelzimmer und Suiten sind auf Anfrage möglich, ebenso Termine außerhalb der üblichen Zeiten. Bitte geben Sie bei der Anfrage Hotel, Zimmernummer und Ihren Wunschtermin an, damit ich mich an der Rezeption anmelden kann.",
+        "question": "Kommen Sie auch ins Hotel?"
+      },
+      {
+        "_key": "eef9718a5745b674149228ee576b1de6",
+        "answer": "Dieselbe Arbeit wie in der Praxis: klassische Massage, Heilmassage-Techniken und gezielte Behandlung von Verspannungen – abgestimmt auf das, was Ihr Körper an diesem Tag braucht. Nur Anwendungen mit Geräten sind zuhause nicht möglich.",
+        "question": "Welche Massage bekomme ich beim Hausbesuch?"
+      },
+      {
+        "_key": "fa85d5a12a8ad88204ef62cbe0392616",
+        "answer": "In den Innenbezirken geht oft noch etwas am selben oder am nächsten Tag. Für Wunschtermine am Abend oder am Wochenende melden Sie sich am besten ein paar Tage vorher.",
+        "question": "Wie kurzfristig kann ich einen Hausbesuch buchen?"
+      }
+    ],
+    "forWhomDescription": "Oft ist der Weg zur Praxis der Grund, warum ein Termin nicht zustande kommt. Wer danach nicht mehr in die U-Bahn steigen muss, entspannt tiefer – und bleibt länger entspannt.",
+    "forWhomHeading": "Wann zuhause die bessere Wahl ist",
+    "heroBadge": "Hausbesuch in ganz Wien",
+    "heroHeading": "Mobile Massage – nachhaltige Entspannung bei Ihnen zuhause",
+    "heroServiceLine": "Hotel & VIP-Service auf Anfrage",
+    "heroSubtitle": "Ich komme zu Ihnen – mit Liege, Ölen und Handtüchern. Sie kümmern sich um nichts außer Ihrer Entspannung. Therapeutische Massage auf Praxisniveau, in Ihren eigenen vier Wänden oder im Hotel.",
+    "included": [
+      {
+        "_key": "f5df809d2ab4de937df3ff4d9b3a3848",
+        "description": "Stabil, gepolstert, mit Nackenstütze – klappbar, aber auf Praxisniveau.",
+        "title": "Professionelle Massageliege"
+      },
+      {
+        "_key": "a271f6963b0a3919fff79b4ca2685a58",
+        "description": "Hautverträglich und dezent im Duft. Auf Wunsch neutral und unparfümiert.",
+        "title": "Hochwertige Öle"
+      },
+      {
+        "_key": "5dbdf7079d5d21603ee067bba32807d7",
+        "description": "Für jeden Termin frisch gewaschen. Ihre eigenen Textilien bleiben im Schrank.",
+        "title": "Frische Handtücher & Auflagen"
+      },
+      {
+        "_key": "5370a9708e3eed808f7b58d4b324bdc8",
+        "description": "Leise Musik oder Stille, viel Gespräch oder gar keines – Sie geben den Ton vor.",
+        "title": "Ruhe nach Ihrem Maß"
+      }
+    ],
+    "includedDescription": "Nichts besorgen, nichts umräumen, nichts vorbereiten. Ein freier Platz von etwa zwei mal zwei Metern genügt – der Rest kommt mit mir.",
+    "includedHeading": "Ich bringe alles mit",
+    "occasions": [
+      "Nach langen Arbeitstagen",
+      "Hotelaufenthalt in Wien",
+      "Nach Fernflügen",
+      "Eingeschränkte Mobilität",
+      "Junge Eltern",
+      "Als Geschenk"
+    ],
+    "priceDescription": "Ein Hausbesuch beginnt beim Preis für die kürzere Behandlung; für die längere kommt ein Aufpreis dazu. Was für Sie anfällt, steht hier – und ich bestätige es in meiner Antwort, bevor der Termin fix ist.",
+    "priceHeading": "Klarer Preis. Sie wählen die Dauer.",
+    "priceNote": "Für Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.",
+    "priceTiers": [
+      {
+        "_key": "9501950492f8c313b1347fc659a6f82a",
+        "amount": 120,
+        "duration": "60 Minuten"
+      },
+      {
+        "_key": "b8ba9c0df5d81f2a1ad24c561a1f8be5",
+        "duration": "90 Minuten"
+      }
+    ],
+    "processDescription": "Ohne Aufwand für Sie – vom Klingeln bis zum Abbau.",
+    "processHeading": "So läuft ein Hausbesuch ab",
+    "processSteps": [
+      {
+        "_key": "c5c43170c10ddff5a99fbb081a130349",
+        "description": "Sie nennen mir Adresse, Wunschtermin und ob 60 oder 90 Minuten. Ich bestätige Termin und Preis verbindlich.",
+        "title": "Anfrage & Termin"
+      },
+      {
+        "_key": "06fcfacbf94aaf4d42d2b44e3d1acb06",
+        "description": "Ich komme pünktlich, Sie zeigen mir den Platz. Die Liege steht in wenigen Minuten – leise und ohne Umräumen.",
+        "title": "Ankunft & Aufbau"
+      },
+      {
+        "_key": "85549d764222992b30fbc173ed2cd2fc",
+        "description": "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit dort, wo Sie sie brauchen.",
+        "title": "Die Behandlung"
+      },
+      {
+        "_key": "bc7ce957f2a2af56908be7e929743e18",
+        "description": "Nach der Behandlung baue ich die Liege ab und verabschiede mich. Sie müssen nirgendwohin – Sie bleiben, wo Sie sind, und lassen die Wirkung nachklingen.",
+        "title": "Nachklingen lassen"
+      }
+    ],
+    "socialProofEyebrow": "Auf der Bühne",
+    "socialProofHeading": "Therapeutisch fundiert, geprägt von der Bühne",
+    "socialProofText": "Seit meiner Jugend stehe ich als B-Boy auf der Bühne. Wer so trainiert, lernt früh, wie ein Körper unter Belastung funktioniert – und was er braucht, um sich wieder zu lösen. Diese Erfahrung fließt in jeden Handgriff: präzise, rhythmisch und mit Gefühl für den richtigen Druck zur richtigen Zeit.",
+    "vipHeading": "Hotel, Suite, Backstage",
+    "vipPoints": [
+      "Behandlung im Hotelzimmer, in der Suite oder backstage",
+      "Absolute Diskretion",
+      "Termine auch spätabends und am Wochenende",
+      "Auf Wunsch Abrechnung über Rezeption oder Management"
+    ],
+    "vipText": "Für Gäste in Wiener Hotels, für Künstlerinnen und Künstler auf Tour und für alle, die einen Termin brauchen: Auf Anfrage behandle ich auch im Hotelzimmer, in der Suite oder backstage – auch spät nach der Show."
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "pricing-heilmassage",
+    "_rev": "JVu57E0cf42HGBLOggCigH",
+    "_type": "pricingItem",
+    "_updatedAt": "2026-03-30T18:29:37Z",
+    "popular": false,
+    "price30": 55,
+    "price45": 70,
+    "price60": 85,
+    "serviceName": "Heilmassage",
+    "sortOrder": 1
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "pricing-klassische-massage",
+    "_rev": "JVu57E0cf42HGBLOggCigH",
+    "_type": "pricingItem",
+    "_updatedAt": "2026-03-30T18:29:37Z",
+    "popular": false,
+    "price30": 55,
+    "price45": 70,
+    "price60": 85,
+    "serviceName": "Klassische Massage",
+    "sortOrder": 3
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "pricing-lymphdrainage",
+    "_rev": "JVu57E0cf42HGBLOggCigH",
+    "_type": "pricingItem",
+    "_updatedAt": "2026-03-30T18:29:37Z",
+    "popular": false,
+    "price30": 55,
+    "price45": 70,
+    "price60": 85,
+    "serviceName": "Lymphdrainage",
+    "sortOrder": 2
+  },
+  {
+    "_createdAt": "2026-05-14T09:32:24Z",
+    "_id": "pricingPage",
+    "_rev": "EIi0Y0U1tcoxNM6XAlCp2N",
+    "_system": {
+      "base": {
+        "id": "pricingPage",
+        "rev": "EIi0Y0U1tcoxNM6XAlAFg1"
+      }
+    },
+    "_type": "pricingPage",
+    "_updatedAt": "2026-05-14T20:19:49Z",
+    "blockCardsHeading": "Block-Karten — günstiger ab 5 Behandlungen",
+    "blockCardsText": "Wer regelmäßig kommt, profitiert: Block-Karten gibt es als 5er- oder 10er-Block, wahlweise für 30, 45 oder 60 Minuten. Beim Einlösen entscheiden Sie flexibel, welche Behandlung Sie in Anspruch nehmen möchten.",
+    "ctaHeading": "Bereit für Ihren Termin?",
+    "ctaText": "Buchen Sie direkt online — oder verschenken Sie einen Gutschein an jemanden, dem etwas Gutes gut täte.",
+    "faqs": [
+      {
+        "_key": "faq-1",
+        "answer": "Eine 30-minütige Behandlung kostet €55, 45 Minuten €70, 60 Minuten €85. Block-Karten gibt es ab 5 Behandlungen mit Vorteil — siehe Tabelle weiter oben.",
+        "question": "Was kostet eine Behandlung bei Domenic Hacker?"
+      },
+      {
+        "_key": "faq-2",
+        "answer": "Eine Block-Karte ist ein Vorauskauf mehrerer Behandlungen mit Preisvorteil. Sie wählen Größe (5er oder 10er) und Dauer (30, 45 oder 60 Min) beim Kauf. Beim Einlösen ist die Behandlungsart frei wählbar — Heilmassage oder Sportmassage. Block-Karten sind 3 Jahre gültig.",
+        "question": "Wie funktionieren Block-Karten?"
+      },
+      {
+        "_key": "faq-3",
+        "answer": "Heilmassage wird von einigen Kassen teilweise erstattet — meist mit ärztlicher Überweisung. Konkrete Beträge finden Sie in der Tabelle weiter oben. Sportmassage ist eine Wellness-Leistung und nicht erstattbar.",
+        "question": "Bekomme ich die Behandlung von der Krankenkasse erstattet?"
+      },
+      {
+        "_key": "faq-4",
+        "answer": "Auf Wunsch: Beim Kauf können Sie einen Empfänger-Namen angeben, der dann auf dem PDF-Gutschein erscheint. Ohne Angabe ist der Gutschein neutral und übertragbar.",
+        "question": "Sind Gutscheine personalisiert?"
+      },
+      {
+        "_key": "faq-5",
+        "answer": "Vor Ort entweder bar oder per Bankomatkarte. Gutscheine werden online via Stripe gekauft (Karte, Apple Pay, Google Pay, SEPA-Lastschrift).",
+        "question": "Wie bezahle ich?"
+      },
+      {
+        "_key": "faq-6",
+        "answer": "Ja, auf Wunsch. Bei Online-Gutschein-Käufen wird die Rechnung automatisch per E-Mail gesendet. Vor Ort einfach Bescheid geben.",
+        "question": "Bekomme ich eine Rechnung?"
+      }
+    ],
+    "heroBadge": "Transparente Preise",
+    "heroHeading": "Preise für Heilmassage & klassische Massage",
+    "heroHeadingAccent": "in Wien 1080",
+    "heroText": "Transparente Preise für individuelle Behandlungen in Wien 1080. Egal ob Heilmassage, klassische Massage, Sportmassage oder Block-Karte — Sie wissen vor der ersten Buchung genau, welche Kosten entstehen. Rückerstattung über Ihre Krankenkasse möglich.",
+    "krankenkassen": [
+      {
+        "_key": "kk-oegk",
+        "condition": "Ärztliche Verordnung nötig. Bis 30.06.2027 keine chefärztliche Bewilligung erforderlich.",
+        "fullName": "Österreichische Gesundheitskasse",
+        "name": "ÖGK",
+        "reimbursement": "ca. €10,60 (20 Min Heilmassage) bis ca. €16,90 (45 Min Lymphdrainage)"
+      },
+      {
+        "_key": "kk-bvaeb",
+        "condition": "Ärztliche Verordnung + chefärztliche Bewilligung vor Therapiebeginn.",
+        "fullName": "Versicherungsanstalt öffentlich Bediensteter",
+        "name": "BVAEB",
+        "reimbursement": "ca. €11,20 (20 Min Heilmassage) bis ca. €17,70 (45 Min Lymphdrainage)"
+      },
+      {
+        "_key": "kk-svs",
+        "condition": "Ärztliche Verordnung + chefärztliche Bewilligung. SVS-Gesundheitshunderter zusätzlich möglich.",
+        "fullName": "Sozialversicherung der Selbständigen",
+        "name": "SVS",
+        "reimbursement": "ca. €5,66 (15–20 Min Heilmassage) bis ca. €21,22 (60 Min Lymphdrainage)"
+      },
+      {
+        "_key": "kk-privat",
+        "condition": "Tarif-abhängig — Police prüfen.",
+        "fullName": "Private Zusatzversicherungen",
+        "name": "Privat",
+        "reimbursement": "Bis zu 100 % je nach Tarif"
+      }
+    ],
+    "krankenkassenDisclaimer": "Stand 01.01.2026 — Richtwerte aus den Kassen-Vertragstarifen für Wahltherapie. Tatsächliche Erstattung hängt von Behandlungstyp, Dauer und individuellem Versicherungsstatus ab. Heilmassage wird grundsätzlich nur mit gültiger ärztlicher Verordnung erstattet. Bitte vor Behandlungsbeginn direkt bei Ihrer Kasse erfragen.",
+    "krankenkassenHeading": "Krankenkassen-Rückerstattung",
+    "krankenkassenIntro": "Heilmassage kann mit ärztlicher Verordnung teilweise erstattet werden. Die folgenden Werte sind Richtwerte (Stand 2026) — bitte direkt bei Ihrer Kasse erfragen.",
+    "seoDescription": "Transparente Preise für Heilmassage und Sportmassage in Wien 1080. Block-Karten ab 5 Behandlungen mit bis zu 12 % Vorteil. Krankenkassen-Rückerstattung möglich.",
+    "seoTitle": "Preise — Heilmassage & klassische Massage in Wien 1080",
+    "tableIntro": "Alle Behandlungen werden individuell auf Ihre Bedürfnisse abgestimmt. Die Preise gelten pro Behandlung — Block-Karten sehen Sie weiter unten.",
+    "voucherCtaHeading": "Gutscheine verschenken",
+    "voucherCtaText": "Gutscheine sind in jedem Wert oder als Block-Karte erhältlich. Drei Jahre gültig, sofort als PDF per E-Mail."
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "service-heilmassage",
+    "_rev": "htrMui7M7v6ADvapqLNsdL",
+    "_system": {
+      "base": {
+        "id": "service-heilmassage",
+        "rev": "vJDRc1F66PgHR585XITzSh"
+      }
+    },
+    "_type": "service",
+    "_updatedAt": "2026-04-10T21:31:40Z",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-3d11928f0b22796e8391166012eccb1593e619c5-1400x933-webp",
+        "_type": "reference"
+      }
+    },
+    "price": "Ab €55",
+    "shortDescription": "Gezielte Heilmassage zur Behandlung von Verspannungen und Schmerzen.\nLöst muskuläre Verspannungen und fördert die Durchblutung.\nMit ärztlicher Verordnung.\n          Je nach Krankenkasse ist eine teilweise Rückerstattung möglich.",
+    "slug": {
+      "_type": "slug",
+      "current": "heilmassage"
+    },
+    "sortOrder": 1,
+    "title": "Heilmassage"
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "service-klassische-massage",
+    "_rev": "vJDRc1F66PgHR585XIxKbj",
+    "_system": {
+      "base": {
+        "id": "service-klassische-massage",
+        "rev": "yNXUbyfzB0dwFwOI0FA4u5"
+      }
+    },
+    "_type": "service",
+    "_updatedAt": "2026-04-10T21:48:21Z",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-ee6c2e1e0534805c3ff2fa36c71fdc0ccd722dd1-2000x1333-webp",
+        "_type": "reference"
+      }
+    },
+    "price": "Ab €55",
+    "shortDescription": "Klassische Massage zur Lockerung der Muskulatur und Linderung von Verspannungen. Verbessert die Durchblutung und unterstützt die Entspannung des Nervensystems.",
+    "slug": {
+      "_type": "slug",
+      "current": "klassische-massage"
+    },
+    "sortOrder": 3,
+    "title": "Klassische Massage"
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "service-lymphdrainage",
+    "_rev": "LqA3UzVmLqsggYyJLxT7Gl",
+    "_system": {
+      "base": {
+        "id": "service-lymphdrainage",
+        "rev": "LqA3UzVmLqsggYyJLxQoJ4"
+      }
+    },
+    "_type": "service",
+    "_updatedAt": "2026-05-29T12:08:53Z",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-59f324bb10b9d4f954462fb0d2d4cd378d0dcd47-1400x933-webp",
+        "_type": "reference"
+      }
+    },
+    "price": "Ab €55",
+    "shortDescription": "Manuelle Lymphdrainage zur Entstauung bei Schwellungen und Lymphödemen. Unterstützt den Abtransport von Flüssigkeit und fördert die Regeneration.",
+    "slug": {
+      "_type": "slug",
+      "current": "lymphdrainage"
+    },
+    "sortOrder": 2,
+    "title": "Lymphdrainage"
+  },
+  {
+    "_createdAt": "2026-03-30T18:29:37Z",
+    "_id": "settings",
+    "_rev": "8ufpa7MbeXQEditBtI5YPG",
+    "_system": {
+      "base": {
+        "id": "settings",
+        "rev": "frLiLZwglKbVaPvSwcfvxC"
+      }
+    },
+    "_type": "settings",
+    "_updatedAt": "2026-05-12T20:04:34Z",
+    "address": "Feldgasse 3/20, 1080 Wien",
+    "calendlyUrl": "https://calendly.com/praxis-heilmasseur-domenic",
+    "email": "praxis@heilmasseur-domenic.at",
+    "googleMapsUrl": "https://maps.google.com/?q=Feldgasse+3,+1080+Wien",
+    "heroHeadline": "Weniger Schmerzen.",
+    "heroHeadlineAccent": "Tiefe Entspannung.",
+    "heroSubheading": "Gezielte Heilmassage bei Verspannungen, Stress und Rückenbeschwerden. Ihr Raum für spürbare Entlastung und nachhaltige Entspannung in Wien 1080.",
+    "instagramUrl": "https://www.instagram.com/heilmasseurdomenic",
+    "insuranceText": "Je nach Krankenkasse bekommen Sie einen Teil Ihrer Massagekosten zurück. Sie haben auch die Möglichkeit, einen Teil der Therapiekosten bei einer Zusatzversicherung einzureichen. Privatversicherungen erstatten bis zu 100% der Therapiekosten zurück. Informieren Sie sich jetzt — es lohnt sich!",
+    "phone": "+43 670 189 52 56",
+    "siteDescription": "Diplomierter Heilmasseur in Wien 1080 (Josefstadt). Heilmassage, Lymphdrainage & Klassische Massage. Termine online buchen.",
+    "siteTitle": "Heilmasseur Domenic Hacker | Heilmassage Wien 1080"
+  },
+  {
+    "_createdAt": "2026-05-14T19:49:48Z",
+    "_id": "sportmassagePage",
+    "_rev": "S6tYaS54c3RVAoLXrcD3f1",
+    "_system": {
+      "base": {
+        "id": "sportmassagePage",
+        "rev": "frjgJd22btDYUJlQLBPKY4"
+      }
+    },
+    "_type": "sportmassagePage",
+    "_updatedAt": "2026-09-16T19:36:02Z",
+    "approachBottomText": "Als langjähriger Sportler kenne ich hohe Belastung nicht nur aus der Theorie. Deshalb passe ich Druck und Intensität individuell an – von lockerer Regeneration bis zur gezielten Arbeit an hartnäckigen Verspannungen.",
+    "approachDescription": "Ich arbeite tief, aber kontrolliert – mit besonderem Fokus auf Triggerpunkte, Faszien und stark beanspruchte Muskulatur. Durch intensives Training entstehen oft Spannungsmuster, die Beweglichkeit einschränken oder dauerhaft Spannung halten. Dort setze ich gezielt an.",
+    "approachHeading": "Mein Schwerpunkt",
+    "approachImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-d09a161a764caa0fd610bf49b4ea4b3b138987cc-720x720-webp",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.09977201056848206,
+        "left": 0.08072317395380546,
+        "right": 0,
+        "top": 0
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.9002279894315179,
+        "width": 0.9192768260461945,
+        "x": 0.5403615869769027,
+        "y": 0.45011399471575897
+      }
+    },
+    "approachPoints": [
+      "Triggerpunkt-Arbeit an muskulären Schmerzpunkten",
+      "Faszien-Mobilisation und Gewebelösung",
+      "Lösung chronischer Muskelverspannungen",
+      "Verbesserung der Beweglichkeit ",
+      "Schnellere Regeneration",
+      "Vorbereitung auf Training und Wettkampf"
+    ],
+    "conditions": [
+      "Verspannungen nach Training",
+      "Schnellere Regenaration",
+      "Triggerpunkte",
+      "Muskelermüdung",
+      "Vor Wettkampf",
+      "Nach Wettkampf"
+    ],
+    "costNote": "Sportmassage ist eine private Leistung und wird von gesetzlichen Krankenkassen in der Regel nicht erstattet. Heilmassage kann je nach Verordnung und Krankenkasse teilweise rückerstattet werden.",
+    "ctaHeading": "Bereit für mehr Beweglichkeit und Regeneration?",
+    "ctaText": "Ob Freizeit- oder Leistungssport – die Behandlung richtet sich nach Ihrem Körper und Ihren Zielen.",
+    "effects": [
+      {
+        "_key": "effect-1",
+        "description": "Kurzes Gespräch über Training, Beschwerden und Zielsetzung.",
+        "title": "Belastung verstehen"
+      },
+      {
+        "_key": "effect-2",
+        "description": "Fokus auf die Bereiche, in denen Spannung und Schmerzen entstehen.",
+        "title": "Triggerpunkte gezielt bearbeiten"
+      },
+      {
+        "_key": "effect-3",
+        "description": "Lösen von Verklebungen und Spannungsmustern.",
+        "title": "Faszien und Muskulatur bearbeiten"
+      },
+      {
+        "_key": "effect-4",
+        "description": "Von regenerativ bis tief und intensiv – angepasst an Tagesform und Ziel.",
+        "title": "Individuelle Intensität"
+      },
+      {
+        "_key": "effect-5",
+        "description": "Trockenes und dynamisches Schröpfen ergänzen die Massage bei hartnäckigen Spannungen und verklebtem Gewebe.",
+        "title": "Schröpftechniken gezielt einsetzen"
+      },
+      {
+        "_key": "effect-6",
+        "description": "Wenn die Muskulatur immer wieder zur Ruhe kommt, fällt das Trainingsvolumen leichter.",
+        "title": "Trainingsfähigkeit erhalten"
+      }
+    ],
+    "effectsDescription": "Jede Behandlung wird an Ihre Belastung, Ihre Beschwerden und Ihr Ziel angepasst. Statt eines festen Standardprogramms arbeite ich gezielt an den Bereichen, die Ihre Regeneration, Beweglichkeit oder Leistungsfähigkeit einschränken.",
+    "effectsHeading": "So arbeite ich",
+    "faqs": [
+      {
+        "_key": "faq-1",
+        "answer": "Das hängt von Ihrem Trainingsvolumen ab. Hobby-Sportler:innen mit 3–4 Trainings/Woche profitieren oft von einer Sportmassage alle 2–3 Wochen. Bei intensiven Trainingsphasen kann häufiger sinnvoll sein, in Ruhephasen seltener. Wir können das gerne in der ersten Behandlung gemeinsam einschätzen.",
+        "question": "Wie oft sollte ich Sportmassage in Anspruch nehmen?"
+      },
+      {
+        "_key": "faq-2",
+        "answer": "Beides hat einen Platz: Pre-Wettkampf 2–3 Tage vorher zur Lockerung, ohne dass tief gearbeitet wird. Post-Wettkampf am besten 24–48 Stunden danach, dann ist das Gewebe schon wieder belastbarer für tiefere Techniken.",
+        "question": "Vor oder nach dem Wettkampf — was bringt mehr?"
+      },
+      {
+        "_key": "faq-3",
+        "answer": "Heilmassage wird häufig bei Beschwerden mit medizinischem Hintergrund eingesetzt und ist je nach Kasse teilweise erstattbar. Sportmassage ist eine Wellness- und Trainings-Leistung, fokussiert auf Regeneration und Leistungserhaltung — nicht erstattbar, aber je nach Bedarf der passendere Ansatz.",
+        "question": "Was unterscheidet Sportmassage von Heilmassage?"
+      },
+      {
+        "_key": "faq-4",
+        "answer": "Erfahrungsgemäß empfinden viele Menschen die Behandlung 24–48 Stunden nach intensiver Belastung als wohltuend. Wissenschaftlich ist die Evidenz für direkte Muskelkater-Reduktion gemischt — was bleibt, ist subjektives Wohlbefinden, verbesserte Beweglichkeit und ein Gefühl von Erholung.",
+        "question": "Hilft Sportmassage gegen Muskelkater?"
+      },
+      {
+        "_key": "faq-5",
+        "answer": "Definitiv. Sportmassage ist primär präventiv und regenerativ gedacht, nicht therapeutisch. Wer regelmäßig sportlich aktiv ist, profitiert davon, ohne Beschwerden zu haben.",
+        "question": "Auch ohne Sportverletzung?"
+      },
+      {
+        "_key": "faq-6",
+        "answer": "Nein. Tiefer Druck heißt nicht automatisch Schmerz — der richtige Druck am richtigen Ort fühlt sich oft 'gut intensiv' an, nicht quälend. Wir sprechen während der Behandlung über das richtige Maß für Sie.",
+        "question": "Ist Sportmassage immer schmerzhaft?"
+      }
+    ],
+    "forWhomDescription": "Für alle, die ihren Körper regelmäßig fordern. Ob Krafttraining, Laufen oder Vereinssport – wenn Verspannungen, Muskelermüdung oder eingeschränkte Beweglichkeit das Training beeinträchtigen, kann Sportmassage gezielt unterstützen.",
+    "forWhomHeading": "Für wen ist das?",
+    "heroBadge": "Wien 1080 · Josefstadt",
+    "heroHeading": "Sportmassage in 1080 Wien",
+    "heroImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-a53ca6ec8f4a58689be4de488d15470db28becb7-8256x5504-jpg",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 1,
+        "width": 1,
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "heroSubtitle": "Für aktive Menschen mit Verspannungen, Bewegungseinschränkungen und hoher Belastung.",
+    "locationDescription": "Die Praxis liegt im 8. Bezirk, gut erreichbar mit U2 (Rathaus) und mehreren Straßenbahnlinien. Für viele Hobby-Sportler:innen aus Wien Mitte-West eine kurze Anfahrt.",
+    "locationHeading": "Sportmassage Wien 1080 — Josefstadt",
+    "transportInfo": [
+      {
+        "_key": "transport-1",
+        "label": "U-Bahn",
+        "value": "U2 — Station Rathaus"
+      },
+      {
+        "_key": "transport-2",
+        "label": "Straßenbahn",
+        "value": "Linien 5, 33, 43, 44"
+      },
+      {
+        "_key": "transport-3",
+        "label": "Auto",
+        "value": "Kurzparkzonen rund um die Praxis"
+      }
+    ],
+    "whatIsHeading": "Warum Sportmassage?",
+    "whatIsParagraphs": [
+      "Wer regelmäßig trainiert, kennt das: Die Muskulatur wird fest, Bewegungen fühlen sich eingeschränkt an und kleine Verspannungen verschwinden nicht mehr von selbst. Genau hier setzt Sportmassage an. Sie unterstützt die Regeneration, verbessert die Beweglichkeit und hilft dabei, den Körper trotz hoher Belastung leistungsfähig zu halten.",
+      "Sportmassage ist nicht nur für Wettkampfsportler gedacht. Sie eignet sich für alle, die regelmäßig trainieren und ihren Körper zwischen Training, Arbeit und Alltag besser unterstützen möchten.",
+      "Ob nach intensiven Einheiten, bei hartnäckigen Verspannungen oder zur Vorbereitung auf die nächste Belastung – gemeinsam arbeiten wir daran, Beweglichkeit zu verbessern, Regeneration zu fördern und den Körper langfristig belastbarer zu machen."
+    ]
+  }
+]

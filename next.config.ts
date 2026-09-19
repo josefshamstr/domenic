@@ -13,12 +13,6 @@ const nextConfig: NextConfig = {
   },
   images: {
     qualities: [75, 85],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-    ],
   },
   async headers() {
     if (isProductionDeploy) return [];

@@ -1,5 +1,6 @@
 import type Stripe from "stripe";
 import type { SanityVoucherProductType } from "@/sanity/lib/queries";
+import { BLOCK_PRICES } from "@/lib/blockOptions";
 
 export type ProductValue =
   | { kind: "block"; sessionsTotal: number; durationMin: number }
@@ -46,12 +47,12 @@ const PRODUCT_ID_ENV: Partial<Record<SanityVoucherProductType, string>> = {
  * voucher.customAmount in the consuming code.
  */
 export const PRODUCT_PRICES_EUR: Record<SanityVoucherProductType, number | null> = {
-  block_5_30: 259,
-  block_5_45: 329,
-  block_5_60: 399,
-  block_10_30: 489,
-  block_10_45: 619,
-  block_10_60: 749,
+  block_5_30: BLOCK_PRICES.block_5_30.price,
+  block_5_45: BLOCK_PRICES.block_5_45.price,
+  block_5_60: BLOCK_PRICES.block_5_60.price,
+  block_10_30: BLOCK_PRICES.block_10_30.price,
+  block_10_45: BLOCK_PRICES.block_10_45.price,
+  block_10_60: BLOCK_PRICES.block_10_60.price,
   voucher_custom: null,
 };
 
