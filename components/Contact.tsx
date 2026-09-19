@@ -56,7 +56,7 @@ export function Contact() {
                 icon: Phone,
                 label: "Telefon",
                 value: "+43 670 189 52 56",
-                href: "tel:+4367018952556",
+                href: "tel:+436701895256",
                 color: "#0d4f4f",
               },
               {

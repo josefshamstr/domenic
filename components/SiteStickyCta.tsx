@@ -42,7 +42,6 @@ export function SiteStickyCta({
         key={pathname}
         href={`mailto:${email}?subject=${encodeURIComponent("Anfrage Hausbesuch")}`}
         telHref={telHref}
-        label="Hausbesuch anfragen"
         icon="mail"
         watchIds={WATCH_IDS}
       />
@@ -54,7 +53,6 @@ export function SiteStickyCta({
       key={pathname}
       href="/buchen"
       telHref={telHref}
-      label="Termin buchen"
       icon="calendar"
       watchIds={WATCH_IDS}
     />

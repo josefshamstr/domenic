@@ -6,10 +6,9 @@ import { Analytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/JsonLd";
 import Script from "next/script";
 import CookieConsentComponent from "@/components/CookieConsent";
-import { SanityLive } from "@/sanity/lib/live";
+import { EditKit } from "@/editkit/edit-kit";
 import { Navbar } from "@/components/Navbar";
 import { SiteStickyCta } from "@/components/SiteStickyCta";
-import { getSettings } from "@/sanity/lib/queries";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,7 +39,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const initialPathname = (await headers()).get("x-pathname") ?? "/";
-  const settings = await getSettings();
   return (
     <html lang="de" className={`${geistSans.variable} h-full antialiased`}>
       <head>
@@ -99,10 +97,11 @@ export default async function RootLayout({
         <Navbar initialPathname={initialPathname} />
         {children}
         <SiteStickyCta
-          phone={settings?.phone ?? "+43 670 189 52 56"}
-          email={settings?.email ?? "praxis@heilmasseur-domenic.at"}
+          phone="+43 670 189 52 56"
+          email="praxis@heilmasseur-domenic.at"
         />
-        <SanityLive />
+        {/* Pixelheld-Editor: nur in der Portal-Sandbox aktiv, in Produktion inert */}
+        <EditKit />
         <Analytics />
         <CookieConsentComponent />
       </body>

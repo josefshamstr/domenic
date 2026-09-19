@@ -1,5 +1,3 @@
-import type { SanityBlockPricing } from "@/sanity/lib/queries";
-
 export type Duration = 30 | 45 | 60;
 export type Size = 5 | 10;
 
@@ -19,12 +17,9 @@ export type BlockOption = {
   productKey: BlockProductKey;
 };
 
-// Structural identity of each block tier — size + duration → productKey.
-// Prices live in Sanity (singleton "blockPricing") and are merged in at
-// runtime via getBlockOption(size, duration, pricing). The BLOCK_PRICES_FALLBACK
-// below kicks in only when the Sanity document doesn't exist or a specific
-// field is missing — useful for first deploy + during local dev without
-// the CMS populated.
+// Struktur jeder Blockkarte: size + duration → productKey.
+// Die Preise stehen in BLOCK_PRICES unten und sind die einzige Quelle für
+// Gutschein-Seite, Preisseite UND Stripe-Checkout. Preisänderung = diese Tabelle ändern.
 const BLOCK_STRUCTURE: readonly {
   size: Size;
   duration: Duration;
@@ -38,7 +33,7 @@ const BLOCK_STRUCTURE: readonly {
   { size: 10, duration: 60, productKey: "block_10_60" },
 ] as const;
 
-export const BLOCK_PRICES_FALLBACK: Record<
+export const BLOCK_PRICES: Record<
   BlockProductKey,
   { price: number; fullPrice: number }
 > = {
@@ -53,25 +48,9 @@ export const BLOCK_PRICES_FALLBACK: Record<
 export const DURATIONS: readonly Duration[] = [30, 45, 60] as const;
 export const SIZES: readonly Size[] = [5, 10] as const;
 
-function priceFromPricing(
-  productKey: BlockProductKey,
-  pricing: SanityBlockPricing | null | undefined,
-): { price: number; fullPrice: number } {
-  const cmsPrice = pricing?.[`${productKey}_price` as keyof SanityBlockPricing];
-  const cmsFullPrice =
-    pricing?.[`${productKey}_fullPrice` as keyof SanityBlockPricing];
-  const fallback = BLOCK_PRICES_FALLBACK[productKey];
-  return {
-    price: typeof cmsPrice === "number" ? cmsPrice : fallback.price,
-    fullPrice:
-      typeof cmsFullPrice === "number" ? cmsFullPrice : fallback.fullPrice,
-  };
-}
-
 export function getBlockOption(
   size: Size,
   duration: Duration,
-  pricing?: SanityBlockPricing | null,
 ): BlockOption {
   const found = BLOCK_STRUCTURE.find(
     (o) => o.size === size && o.duration === duration,
@@ -79,17 +58,14 @@ export function getBlockOption(
   if (!found) {
     throw new Error(`No block option for size=${size}, duration=${duration}`);
   }
-  const { price, fullPrice } = priceFromPricing(found.productKey, pricing);
+  const { price, fullPrice } = BLOCK_PRICES[found.productKey];
   return { size, duration, productKey: found.productKey, price, fullPrice };
 }
 
-export function getBlockPriceCents(
-  productKey: BlockProductKey,
-  pricing: SanityBlockPricing | null | undefined,
-): number {
+export function getBlockPriceCents(productKey: BlockProductKey): number {
   // Math.round schützt gegen Float-Artefakte (z.B. 259.45 * 100 = 25945.0000000000004),
   // die Stripes unit_amount-Integer-Validation auslösen würden.
-  return Math.round(priceFromPricing(productKey, pricing).price * 100);
+  return Math.round(BLOCK_PRICES[productKey].price * 100);
 }
 
 export function discountPercent(price: number, fullPrice: number): number {

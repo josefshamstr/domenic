@@ -12,7 +12,7 @@ export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
-  title: "Heilmasseur Domenic — CMS",
+  title: "Heilmasseur Domenic — Gutscheine",
   plugins: [
     structureTool({ structure: deskStructure }),
     visionTool(),

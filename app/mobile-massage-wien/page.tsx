@@ -5,12 +5,23 @@ import { Footer } from "@/components/Footer";
 import { FaqJsonLd } from "@/components/FaqJsonLd";
 import { JsonLdService } from "@/components/JsonLdService";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { fetchReviewSummary } from "@/components/GoogleReviewsBadge";
 import {
   GOOGLE_MAPS_URL,
-  formatPrice,
-  getMobileMassageContent,
-  splitHeading,
+  IMAGES,
+  MAIL_HREF,
+  TEL_HREF,
 } from "./content";
+
+const MM_FAQS = [
+  { q: "Was kostet eine mobile Massage in Wien?", a: "Ein Hausbesuch startet bei 120 € für 60 Minuten. Für 90 Minuten kommt ein Aufpreis dazu – den nenne ich Ihnen bei der Anfrage. Die Anfahrt innerhalb Wiens ist enthalten; bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne." },
+  { q: "Zahlt die Krankenkasse eine mobile Massage?", a: "Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite." },
+  { q: "Was muss ich für den Termin zuhause vorbereiten?", a: "Nichts. Ich bringe Massageliege, Öle und frische Handtücher mit. Sie brauchen nur einen freien Platz von etwa zwei mal zwei Metern – Wohnzimmer, Schlafzimmer oder Büro funktionieren alle gleich gut." },
+  { q: "Wie viel Platz braucht die Massageliege?", a: "Die Liege ist rund 190 cm lang und 70 cm breit. Damit ich rundherum arbeiten kann, sind etwa zwei mal zwei Meter ideal. Wenn Sie unsicher sind, schicken Sie mir vorab ein Foto des Raums – dann klären wir das in einer Minute." },
+  { q: "Kommen Sie auch ins Hotel?", a: "Ja. Hotelzimmer und Suiten sind auf Anfrage möglich, ebenso Termine außerhalb der üblichen Zeiten. Bitte geben Sie bei der Anfrage Hotel, Zimmernummer und Ihren Wunschtermin an, damit ich mich an der Rezeption anmelden kann." },
+  { q: "Welche Massage bekomme ich beim Hausbesuch?", a: "Dieselbe Arbeit wie in der Praxis: klassische Massage, Heilmassage-Techniken und gezielte Behandlung von Verspannungen – abgestimmt auf das, was Ihr Körper an diesem Tag braucht. Nur Anwendungen mit Geräten sind zuhause nicht möglich." },
+  { q: "Wie kurzfristig kann ich einen Hausbesuch buchen?", a: "In den Innenbezirken geht oft noch etwas am selben oder am nächsten Tag. Für Wunschtermine am Abend oder am Wochenende melden Sie sich am besten ein paar Tage vorher." },
+];
 
 const CANONICAL = "https://heilmasseur-domenic.at/mobile-massage-wien";
 
@@ -29,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://heilmasseur-domenic.at/images/behandlungsraum-liege.webp",
+        url: "https://heilmasseur-domenic.at/images/behandlungsraum.webp",
         width: 2000,
         height: 2134,
         alt: "Massageliege von Heilmasseur Domenic Hacker",
@@ -73,25 +84,13 @@ function Hairline({ className = "" }: { className?: string }) {
 }
 
 export default async function MobileMassageWien() {
-  const c = await getMobileMassageContent();
-
-  const [headingLead, headingRest] = splitHeading(c.heroHeading);
-  // Das letzte Wort der Überschrift wird zum Akzentwort – Text bleibt wörtlich.
-  const restWords = (headingRest ?? "").split(" ");
-  const accentWord = restWords.pop() ?? "";
-  const restBefore = restWords.join(" ");
-
-  // „ab“-Preis = günstigster hinterlegter Tarif; null, solange keiner feststeht.
-  const priceFrom = c.priceFrom !== null ? formatPrice(c.priceFrom) : null;
-  const avatars = c.reviews.avatars.slice(0, 3);
+  const reviews = await fetchReviewSummary();
+  const avatars = reviews.avatars.slice(0, 3);
 
   return (
     <>
-      <JsonLdService
-        variant="mobilemassage"
-        priceRange={priceFrom ? `ab €${priceFrom}` : undefined}
-      />
-      <FaqJsonLd faqs={c.faqs.map((f) => ({ q: f.question, a: f.answer }))} />
+      <JsonLdService variant="mobilemassage" priceRange="ab €120" />
+      <FaqJsonLd faqs={MM_FAQS} />
       <div
         className={`bg-[#07302f] ${T_BODY} selection:bg-[#f2a93b]/40 selection:text-[#f4fbf9]`}
       >
@@ -100,7 +99,7 @@ export default async function MobileMassageWien() {
           <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
             <div className="absolute inset-0 -z-10">
               <Image
-                src={c.treatmentImageSrc}
+                src={IMAGES.treatment}
                 alt=""
                 fill
                 priority
@@ -139,8 +138,8 @@ export default async function MobileMassageWien() {
                   >
                     <span className="relative block h-14 w-14 shrink-0 overflow-hidden rounded-full ring-1 ring-white/25">
                       <Image
-                        src={c.heroImageSrc}
-                        alt={`${c.name}, diplomierter Heilmasseur in Wien`}
+                        src={IMAGES.portrait}
+                        alt="Domenic Hacker, diplomierter Heilmasseur in Wien"
                         fill
                         priority
                         quality={85}
@@ -149,16 +148,12 @@ export default async function MobileMassageWien() {
                       />
                     </span>
                     <span>
-                      <span
-                        className={`block text-[15px] font-semibold ${T_PRIMARY}`}
-                      >
-                        {c.name}
-                      </span>
-                      <span
-                        className={`block text-[13px] leading-snug ${T_MUTED}`}
-                      >
-                        {c.identityLine}
-                      </span>
+                        <span data-edit-id="mm-hero-name-mobile" className={`block text-[15px] font-semibold ${T_PRIMARY}`}>
+                          Domenic Hacker
+                        </span>
+                        <span data-edit-id="mm-hero-identity-mobile" className={`block text-[13px] leading-snug ${T_MUTED}`}>
+                          Diplomierter Heilmasseur · B-Boy · Wien
+                        </span>
                     </span>
                   </div>
 
@@ -166,12 +161,12 @@ export default async function MobileMassageWien() {
                     className={`flex flex-col gap-y-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 ${EYEBROW} ${RISE}`}
                     style={rise(0)}
                   >
-                    <span>{c.heroBadge}</span>
+                    <span data-edit-id="mm-hero-badge">Hausbesuch in ganz Wien</span>
                     <span
                       aria-hidden
                       className="hidden h-px w-5 bg-[#f2a93b]/60 sm:block"
                     />
-                    <span>{c.heroServiceLine}</span>
+                    <span data-edit-id="mm-hero-service-line">Hotel & VIP-Service auf Anfrage</span>
                   </p>
 
                   {/* Headline und Vorspann laufen bewusst ohne mm-rise: Der
@@ -181,19 +176,18 @@ export default async function MobileMassageWien() {
                   <h1
                     className={`${DISPLAY} mt-5 text-[clamp(2.3rem,5.1vw,4.15rem)] leading-[1.04] sm:mt-6 ${T_PRIMARY}`}
                   >
-                    <span className="block">{headingLead}</span>
-                    {headingRest && (
-                      <span className="block text-balance">
-                        {restBefore}{" "}
-                        <span className="text-[#f2a93b]">{accentWord}</span>
-                      </span>
-                    )}
+                    <span data-edit-id="mm-hero-heading-lead" className="block">Mobile Massage –</span>
+                    <span className="block text-balance">
+                      <span data-edit-id="mm-hero-heading-rest">nachhaltige Entspannung bei Ihnen </span>
+                      <span data-edit-id="mm-hero-heading-accent" className="text-[#f2a93b]">zuhause</span>
+                    </span>
                   </h1>
 
                   <p
+                    data-edit-id="mm-hero-subtitle"
                     className={`mt-6 max-w-xl text-[17px] leading-[1.6] ${T_BODY} sm:mt-7 sm:text-lg sm:leading-[1.65]`}
                   >
-                    {c.heroSubtitle}
+                    Ich komme zu Ihnen – mit Liege, Ölen und Handtüchern. Sie kümmern sich um nichts außer Ihrer Entspannung. Therapeutische Massage auf Praxisniveau, in Ihren eigenen vier Wänden oder im Hotel.
                   </p>
 
                   {/* Preis-Lockup */}
@@ -201,22 +195,20 @@ export default async function MobileMassageWien() {
                     className={`mt-8 flex flex-wrap items-end gap-x-6 gap-y-2 sm:mt-9 ${RISE}`}
                     style={rise(240)}
                   >
-                    {priceFrom && (
-                      <span
+                    <span
                         className={`${NUM} text-[3.1rem] leading-[0.85] text-[#f2a93b] sm:text-[3.7rem]`}
                       >
-                        <span className="mr-2 align-top text-[1.3rem] font-semibold sm:text-[1.5rem]">
+                        <span data-edit-id="mm-hero-price-prefix" className="mr-2 align-top text-[1.3rem] font-semibold sm:text-[1.5rem]">
                           ab
                         </span>
-                        {priceFrom}
+                        <span data-edit-id="mm-hero-price">120</span>
                         <span className="ml-1.5 align-top text-[2rem]">€</span>
                       </span>
-                    )}
                     <span className="pb-0.5">
                       <span
                         className={`block text-[15px] font-semibold ${T_PRIMARY}`}
                       >
-                        für {c.durationSummary}
+                        <span data-edit-id="mm-hero-duration">für 60 oder 90 Minuten</span>
                       </span>
                       <span className={`block text-[14px] ${T_MUTED}`}>
                         Anfahrt innerhalb Wiens inklusive
@@ -230,13 +222,13 @@ export default async function MobileMassageWien() {
                     className={`mt-8 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center ${RISE}`}
                     style={rise(320)}
                   >
-                    <a href={c.mailHref} className={BTN_GOLD}>
+                    <a href={MAIL_HREF} className={BTN_GOLD}>
                       <Mail size={17} strokeWidth={2.25} aria-hidden={true} />
-                      {c.ctaPrimaryLabel}
+                      <span data-edit-id="mm-hero-cta">Hausbesuch anfragen</span>
                     </a>
-                    <a href={c.telHref} className={BTN_GHOST}>
+                    <a href={TEL_HREF} className={BTN_GHOST}>
                       <Phone size={16} strokeWidth={2.25} aria-hidden={true} />
-                      {c.phone}
+                      +43 670 189 52 56
                     </a>
                   </div>
 
@@ -284,9 +276,9 @@ export default async function MobileMassageWien() {
                       <span
                         className={`font-semibold tabular-nums ${T_PRIMARY}`}
                       >
-                        {c.reviews.rating.toFixed(1)}
+                        {reviews.rating.toFixed(1)}
                       </span>{" "}
-                      · {c.reviews.count} Google-Bewertungen
+                      · {reviews.count} Google-Bewertungen
                     </span>
                     <ArrowUpRight
                       size={14}
@@ -307,8 +299,8 @@ export default async function MobileMassageWien() {
                       className={`relative aspect-[3/4] overflow-hidden ${IMG_RADIUS}`}
                     >
                       <Image
-                        src={c.heroImageSrc}
-                        alt={`${c.name}, diplomierter Heilmasseur in Wien`}
+                        src={IMAGES.portrait}
+                        alt="Domenic Hacker, diplomierter Heilmasseur in Wien"
                         fill
                         // Kein priority: Die Figure ist unter lg ausgeblendet,
                         // wurde aber trotzdem eager geladen (~33 KB umsonst).
@@ -323,10 +315,10 @@ export default async function MobileMassageWien() {
                     <span
                       className={`block text-[15px] font-semibold ${T_PRIMARY}`}
                     >
-                      {c.name}
+                      Domenic Hacker
                     </span>
                     <span className={`block text-[13px] ${T_MUTED}`}>
-                      {c.identityLine}
+                      Diplomierter Heilmasseur · B-Boy · Wien
                     </span>
                   </figcaption>
                 </figure>
@@ -334,7 +326,7 @@ export default async function MobileMassageWien() {
             </div>
           </section>
 
-          {/* ── PREIS & AUSSTATTUNG ────────────────────────────────── */}
+          {/* ── PREIS & AUSSTATTUNG ────────────────────────────── */}
           <section className="border-t border-white/10 bg-[#0a3d3d] py-20 sm:py-28">
             <div className={CONTAINER}>
               <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
@@ -348,7 +340,7 @@ export default async function MobileMassageWien() {
                       className={`relative aspect-[4/5] overflow-hidden ${IMG_RADIUS}`}
                     >
                       <Image
-                        src={c.roomImageSrc}
+                        src={IMAGES.room}
                         alt="Der Behandlungsraum von Domenic Hacker in der Josefstadt"
                         fill
                         quality={75}
@@ -364,46 +356,41 @@ export default async function MobileMassageWien() {
                   <figcaption
                     className={`mt-6 max-w-md text-sm leading-relaxed ${T_MUTED}`}
                   >
-                    {c.roomCaption}
+                    Mein Behandlungsraum in der Josefstadt. Zum Hausbesuch kommt eine mobile Liege mit – in wenigen Minuten aufgebaut.
                   </figcaption>
                 </figure>
 
                 <div>
                   <p className={EYEBROW}>Der Preis</p>
-                  <h2 className={`${H2} mt-4`}>{c.priceHeading}</h2>
+                  <h2 className={`${H2} mt-4`}>Klarer Preis. Sie wählen die Dauer.</h2>
                   <p
                     className={`mt-5 max-w-xl text-[17px] leading-[1.65] ${T_BODY}`}
                   >
-                    {c.priceDescription}
+                    Ein Hausbesuch beginnt beim Preis für die kürzere Behandlung; für die längere kommt ein Aufpreis dazu. Was für Sie anfällt, steht hier – und ich bestätige es in meiner Antwort, bevor der Termin fix ist.
                   </p>
 
                   <dl className="mt-8 border-y border-white/10">
-                    {c.priceTiers.map((tier, i) => (
-                      <div
-                        key={tier.duration}
-                        className={`flex items-baseline justify-between gap-4 py-4 ${
-                          i > 0 ? "border-t border-white/10" : ""
-                        }`}
-                      >
-                        <dt className={`text-[17px] font-semibold ${T_PRIMARY}`}>
-                          {tier.duration}
-                        </dt>
-                        <dd>
-                          {typeof tier.amount === "number" ? (
-                            <span
-                              className={`${NUM} text-[1.9rem] leading-none text-[#f2a93b]`}
-                            >
-                              {formatPrice(tier.amount)}
-                              <span className="ml-1 align-top text-base">€</span>
-                            </span>
-                          ) : (
-                            <span className={`text-[15px] ${T_MUTED}`}>
-                              auf Anfrage
-                            </span>
-                          )}
-                        </dd>
-                      </div>
-                    ))}
+                    <div className="flex items-baseline justify-between gap-4 py-4">
+                      <dt data-edit-id="mm-price-60-label" className={`text-[17px] font-semibold ${T_PRIMARY}`}>
+                        60 Minuten
+                      </dt>
+                      <dd>
+                        <span className={`${NUM} text-[1.9rem] leading-none text-[#f2a93b]`}>
+                          <span data-edit-id="mm-price-60-amount">120</span>
+                          <span className="ml-1 align-top text-base">€</span>
+                        </span>
+                      </dd>
+                    </div>
+                    <div className="flex items-baseline justify-between gap-4 py-4 border-t border-white/10">
+                      <dt data-edit-id="mm-price-90-label" className={`text-[17px] font-semibold ${T_PRIMARY}`}>
+                        90 Minuten
+                      </dt>
+                      <dd>
+                        <span data-edit-id="mm-price-90-amount" className={`text-[15px] ${T_MUTED}`}>
+                          auf Anfrage
+                        </span>
+                      </dd>
+                    </div>
                   </dl>
                   <p className={`mt-3 text-sm ${T_MUTED}`}>
                     Anfahrt innerhalb Wiens inklusive
@@ -411,30 +398,61 @@ export default async function MobileMassageWien() {
 
                   <h3 className={`mt-10 ${EYEBROW}`}>Im Preis enthalten</h3>
                   <ul className="mt-2 divide-y divide-white/10">
-                    {[...c.included, c.includedExtra].map((item, i, arr) => {
-                      const isLast = i === arr.length - 1;
-                      return (
-                        <li
-                          key={item.title}
-                          className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5"
-                        >
+                        <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
                           <Hairline className="mt-3" />
                           <div>
-                            <p
-                              className={`text-[17px] font-semibold ${T_PRIMARY}`}
-                            >
-                              {item.title}
+                            <p data-edit-id="mm-incl-1-title" className={`text-[17px] font-semibold ${T_PRIMARY}`}>
+                              Professionelle Massageliege
                             </p>
-                            <p
-                              className={`mt-1 max-w-prose text-[15px] leading-relaxed ${T_MUTED}`}
-                            >
-                              {item.description}
-                              {isLast && <> {c.priceNote}</>}
+                            <p data-edit-id="mm-incl-1-text" className={`mt-1 max-w-prose text-[15px] leading-relaxed ${T_MUTED}`}>
+                              Stabil, gepolstert, mit Nackenstütze – klappbar, aber auf Praxisniveau.
                             </p>
                           </div>
                         </li>
-                      );
-                    })}
+                        <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
+                          <Hairline className="mt-3" />
+                          <div>
+                            <p data-edit-id="mm-incl-2-title" className={`text-[17px] font-semibold ${T_PRIMARY}`}>
+                              Hochwertige Öle
+                            </p>
+                            <p data-edit-id="mm-incl-2-text" className={`mt-1 max-w-prose text-[15px] leading-relaxed ${T_MUTED}`}>
+                              Hautverträglich und dezent im Duft. Auf Wunsch neutral und unparfümiert.
+                            </p>
+                          </div>
+                        </li>
+                        <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
+                          <Hairline className="mt-3" />
+                          <div>
+                            <p data-edit-id="mm-incl-3-title" className={`text-[17px] font-semibold ${T_PRIMARY}`}>
+                              Frische Handtücher & Auflagen
+                            </p>
+                            <p data-edit-id="mm-incl-3-text" className={`mt-1 max-w-prose text-[15px] leading-relaxed ${T_MUTED}`}>
+                              Für jeden Termin frisch gewaschen. Ihre eigenen Textilien bleiben im Schrank.
+                            </p>
+                          </div>
+                        </li>
+                        <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
+                          <Hairline className="mt-3" />
+                          <div>
+                            <p data-edit-id="mm-incl-4-title" className={`text-[17px] font-semibold ${T_PRIMARY}`}>
+                              Ruhe nach Ihrem Maß
+                            </p>
+                            <p data-edit-id="mm-incl-4-text" className={`mt-1 max-w-prose text-[15px] leading-relaxed ${T_MUTED}`}>
+                              Leise Musik oder Stille, viel Gespräch oder gar keines – Sie geben den Ton vor.
+                            </p>
+                          </div>
+                        </li>
+                        <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5">
+                          <Hairline className="mt-3" />
+                          <div>
+                            <p data-edit-id="mm-incl-5-title" className={`text-[17px] font-semibold ${T_PRIMARY}`}>
+                              Anfahrt, Auf- und Abbau
+                            </p>
+                            <p data-edit-id="mm-incl-5-text" className={`mt-1 max-w-prose text-[15px] leading-relaxed ${T_MUTED}`}>
+                              Innerhalb Wiens im Preis enthalten. Für Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen. Den nenne ich Ihnen immer vorab, bevor der Termin fix ist.
+                            </p>
+                          </div>
+                        </li>
                   </ul>
                 </div>
               </div>
@@ -452,8 +470,8 @@ export default async function MobileMassageWien() {
                   frei – Gesicht und Text überlagern sich nicht. Die
                   Sponsorentafeln am rechten Bildrand fallen dabei weg. */}
               <Image
-                src={c.stageImageSrc}
-                alt={c.stageCaption}
+                src={IMAGES.stage}
+                alt="Domenic Hacker als B-Boy auf der Bühne."
                 fill
                 quality={75}
                 sizes="100vw"
@@ -480,13 +498,13 @@ export default async function MobileMassageWien() {
                 <p
                   className={`${DISPLAY} max-w-xl text-balance text-[clamp(2.3rem,4.6vw,4rem)] leading-[1.02] ${T_PRIMARY} lg:max-w-[42%]`}
                 >
-                  {c.pullQuote.lead}{" "}
-                  <span className="text-[#f2a93b]">{c.pullQuote.accent}</span>
+                  <span data-edit-id="mm-quote-lead">Ihre einzige Aufgabe:</span>{" "}
+                  <span data-edit-id="mm-quote-accent" className="text-[#f2a93b]">liegen bleiben.</span>
                 </p>
                 <p
                   className={`mt-6 max-w-xl text-xs ${T_MUTED} lg:max-w-[42%]`}
                 >
-                  {c.stageCaption}
+                  Domenic Hacker als B-Boy auf der Bühne.
                 </p>
               </div>
             </div>
@@ -495,12 +513,12 @@ export default async function MobileMassageWien() {
             <div className={`${CONTAINER} py-16 sm:py-20`}>
               <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
                 <h2 className={`${H2} lg:sticky lg:top-28 lg:self-start`}>
-                  {c.stageHeading}
+                  Therapeutisch fundiert, geprägt von der Bühne
                 </h2>
                 <p
                   className={`max-w-2xl border-l border-[#f2a93b]/50 pl-6 text-[17px] leading-[1.65] ${T_BODY} sm:pl-8`}
                 >
-                  {c.stageText}
+                  Seit meiner Jugend stehe ich als B-Boy auf der Bühne. Wer so trainiert, lernt früh, wie ein Körper unter Belastung funktioniert – und was er braucht, um sich wieder zu lösen. Diese Erfahrung fließt in jeden Handgriff: präzise, rhythmisch und mit Gefühl für den richtigen Druck zur richtigen Zeit.
                 </p>
               </div>
             </div>
@@ -515,14 +533,14 @@ export default async function MobileMassageWien() {
               <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
                 <div className="lg:sticky lg:top-28 lg:self-start">
                   <p className={EYEBROW}>Ablauf</p>
-                  <h2 className={`${H2} mt-4`}>{c.processHeading}</h2>
+                  <h2 className={`${H2} mt-4`}>So läuft ein Hausbesuch ab</h2>
                   <p
                     className={`mt-5 max-w-md text-[17px] leading-[1.65] ${T_BODY}`}
                   >
-                    {c.processDescription}
+                    Ohne Aufwand für Sie – vom Klingeln bis zum Abbau.
                   </p>
                 </div>
-                <ProcessTimeline steps={c.processSteps} tone="dark" />
+                <ProcessTimeline tone="dark" />
               </div>
             </div>
           </section>
@@ -533,33 +551,44 @@ export default async function MobileMassageWien() {
               <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.95fr] lg:gap-20">
                 <div>
                   <p className={EYEBROW}>Auf Anfrage</p>
-                  <h2 className={`${H2} mt-4`}>{c.vipHeading}</h2>
+                  <h2 className={`${H2} mt-4`}>Hotel, Suite, Backstage</h2>
                   <p
                     className={`mt-5 max-w-xl text-[17px] leading-[1.65] ${T_BODY}`}
                   >
-                    {c.vipText}
+                    Für Gäste in Wiener Hotels, für Künstlerinnen und Künstler auf Tour und für alle, die einen Termin brauchen: Auf Anfrage behandle ich auch im Hotelzimmer, in der Suite oder backstage – auch spät nach der Show.
                   </p>
                   <ul className="mt-8 divide-y divide-white/10 border-y border-white/10">
-                    {c.vipPoints.map((point) => (
-                      <li
-                        key={point}
-                        className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-4"
-                      >
+                      <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-4">
                         <Hairline className="mt-3" />
-                        <span
-                          className={`text-[16px] font-medium leading-snug ${T_PRIMARY}`}
-                        >
-                          {point}
+                        <span data-edit-id="mm-vip-1" className={`text-[16px] font-medium leading-snug ${T_PRIMARY}`}>
+                          Behandlung im Hotelzimmer, in der Suite oder backstage
                         </span>
                       </li>
-                    ))}
+                      <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-4">
+                        <Hairline className="mt-3" />
+                        <span data-edit-id="mm-vip-2" className={`text-[16px] font-medium leading-snug ${T_PRIMARY}`}>
+                          Absolute Diskretion
+                        </span>
+                      </li>
+                      <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-4">
+                        <Hairline className="mt-3" />
+                        <span data-edit-id="mm-vip-3" className={`text-[16px] font-medium leading-snug ${T_PRIMARY}`}>
+                          Termine auch spätabends und am Wochenende
+                        </span>
+                      </li>
+                      <li className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-4">
+                        <Hairline className="mt-3" />
+                        <span data-edit-id="mm-vip-4" className={`text-[16px] font-medium leading-snug ${T_PRIMARY}`}>
+                          Auf Wunsch Abrechnung über Rezeption oder Management
+                        </span>
+                      </li>
                   </ul>
                   <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-                    <a href={c.telHref} className={BTN_GOLD}>
+                    <a href={TEL_HREF} className={BTN_GOLD}>
                       <Phone size={16} strokeWidth={2.25} aria-hidden={true} />
                       Diskret anrufen
                     </a>
-                    <a href={c.mailHref} className={BTN_GHOST}>
+                    <a href={MAIL_HREF} className={BTN_GHOST}>
                       <Mail size={16} strokeWidth={2.25} aria-hidden={true} />
                       Per E-Mail anfragen
                     </a>
@@ -575,7 +604,7 @@ export default async function MobileMassageWien() {
                     className={`relative aspect-[3/2] overflow-hidden ${IMG_RADIUS}`}
                   >
                     <Image
-                      src={c.treatmentWideImageSrc}
+                      src={IMAGES.treatmentWide}
                       alt="Domenic Hacker bei der Behandlung"
                       fill
                       quality={75}
@@ -592,60 +621,59 @@ export default async function MobileMassageWien() {
             </div>
           </section>
 
-          {/* ── FÜR WEN · WO ───────────────────────────────────────── */}
+          {/* ── FÜR WEN · WO ─────────────────────────────────────── */}
           <section className="border-t border-white/10 bg-[#0a3d3d] py-20 sm:py-28">
             <div className={CONTAINER}>
               <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
                 <div>
                   <p className={EYEBROW}>Für wen</p>
                   <h2 className={`${H2} mt-4 lg:min-h-[2lh]`}>
-                    {c.forWhomHeading}
+                    Wann zuhause die bessere Wahl ist
                   </h2>
                   <p
                     className={`mt-5 max-w-lg text-[17px] leading-[1.65] ${T_BODY}`}
                   >
-                    {c.forWhomDescription}
+                    Oft ist der Weg zur Praxis der Grund, warum ein Termin nicht zustande kommt. Wer danach nicht mehr in die U-Bahn steigen muss, entspannt tiefer – und bleibt länger entspannt.
                   </p>
                   <ul className="mt-8 grid grid-cols-1 gap-x-8 sm:grid-cols-2">
-                    {c.occasions.map((label) => (
-                      <li
-                        key={label}
-                        className={`flex items-center gap-3 border-b border-white/10 py-3 text-[16px] font-medium ${T_PRIMARY}`}
-                      >
-                        <span
-                          aria-hidden
-                          className="h-1 w-1 shrink-0 rounded-full bg-[#f2a93b]"
-                        />
-                        {label}
+                      <li className={`flex items-center gap-3 border-b border-white/10 py-3 text-[16px] font-medium ${T_PRIMARY}`}>
+                        <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-[#f2a93b]" />
+                        <span data-edit-id="mm-occ-1">Nach langen Arbeitstagen</span>
                       </li>
-                    ))}
+                      <li className={`flex items-center gap-3 border-b border-white/10 py-3 text-[16px] font-medium ${T_PRIMARY}`}>
+                        <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-[#f2a93b]" />
+                        <span data-edit-id="mm-occ-2">Hotelaufenthalt in Wien</span>
+                      </li>
+                      <li className={`flex items-center gap-3 border-b border-white/10 py-3 text-[16px] font-medium ${T_PRIMARY}`}>
+                        <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-[#f2a93b]" />
+                        <span data-edit-id="mm-occ-3">Nach Fernflügen</span>
+                      </li>
+                      <li className={`flex items-center gap-3 border-b border-white/10 py-3 text-[16px] font-medium ${T_PRIMARY}`}>
+                        <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-[#f2a93b]" />
+                        <span data-edit-id="mm-occ-4">Eingeschränkte Mobilität</span>
+                      </li>
+                      <li className={`flex items-center gap-3 border-b border-white/10 py-3 text-[16px] font-medium ${T_PRIMARY}`}>
+                        <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-[#f2a93b]" />
+                        <span data-edit-id="mm-occ-5">Junge Eltern</span>
+                      </li>
+                      <li className={`flex items-center gap-3 border-b border-white/10 py-3 text-[16px] font-medium ${T_PRIMARY}`}>
+                        <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-[#f2a93b]" />
+                        <span data-edit-id="mm-occ-6">Als Geschenk</span>
+                      </li>
                   </ul>
                 </div>
 
                 <div>
                   <p className={EYEBROW}>Wo</p>
                   <h2 className={`${H2} mt-4 lg:min-h-[2lh]`}>
-                    {c.areaHeading}
+                    In ganz Wien
                   </h2>
                   <p
                     className={`mt-5 max-w-lg text-[17px] leading-[1.65] ${T_BODY}`}
                   >
-                    {c.areaDescription}
+                    Ausgangspunkt ist meine Praxis in der Josefstadt. In den Innenbezirken bin ich oft noch am selben oder nächsten Tag bei Ihnen; alle übrigen Bezirke – von Floridsdorf über Donaustadt bis Liesing – nach Vereinbarung.
                   </p>
-                  {/* Nur wenn in Sanity Bezirke hinterlegt sind – sonst gilt
-                      die Überschrift „In ganz Wien“ ohne Einschränkung. */}
-                  {c.areaDistricts.length > 0 && (
-                    <ul className="mt-8 flex flex-wrap gap-2">
-                      {c.areaDistricts.map((d) => (
-                        <li
-                          key={d}
-                          className={`rounded-full border border-white/15 px-3 py-1 text-[13px] tabular-nums ${T_BODY}`}
-                        >
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+
                   <p
                     className={`mt-8 flex max-w-lg items-start gap-3 text-[15px] leading-relaxed ${T_MUTED}`}
                   >
@@ -656,7 +684,7 @@ export default async function MobileMassageWien() {
                     />
                     <span>
                       Lieber in die Praxis? Meine Praxis liegt in der{" "}
-                      <span className={T_PRIMARY}>{c.practiceAddress}</span>{" "}
+                      <span className={T_PRIMARY}>Feldgasse 3/20, 1080 Wien</span>{" "}
                       (Josefstadt) – dort sind zusätzlich Anwendungen mit
                       Geräten möglich, die zuhause nicht gehen.
                     </span>
@@ -672,20 +700,19 @@ export default async function MobileMassageWien() {
               <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
                 <div className="lg:sticky lg:top-28 lg:self-start">
                   <p className={EYEBROW}>Fragen</p>
-                  <h2 className={`${H2} mt-4`}>{c.faqHeading}</h2>
+                  <h2 className={`${H2} mt-4`}>Häufige Fragen zur mobilen Massage</h2>
                   <p
                     className={`mt-5 max-w-md text-[17px] leading-[1.65] ${T_BODY}`}
                   >
-                    {c.faqIntro}
+                    Antworten auf die Fragen, die mir vor einem Hausbesuch am häufigsten gestellt werden.
                   </p>
                 </div>
                 <div className="divide-y divide-white/10 border-y border-white/10">
-                  {c.faqs.map((faq) => (
-                    <details key={faq._key} className="group">
+                    <details className="group">
                       <summary
                         className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 rounded-md py-5 text-[17px] font-medium ${T_PRIMARY} transition-colors hover:text-[#f2a93b] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS}`}
                       >
-                        <span className="text-balance">{faq.question}</span>
+                        <span data-edit-id="mm-faq-1-q" className="text-balance">Was kostet eine mobile Massage in Wien?</span>
                         <Plus
                           size={18}
                           strokeWidth={1.75}
@@ -693,13 +720,106 @@ export default async function MobileMassageWien() {
                           aria-hidden={true}
                         />
                       </summary>
-                      <p
-                        className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}
-                      >
-                        {faq.answer}
+                      <p data-edit-id="mm-faq-1-a" className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}>
+                        Ein Hausbesuch startet bei 120 € für 60 Minuten. Für 90 Minuten kommt ein Aufpreis dazu – den nenne ich Ihnen bei der Anfrage. Die Anfahrt innerhalb Wiens ist enthalten; bei Adressen außerhalb Wiens kann ein Anfahrtsaufschlag dazukommen, den ich Ihnen vor der Terminbestätigung nenne.
                       </p>
                     </details>
-                  ))}
+                    <details className="group">
+                      <summary
+                        className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 rounded-md py-5 text-[17px] font-medium ${T_PRIMARY} transition-colors hover:text-[#f2a93b] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS}`}
+                      >
+                        <span data-edit-id="mm-faq-2-q" className="text-balance">Zahlt die Krankenkasse eine mobile Massage?</span>
+                        <Plus
+                          size={18}
+                          strokeWidth={1.75}
+                          className="shrink-0 text-[#f2a93b] transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
+                          aria-hidden={true}
+                        />
+                      </summary>
+                      <p data-edit-id="mm-faq-2-a" className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}>
+                        Ein Hausbesuch wird als private Leistung abgerechnet und von den gesetzlichen Kassen nicht erstattet. Wenn Ihnen eine Rückerstattung wichtig ist, ist die Heilmassage mit ärztlicher Verordnung in der Praxis der passendere Weg – Details dazu auf der Preise-Seite.
+                      </p>
+                    </details>
+                    <details className="group">
+                      <summary
+                        className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 rounded-md py-5 text-[17px] font-medium ${T_PRIMARY} transition-colors hover:text-[#f2a93b] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS}`}
+                      >
+                        <span data-edit-id="mm-faq-3-q" className="text-balance">Was muss ich für den Termin zuhause vorbereiten?</span>
+                        <Plus
+                          size={18}
+                          strokeWidth={1.75}
+                          className="shrink-0 text-[#f2a93b] transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
+                          aria-hidden={true}
+                        />
+                      </summary>
+                      <p data-edit-id="mm-faq-3-a" className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}>
+                        Nichts. Ich bringe Massageliege, Öle und frische Handtücher mit. Sie brauchen nur einen freien Platz von etwa zwei mal zwei Metern – Wohnzimmer, Schlafzimmer oder Büro funktionieren alle gleich gut.
+                      </p>
+                    </details>
+                    <details className="group">
+                      <summary
+                        className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 rounded-md py-5 text-[17px] font-medium ${T_PRIMARY} transition-colors hover:text-[#f2a93b] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS}`}
+                      >
+                        <span data-edit-id="mm-faq-4-q" className="text-balance">Wie viel Platz braucht die Massageliege?</span>
+                        <Plus
+                          size={18}
+                          strokeWidth={1.75}
+                          className="shrink-0 text-[#f2a93b] transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
+                          aria-hidden={true}
+                        />
+                      </summary>
+                      <p data-edit-id="mm-faq-4-a" className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}>
+                        Die Liege ist rund 190 cm lang und 70 cm breit. Damit ich rundherum arbeiten kann, sind etwa zwei mal zwei Meter ideal. Wenn Sie unsicher sind, schicken Sie mir vorab ein Foto des Raums – dann klären wir das in einer Minute.
+                      </p>
+                    </details>
+                    <details className="group">
+                      <summary
+                        className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 rounded-md py-5 text-[17px] font-medium ${T_PRIMARY} transition-colors hover:text-[#f2a93b] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS}`}
+                      >
+                        <span data-edit-id="mm-faq-5-q" className="text-balance">Kommen Sie auch ins Hotel?</span>
+                        <Plus
+                          size={18}
+                          strokeWidth={1.75}
+                          className="shrink-0 text-[#f2a93b] transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
+                          aria-hidden={true}
+                        />
+                      </summary>
+                      <p data-edit-id="mm-faq-5-a" className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}>
+                        Ja. Hotelzimmer und Suiten sind auf Anfrage möglich, ebenso Termine außerhalb der üblichen Zeiten. Bitte geben Sie bei der Anfrage Hotel, Zimmernummer und Ihren Wunschtermin an, damit ich mich an der Rezeption anmelden kann.
+                      </p>
+                    </details>
+                    <details className="group">
+                      <summary
+                        className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 rounded-md py-5 text-[17px] font-medium ${T_PRIMARY} transition-colors hover:text-[#f2a93b] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS}`}
+                      >
+                        <span data-edit-id="mm-faq-6-q" className="text-balance">Welche Massage bekomme ich beim Hausbesuch?</span>
+                        <Plus
+                          size={18}
+                          strokeWidth={1.75}
+                          className="shrink-0 text-[#f2a93b] transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
+                          aria-hidden={true}
+                        />
+                      </summary>
+                      <p data-edit-id="mm-faq-6-a" className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}>
+                        Dieselbe Arbeit wie in der Praxis: klassische Massage, Heilmassage-Techniken und gezielte Behandlung von Verspannungen – abgestimmt auf das, was Ihr Körper an diesem Tag braucht. Nur Anwendungen mit Geräten sind zuhause nicht möglich.
+                      </p>
+                    </details>
+                    <details className="group">
+                      <summary
+                        className={`flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 rounded-md py-5 text-[17px] font-medium ${T_PRIMARY} transition-colors hover:text-[#f2a93b] sm:text-lg [&::-webkit-details-marker]:hidden ${FOCUS}`}
+                      >
+                        <span data-edit-id="mm-faq-7-q" className="text-balance">Wie kurzfristig kann ich einen Hausbesuch buchen?</span>
+                        <Plus
+                          size={18}
+                          strokeWidth={1.75}
+                          className="shrink-0 text-[#f2a93b] transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
+                          aria-hidden={true}
+                        />
+                      </summary>
+                      <p data-edit-id="mm-faq-7-a" className={`max-w-prose pb-6 text-[16px] leading-[1.7] ${T_BODY}`}>
+                        In den Innenbezirken geht oft noch etwas am selben oder am nächsten Tag. Für Wunschtermine am Abend oder am Wochenende melden Sie sich am besten ein paar Tage vorher.
+                      </p>
+                    </details>
                 </div>
               </div>
             </div>
@@ -719,33 +839,32 @@ export default async function MobileMassageWien() {
               <h2
                 className={`${DISPLAY} mx-auto mt-8 max-w-3xl text-balance text-[clamp(2.1rem,4.2vw,3.4rem)] leading-[1.06] ${T_PRIMARY}`}
               >
-                {c.ctaHeading}
+                Entspannung kommt zu Ihnen
               </h2>
               <p
                 className={`mx-auto mt-6 max-w-lg text-[17px] leading-[1.65] ${T_BODY}`}
               >
-                {c.ctaText}
+                Nennen Sie mir Adresse und Wunschzeit – den Rest übernehme ich. Schreiben Sie mir oder rufen Sie an.
               </p>
-              <p className="mt-7 text-balance text-sm font-semibold tracking-[0.06em] text-[#f2a93b]">
-                {priceFrom ? `ab ${priceFrom} € · ` : ""}
-                {c.durationSummary} · Anfahrt innerhalb Wiens inklusive
+              <p data-edit-id="mm-final-price-line" className="mt-7 text-balance text-sm font-semibold tracking-[0.06em] text-[#f2a93b]">
+                ab 120 € · 60 oder 90 Minuten · Anfahrt innerhalb Wiens inklusive
               </p>
               <div className="mx-auto mt-9 flex max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center">
-                <a href={c.mailHref} className={BTN_GOLD}>
+                <a href={MAIL_HREF} className={BTN_GOLD}>
                   <Mail size={17} strokeWidth={2.25} aria-hidden={true} />
-                  {c.ctaPrimaryLabel}
+                  <span data-edit-id="mm-final-cta">Hausbesuch anfragen</span>
                 </a>
-                <a href={c.telHref} className={BTN_GHOST}>
+                <a href={TEL_HREF} className={BTN_GHOST}>
                   <Phone size={16} strokeWidth={2.25} aria-hidden={true} />
-                  {c.phone}
+                  +43 670 189 52 56
                 </a>
               </div>
-              <p className={`mt-7 text-[15px] ${T_MUTED}`}>{c.email}</p>
+              <p className={`mt-7 text-[15px] ${T_MUTED}`}>praxis@heilmasseur-domenic.at</p>
             </div>
           </section>
         </main>
 
-        <Footer sanitySettings={c.settings} />
+        <Footer />
       </div>
     </>
   );

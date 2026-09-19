@@ -47,11 +47,32 @@ const TONES = {
   },
 } as const;
 
+const PROCESS_STEPS: Step[] = [
+  {
+    title: "Anfrage & Termin",
+    description:
+      "Sie nennen mir Adresse, Wunschtermin und ob 60 oder 90 Minuten. Ich bestätige Termin und Preis verbindlich.",
+  },
+  {
+    title: "Ankunft & Aufbau",
+    description:
+      "Ich komme pünktlich, Sie zeigen mir den Platz. Die Liege steht in wenigen Minuten – leise und ohne Umräumen.",
+  },
+  {
+    title: "Die Behandlung",
+    description:
+      "Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit dort, wo Sie sie brauchen.",
+  },
+  {
+    title: "Nachklingen lassen",
+    description:
+      "Nach der Behandlung baue ich die Liege ab und verabschiede mich. Sie müssen nirgendwohin – Sie bleiben, wo Sie sind, und lassen die Wirkung nachklingen.",
+  },
+];
+
 export function ProcessTimeline({
-  steps,
   tone = "light",
 }: {
-  steps: Step[];
   tone?: keyof typeof TONES;
 }) {
   const t = TONES[tone];
@@ -227,7 +248,7 @@ export function ProcessTimeline({
       />
 
       <ol>
-        {steps.map((step, i) => {
+        {PROCESS_STEPS.map((step, i) => {
           const isActive = active === i;
           return (
             <li
@@ -239,7 +260,6 @@ export function ProcessTimeline({
                 transitionDelay: `${i * 120}ms`,
               }}
             >
-              {/* Static marker */}
               <span
                 ref={(el) => {
                   markerRefs.current[i] = el;
@@ -268,11 +288,27 @@ export function ProcessTimeline({
                 <h3
                   className={`text-lg font-bold md:mt-1 md:text-xl ${t.title}`}
                 >
-                  {step.title}
+                  {i === 0 ? (
+                    <span data-edit-id="mm-process-1-title">Anfrage & Termin</span>
+                  ) : i === 1 ? (
+                    <span data-edit-id="mm-process-2-title">Ankunft & Aufbau</span>
+                  ) : i === 2 ? (
+                    <span data-edit-id="mm-process-3-title">Die Behandlung</span>
+                  ) : (
+                    <span data-edit-id="mm-process-4-title">Nachklingen lassen</span>
+                  )}
                 </h3>
               </div>
               <p className={`max-w-xl text-base leading-relaxed ${t.body}`}>
-                {step.description}
+                {i === 0 ? (
+                  <span data-edit-id="mm-process-1-text">Sie nennen mir Adresse, Wunschtermin und ob 60 oder 90 Minuten. Ich bestätige Termin und Preis verbindlich.</span>
+                ) : i === 1 ? (
+                  <span data-edit-id="mm-process-2-text">Ich komme pünktlich, Sie zeigen mir den Platz. Die Liege steht in wenigen Minuten – leise und ohne Umräumen.</span>
+                ) : i === 2 ? (
+                  <span data-edit-id="mm-process-3-text">Ein kurzes Gespräch über Beschwerden und Druck, danach 60 oder 90 Minuten konzentrierte Arbeit dort, wo Sie sie brauchen.</span>
+                ) : (
+                  <span data-edit-id="mm-process-4-text">Nach der Behandlung baue ich die Liege ab und verabschiede mich. Sie müssen nirgendwohin – Sie bleiben, wo Sie sind, und lassen die Wirkung nachklingen.</span>
+                )}
               </p>
             </li>
           );

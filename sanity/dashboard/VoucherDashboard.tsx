@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useClient } from "sanity";
 import type { UserComponent } from "sanity/structure";
 import {
-  BLOCK_PRICES_FALLBACK,
+  BLOCK_PRICES,
   type BlockProductKey,
 } from "../../lib/blockOptions";
 
@@ -16,7 +16,7 @@ const TIME_ZONE = "Europe/Vienna";
 // Acceptable trade-off since this is an internal Studio view, not customer-facing.
 const PRICE_PER_SESSION: Record<string, number> = (() => {
   const map: Record<string, number> = {};
-  for (const [key, { price }] of Object.entries(BLOCK_PRICES_FALLBACK)) {
+  for (const [key, { price }] of Object.entries(BLOCK_PRICES)) {
     const size = key.startsWith("block_5_") ? 5 : 10;
     map[key] = Math.round(price / size);
   }
